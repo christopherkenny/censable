@@ -1,4 +1,4 @@
-#' Recode Name as Abb
+#' Recode Abb from Name
 #'
 #' Replaces state name with state abbreviation
 #'
@@ -11,7 +11,7 @@
 #' @examples
 #' data('stata')
 #' stata %>% recode_name_abb(name)
-recode_name_abb <- function(.data, name) {
+recode_abb_name <- function(.data, .name) {
   stata <- get('stata')
   rec <- stata$abb
   names(rec) <- stata$name
@@ -20,7 +20,7 @@ recode_name_abb <- function(.data, name) {
 }
 
 
-#' Recode Name as FIPS
+#' Recode FIPS from Name
 #'
 #' Replaces state name with state fips
 #'
@@ -33,7 +33,7 @@ recode_name_abb <- function(.data, name) {
 #' @examples
 #' data('stata')
 #' stata %>% recode_name_fips(name)
-recode_name_fips <- function(.data, name) {
+recode_fips_name <- function(.data, .name) {
   stata <- get('stata')
   rec <- stata$fips
   names(rec) <- stata$name
@@ -41,7 +41,7 @@ recode_name_fips <- function(.data, name) {
   .data %>% dplyr::mutate({{.name}} := !!rec)
 }
 
-#' Recode Name as ANSI
+#' Recode ANSI from Name
 #'
 #' Replaces state name with state ansi
 #'
@@ -54,7 +54,7 @@ recode_name_fips <- function(.data, name) {
 #' @examples
 #' data('stata')
 #' stata %>% recode_name_ansi(name)
-recode_name_ansi <- function(.data, name) {
+recode_ansi_name <- function(.data, .name) {
   stata <- get('stata')
   rec <- stata$ansi
   names(rec) <- stata$name
@@ -62,7 +62,7 @@ recode_name_ansi <- function(.data, name) {
   .data %>% dplyr::mutate({{.name}} := !!rec)
 }
 
-#' Recode Abb as Name
+#' Recode Name from Abb
 #'
 #' Replaces state abbreviation with state name
 #'
@@ -75,7 +75,7 @@ recode_name_ansi <- function(.data, name) {
 #' @examples
 #' data('stata')
 #' stata %>% recode_abb_name(abb)
-recode_abb_name <- function(.data, .abb) {
+recode_name_abb <- function(.data, .abb) {
   stata <- get('stata')
   rec <- stata$name
   names(rec) <- stata$abb
@@ -84,7 +84,7 @@ recode_abb_name <- function(.data, .abb) {
 }
 
 
-#' Recode Abb as FIPS
+#' Recode FIPS from Abb
 #'
 #' Replaces state abbreviation with state fips
 #'
@@ -97,7 +97,7 @@ recode_abb_name <- function(.data, .abb) {
 #' @examples
 #' data('stata')
 #' stata %>% recode_abb_fips(abb)
-recode_abb_fips <- function(.data, .abb) {
+recode_fips_abb <- function(.data, .abb) {
   stata <- get('stata')
   rec <- stata$fips
   names(rec) <- stata$abb
@@ -105,7 +105,7 @@ recode_abb_fips <- function(.data, .abb) {
   .data %>% dplyr::mutate({{.abb}} := !!rec)
 }
 
-#' Recode Abb as ANSI
+#' Recode ANSI from Abb
 #'
 #' Replaces state abbreviation with state ansi
 #'
@@ -118,7 +118,7 @@ recode_abb_fips <- function(.data, .abb) {
 #' @examples
 #' data('stata')
 #' stata %>% recode_abb_ansi(abb)
-recode_abb_ansi <- function(.data, .abb) {
+recode_ansi_abb <- function(.data, .abb) {
   stata <- get('stata')
   rec <- stata$ansi
   names(rec) <- stata$abb
@@ -127,7 +127,7 @@ recode_abb_ansi <- function(.data, .abb) {
 }
 
 
-#' Recode ANSI as abb
+#' Recode Abb from ANSI
 #'
 #' Replaces state ansi with state abbreviation
 #'
@@ -140,7 +140,7 @@ recode_abb_ansi <- function(.data, .abb) {
 #' @examples
 #' data('stata')
 #' stata %>% recode_ansi_abb(ansi)
-recode_ansi_abb <- function(.data, .ansi) {
+recode_abb_ansi <- function(.data, .ansi) {
   stata <- get('stata')
   rec <- stata$abb
   names(rec) <- stata$ansi
@@ -148,7 +148,7 @@ recode_ansi_abb <- function(.data, .ansi) {
   .data %>% dplyr::mutate({{.ansi}} := !!rec)
 }
 
-#' Recode ANSI as Name
+#' Recode Name from ANSI
 #'
 #' Replaces state ansi with state name
 #'
@@ -161,7 +161,7 @@ recode_ansi_abb <- function(.data, .ansi) {
 #' @examples
 #' data('stata')
 #' stata %>% recode_ansi_name(name)
-recode_ansi_name <- function(.data, .ansi) {
+recode_name_ansi <- function(.data, .ansi) {
   stata <- get('stata')
   rec <- stata$name
   names(rec) <- stata$ansi
@@ -169,7 +169,7 @@ recode_ansi_name <- function(.data, .ansi) {
   .data %>% dplyr::mutate({{.ansi}} := !!rec)
 }
 
-#' Recode ANSI as FIPS
+#' Recode FIPS from ANSI
 #'
 #' Replaces state ansi with state fips
 #'
@@ -182,7 +182,7 @@ recode_ansi_name <- function(.data, .ansi) {
 #' @examples
 #' data('stata')
 #' stata %>% recode_ansi_fips(ansi)
-recode_ansi_fips <- function(.data, .ansi) {
+recode_fips_ansi <- function(.data, .ansi) {
   stata <- get('stata')
   rec <- stata$fips
   names(rec) <- stata$ansi
@@ -191,7 +191,7 @@ recode_ansi_fips <- function(.data, .ansi) {
 }
 
 
-#' Recode FIPS as ANSI
+#' Recode ANSI from FIPS
 #'
 #' Replaces state fips with state ansi
 #'
@@ -204,7 +204,7 @@ recode_ansi_fips <- function(.data, .ansi) {
 #' @examples
 #' data('stata')
 #' stata %>% recode_fips_abb(fips)
-recode_fips_ansi <- function(.data, .fips) {
+recode_ansi_fips <- function(.data, .fips) {
   stata <- get('stata')
   rec <- stata$ansi
   names(rec) <- stata$fips
@@ -212,7 +212,7 @@ recode_fips_ansi <- function(.data, .fips) {
   .data %>% dplyr::mutate({{.fips}} := !!rec)
 }
 
-#' Recode FIPS as Abb
+#' Recode Abb from FIPS
 #'
 #' Replaces state fips with state abb
 #'
@@ -225,7 +225,7 @@ recode_fips_ansi <- function(.data, .fips) {
 #' @examples
 #' data('stata')
 #' stata %>% recode_fips_abb(fips)
-recode_fips_abb <- function(.data, .fips) {
+recode_abb_fips <- function(.data, .fips) {
   stata <- get('stata')
   rec <- stata$abb
   names(rec) <- stata$fips
@@ -234,7 +234,7 @@ recode_fips_abb <- function(.data, .fips) {
 }
 
 
-#' Recode FIPS as Name
+#' Recode Name from FIPS
 #'
 #' Replaces state fips with state name
 #'
@@ -247,7 +247,7 @@ recode_fips_abb <- function(.data, .fips) {
 #' @examples
 #' data('stata')
 #' stata %>% recode_fips_name(fips)
-recode_fips_name <- function(.data, .fips) {
+recode_name_fips <- function(.data, .fips) {
   stata <- get('stata')
   rec <- stata$name
   names(rec) <- stata$fips

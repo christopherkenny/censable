@@ -14,10 +14,12 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Suggests: 
-    roxygen2
+    roxygen2,
+    testthat (>= 3.0.0)
 Imports: 
     magrittr,
     dplyr (>= 1.0.4),
     rlang (>= 0.1.2)
 Depends: 
     R (>= 2.10)
+Config/testthat/edition: 3
