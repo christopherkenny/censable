@@ -10,6 +10,7 @@
 #'
 #' @return value, invisibly
 #' @export
+#' @importFrom stringr str_detect
 #'
 #' @examples
 #' \dontrun{
@@ -35,7 +36,7 @@ add_r_environ <- function(value, name = 'CENSUS_API_KEY', overwrite = FALSE, ins
     newline <- paste0(name, "='", value, "'")
 
 
-    exists <- stringr::str_detect(lines, pasteo(name,'='))
+    exists <- stringr::str_detect(lines, paste0(name,'='))
 
     if (any(exists)) {
       if (sum(exists) > 1) {

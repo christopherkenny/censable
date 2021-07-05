@@ -2,22 +2,22 @@
 % Please edit documentation in R/recode.R
 \name{recode_abb_ansi}
 \alias{recode_abb_ansi}
-\title{Recode Abb as ANSI}
+\title{Recode Abb from ANSI}
 \usage{
-recode_abb_ansi(.data, .abb)
+recode_abb_ansi(.data, .ansi)
 }
 \arguments{
 \item{.data}{data.frame or tibble}
 
-\item{.abb}{column with state abbrevaition}
+\item{.ansi}{column with state ansi}
 }
 \value{
-.data with column .abb replaced with state ansi
+.data with column .ansi replaced with state abbreviation
 }
 \description{
-Replaces state abbreviation with state ansi
+Replaces state ansi with state abbreviation
 }
 \examples{
 data('stata')
-stata \%>\% recode_abb_ansi(abb)
+stata \%>\% recode_ansi_abb(ansi)
 }

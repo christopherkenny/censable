@@ -2,22 +2,22 @@
 % Please edit documentation in R/recode.R
 \name{recode_fips_name}
 \alias{recode_fips_name}
-\title{Recode FIPS as Name}
+\title{Recode FIPS from Name}
 \usage{
-recode_fips_name(.data, .fips)
+recode_fips_name(.data, .name)
 }
 \arguments{
 \item{.data}{data.frame or tibble}
 
-\item{.fips}{column with state fips}
+\item{.name}{column with state fips}
 }
 \value{
-.data with column .fips replaced with state name
+.data with column .name replaced with fips
 }
 \description{
-Replaces state fips with state name
+Replaces state name with state fips
 }
 \examples{
 data('stata')
-stata \%>\% recode_fips_name(fips)
+stata \%>\% recode_name_fips(name)
 }

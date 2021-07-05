@@ -2,22 +2,22 @@
 % Please edit documentation in R/recode.R
 \name{recode_name_ansi}
 \alias{recode_name_ansi}
-\title{Recode Name as ANSI}
+\title{Recode Name from ANSI}
 \usage{
-recode_name_ansi(.data, name)
+recode_name_ansi(.data, .ansi)
 }
 \arguments{
 \item{.data}{data.frame or tibble}
 
-\item{.name}{column with state ansi}
+\item{.ansi}{column with state ansi}
 }
 \value{
-.data with column .name replaced with ansi
+.data with column .ansi replaced with state name
 }
 \description{
-Replaces state name with state ansi
+Replaces state ansi with state name
 }
 \examples{
 data('stata')
-stata \%>\% recode_name_ansi(name)
+stata \%>\% recode_ansi_name(name)
 }

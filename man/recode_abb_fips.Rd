@@ -2,22 +2,22 @@
 % Please edit documentation in R/recode.R
 \name{recode_abb_fips}
 \alias{recode_abb_fips}
-\title{Recode Abb as FIPS}
+\title{Recode Abb from FIPS}
 \usage{
-recode_abb_fips(.data, .abb)
+recode_abb_fips(.data, .fips)
 }
 \arguments{
 \item{.data}{data.frame or tibble}
 
-\item{.abb}{column with state abbrevaition}
+\item{.fips}{column with state fips}
 }
 \value{
-.data with column .abb replaced with state name
+.data with column .fips replaced with state abb
 }
 \description{
-Replaces state abbreviation with state fips
+Replaces state fips with state abb
 }
 \examples{
 data('stata')
-stata \%>\% recode_abb_fips(abb)
+stata \%>\% recode_fips_abb(fips)
 }

@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "christopherkenny@fas.harvard.edu",
            comment = c(ORCID = "0000-0002-9386-6860"))
-Description: What the package does (one paragraph).
+Description: Creates a common framework for gathering redistricting data from the Census Bureau API.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -19,7 +19,12 @@ Suggests:
 Imports: 
     magrittr,
     dplyr (>= 1.0.4),
-    rlang (>= 0.1.2)
+    rlang (>= 0.1.2),
+    tidycensus,
+    tigris,
+    sf (>= 1.0.0),
+    tibble,
+    stringr
 Depends: 
     R (>= 2.10)
 Config/testthat/edition: 3

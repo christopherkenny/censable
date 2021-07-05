@@ -2,22 +2,22 @@
 % Please edit documentation in R/recode.R
 \name{recode_fips_ansi}
 \alias{recode_fips_ansi}
-\title{Recode FIPS as ANSI}
+\title{Recode FIPS from ANSI}
 \usage{
-recode_fips_ansi(.data, .fips)
+recode_fips_ansi(.data, .ansi)
 }
 \arguments{
 \item{.data}{data.frame or tibble}
 
-\item{.fips}{column with state fips}
+\item{.ansi}{column with state ansi}
 }
 \value{
-.data with column .fips replaced with state ansi
+.data with column .ansi replaced with state fips
 }
 \description{
-Replaces state fips with state ansi
+Replaces state ansi with state fips
 }
 \examples{
 data('stata')
-stata \%>\% recode_fips_abb(fips)
+stata \%>\% recode_ansi_fips(ansi)
 }

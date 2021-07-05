@@ -15,7 +15,7 @@ recode_abb_name <- function(.data, .name) {
   stata <- get('stata')
   rec <- stata$abb
   names(rec) <- stata$name
-  
+
   .data %>% dplyr::mutate({{.name}} := !!rec)
 }
 
@@ -37,7 +37,7 @@ recode_fips_name <- function(.data, .name) {
   stata <- get('stata')
   rec <- stata$fips
   names(rec) <- stata$name
-  
+
   .data %>% dplyr::mutate({{.name}} := !!rec)
 }
 
@@ -58,7 +58,7 @@ recode_ansi_name <- function(.data, .name) {
   stata <- get('stata')
   rec <- stata$ansi
   names(rec) <- stata$name
-  
+
   .data %>% dplyr::mutate({{.name}} := !!rec)
 }
 
@@ -79,7 +79,7 @@ recode_name_abb <- function(.data, .abb) {
   stata <- get('stata')
   rec <- stata$name
   names(rec) <- stata$abb
-  
+
   .data %>% dplyr::mutate({{.abb}} := !!rec)
 }
 
@@ -101,7 +101,7 @@ recode_fips_abb <- function(.data, .abb) {
   stata <- get('stata')
   rec <- stata$fips
   names(rec) <- stata$abb
-  
+
   .data %>% dplyr::mutate({{.abb}} := !!rec)
 }
 
@@ -122,7 +122,7 @@ recode_ansi_abb <- function(.data, .abb) {
   stata <- get('stata')
   rec <- stata$ansi
   names(rec) <- stata$abb
-  
+
   .data %>% dplyr::mutate({{.abb}} := !!rec)
 }
 
@@ -132,7 +132,7 @@ recode_ansi_abb <- function(.data, .abb) {
 #' Replaces state ansi with state abbreviation
 #'
 #' @param .data data.frame or tibble
-#' @param .abb column with state ansi
+#' @param .ansi column with state ansi
 #'
 #' @return .data with column .ansi replaced with state abbreviation
 #' @export
@@ -144,7 +144,7 @@ recode_abb_ansi <- function(.data, .ansi) {
   stata <- get('stata')
   rec <- stata$abb
   names(rec) <- stata$ansi
-  
+
   .data %>% dplyr::mutate({{.ansi}} := !!rec)
 }
 
@@ -153,7 +153,7 @@ recode_abb_ansi <- function(.data, .ansi) {
 #' Replaces state ansi with state name
 #'
 #' @param .data data.frame or tibble
-#' @param .abb column with state ansi
+#' @param .ansi column with state ansi
 #'
 #' @return .data with column .ansi replaced with state name
 #' @export
@@ -165,7 +165,7 @@ recode_name_ansi <- function(.data, .ansi) {
   stata <- get('stata')
   rec <- stata$name
   names(rec) <- stata$ansi
-  
+
   .data %>% dplyr::mutate({{.ansi}} := !!rec)
 }
 
@@ -174,7 +174,7 @@ recode_name_ansi <- function(.data, .ansi) {
 #' Replaces state ansi with state fips
 #'
 #' @param .data data.frame or tibble
-#' @param .abb column with state ansi
+#' @param .ansi column with state ansi
 #'
 #' @return .data with column .ansi replaced with state fips
 #' @export
@@ -186,7 +186,7 @@ recode_fips_ansi <- function(.data, .ansi) {
   stata <- get('stata')
   rec <- stata$fips
   names(rec) <- stata$ansi
-  
+
   .data %>% dplyr::mutate({{.ansi}} := !!rec)
 }
 
@@ -208,7 +208,7 @@ recode_ansi_fips <- function(.data, .fips) {
   stata <- get('stata')
   rec <- stata$ansi
   names(rec) <- stata$fips
-  
+
   .data %>% dplyr::mutate({{.fips}} := !!rec)
 }
 
@@ -229,7 +229,7 @@ recode_abb_fips <- function(.data, .fips) {
   stata <- get('stata')
   rec <- stata$abb
   names(rec) <- stata$fips
-  
+
   .data %>% dplyr::mutate({{.fips}} := !!rec)
 }
 
@@ -251,6 +251,6 @@ recode_name_fips <- function(.data, .fips) {
   stata <- get('stata')
   rec <- stata$name
   names(rec) <- stata$fips
-  
+
   .data %>% dplyr::mutate({{.fips}} := !!rec)
 }

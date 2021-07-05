@@ -13,9 +13,11 @@
 #' stata %>% join_name_abb(name)
 join_name_abb <- function(.data, .name) {
   stata <- get('stata')
-  stata <- stata %>% dplyr::select(name, abb)
+  stata <- stata %>% dplyr::select(.data$name, .data$abb)
   by_char <- 'name'
-  names(by_char) <- as.character(rlang::as_name(.name))
-  
+  names(by_char) <- rlang::as_name(rlang::enquo(.name))
+
   .data %>% dplyr::left_join(stata, by = by_char)
 }
+
+
