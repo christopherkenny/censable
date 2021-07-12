@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "christopherkenny@fas.harvard.edu",
            comment = c(ORCID = "0000-0002-9386-6860"))
-Description: Creates a common framework for gathering redistricting data from the Census Bureau API.
+Description: Creates a common framework for gathering population, age, race, and ethnicity data from the Census Bureau API. Provides tools for adding information to existing data to line up with Census data.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

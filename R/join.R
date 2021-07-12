@@ -1,4 +1,4 @@
-#' Join Name to Abb
+#' Join Abb to Name
 #'
 #' Adds a column with state abbs joining to a column with state names
 #'
