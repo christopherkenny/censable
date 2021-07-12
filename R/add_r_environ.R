@@ -10,7 +10,6 @@
 #'
 #' @return value, invisibly
 #' @export
-#' @importFrom stringr str_detect
 #'
 #' @examples
 #' \dontrun{

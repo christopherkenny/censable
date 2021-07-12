@@ -14,11 +14,6 @@
 #' or county. Data includes 2 sets of columns for each race or ethnicity category:
 #' population (pop) and voting age population (vap)
 #'
-#' @importFrom tidycensus get_decennial
-#' @importFrom dplyr filter select mutate all_of any_of left_join .data
-#' @importFrom tibble tibble
-#' @importFrom magrittr %>%
-#' @importFrom sf st_as_sf
 #' @export
 #' @concept datatable
 #' @examples
@@ -58,14 +53,14 @@ build_dec <- function(geography, state, county, geometry = TRUE, year = 2010){
                   vap_hisp = 'P006002', vap_aian  = 'P006007', vap_asian = 'P006008',
                   vap_nhpi = 'P006009', vap_other = 'P006010', vap_two   = 'P006011')
 
-    out_pop <- get_decennial(geography = 'block', state = state, year = year,
+    out_pop <- tidycensus::get_decennial(geography = 'block', state = state, year = year,
                              geometry = geometry, keep_geo_vars = FALSE,
                              variables = vars_pop)
-    out_vap <- get_decennial(geography = 'block', state = state, year = year,
+    out_vap <- tidycensus::get_decennial(geography = 'block', state = state, year = year,
                              geometry = FALSE, keep_geo_vars = FALSE,
                              variables = vars_vap, output = 'wide')
 
-    out <-out_pop %>% left_join(out_vap, by = 'GEOID') %>% st_as_sf()
+    out <-out_pop %>% dplyr::left_join(out_vap, by = 'GEOID') %>% sf::st_as_sf()
   }
 
   out
