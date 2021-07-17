@@ -2,22 +2,23 @@
 % Please edit documentation in R/join.R
 \name{join_name_abb}
 \alias{join_name_abb}
-\title{Join Name to Abb}
+\title{Join Name by Abb}
 \usage{
-join_name_abb(.data, .name)
+join_name_abb(.data, .abb)
 }
 \arguments{
 \item{.data}{data.frame or tibble}
 
-\item{.name}{column with state abbreviation}
+\item{.abb}{column with state abbrevaition}
 }
 \value{
-.data with column .name replaced with abbreviation
+.data with column .abb replaced with state name
 }
 \description{
-Adds a column with state abbs joining to a column with state names
+Replaces state abbreviation with state name
 }
 \examples{
 data('stata')
-stata \%>\% join_name_abb(name)
+stata \%>\% join_name_abb(abb)
 }
+\concept{join}

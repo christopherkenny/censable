@@ -2,7 +2,7 @@
 % Please edit documentation in R/recode.R
 \name{recode_name_abb}
 \alias{recode_name_abb}
-\title{Recode Name from Abb}
+\title{Recode Name by Abb}
 \usage{
 recode_name_abb(.data, .abb)
 }
@@ -19,5 +19,6 @@ Replaces state abbreviation with state name
 }
 \examples{
 data('stata')
-stata \%>\% recode_abb_name(abb)
+stata \%>\% recode_name_abb(abb)
 }
+\concept{recode}

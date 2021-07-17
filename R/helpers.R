@@ -9,5 +9,5 @@ drop_E <- function(x) {
 #' Clean Estimate Names
 #' @keywords internal
 clean_name_suffix <- function(.data) {
-  .data %>% dplyr::rename_with(.fn = dropE)
+  .data %>% dplyr::rename_with(.fn = drop_E)
 }

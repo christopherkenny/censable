@@ -15,7 +15,7 @@
 #' population (pop) and voting age population (vap)
 #'
 #' @export
-#' @concept datatable
+#' @concept build
 #' @examples
 #' \dontrun{
 #' # uses the Census API

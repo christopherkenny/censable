@@ -3,3 +3,4 @@
 ## usethis namespace: end
 NULL
 
+globalVariables(c('GEOID'))

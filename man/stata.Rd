@@ -16,6 +16,8 @@ tibble with columns:
 \item abb: two letter postal abbreviations
 \item name: title case state name
 \item ansi: American National Standards Institute codes
+\item region: Census Regions (for 50 states and D.C.)
+\item division: Census Divisions (for 50 states and D.C.)
 }
 }
 \examples{

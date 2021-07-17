@@ -1,7 +1,8 @@
 #' Add Entry to Renviron
 #'
 #' Adds a value to the Renvironment of the form `name=value`. Designed for flexibly
-#' adding API keys for future sessions.
+#' adding API keys for future sessions. Defaults are set up for entering a Census API
+#' key to work with tidycensus.
 #'
 #' @param value Character. Value to add.
 #' @param name Defaults to CENSUS_API_KEY. Character. Name to give `value`.

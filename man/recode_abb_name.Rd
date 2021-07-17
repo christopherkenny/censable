@@ -2,14 +2,14 @@
 % Please edit documentation in R/recode.R
 \name{recode_abb_name}
 \alias{recode_abb_name}
-\title{Recode Abb from Name}
+\title{Recode Abb by Name}
 \usage{
 recode_abb_name(.data, .name)
 }
 \arguments{
 \item{.data}{data.frame or tibble}
 
-\item{.name}{column with state abbreviation}
+\item{.name}{column with state name}
 }
 \value{
 .data with column .name replaced with abbreviation
@@ -19,5 +19,6 @@ Replaces state name with state abbreviation
 }
 \examples{
 data('stata')
-stata \%>\% recode_name_abb(name)
+stata \%>\% recode_abb_name(name)
 }
+\concept{recode}

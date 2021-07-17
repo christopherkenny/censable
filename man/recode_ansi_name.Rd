@@ -2,14 +2,14 @@
 % Please edit documentation in R/recode.R
 \name{recode_ansi_name}
 \alias{recode_ansi_name}
-\title{Recode ANSI from Name}
+\title{Recode ANSI by Name}
 \usage{
 recode_ansi_name(.data, .name)
 }
 \arguments{
 \item{.data}{data.frame or tibble}
 
-\item{.name}{column with state ansi}
+\item{.name}{column with state name}
 }
 \value{
 .data with column .name replaced with ansi
@@ -19,5 +19,6 @@ Replaces state name with state ansi
 }
 \examples{
 data('stata')
-stata \%>\% recode_name_ansi(name)
+stata \%>\% recode_ansi_name(name)
 }
+\concept{recode}

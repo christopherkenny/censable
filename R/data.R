@@ -1,5 +1,5 @@
 #' stata (State Data)
-#' 
+#'
 #' @name stata
 #'
 #' @description
@@ -8,6 +8,8 @@
 #' - abb: two letter postal abbreviations
 #' - name: title case state name
 #' - ansi: American National Standards Institute codes
+#' - region: Census Regions (for 50 states and D.C.)
+#' - division: Census Divisions (for 50 states and D.C.)
 #'
 #' @return tibble with state identifying information
 #'
@@ -16,7 +18,48 @@
 #'
 #' @examples
 #' data('stata')
-#' 
+#'
+#' @md
+#' @concept data
+NULL
+
+
+#' Montana County Data
+#'
+#' @name mt_county
+#'
+#' @description
+#' - GEOID: Geographic Identifier
+#' - NAME: Name of County
+#' - pop: total population
+#' - pop_white: total population, Non-Hispanic White
+#' - pop_black: total population, Non-Hispanic Black
+#' - pop_hisp: total population, Hispanic
+#' - pop_aian: total population, Non-Hispanic American Indian and Alaskan Native
+#' - pop_asian: total population, Non-Hispanic Asian
+#' - pop_nhpi: total population, Non-Hispanic Native Hawaiian and Pacific Islander
+#' - pop_other: total population, Non-Hispanic Other
+#' - pop_two: total population, Non-Hispanic Two Plus Races
+#' - vap: voting age population
+#' - vap_white: voting age population, Non-Hispanic White
+#' - vap_black: voting age population, Non-Hispanic Black
+#' - vap_hisp: voting age population, Hispanic
+#' - vap_aian: voting age population, Non-Hispanic American Indian and Alaskan Native
+#' - vap_asian: voting age population, Non-Hispanic Asian
+#' - vap_nhpi: voting age population, Non-Hispanic Native Hawaiian and Pacific Islander
+#' - vap_other: voting age population, Non-Hispanic Other
+#' - vap_two: voting age population, Non-Hispanic Two Plus Races
+#' - geometry: sf geometry
+#'
+#' @md
+#' @return sf tibble with one observation for each county in Montana
+#'
+#' @usage
+#' data('mt_county')
+#'
+#' @examples
+#' data('mt_county')
+#'
 #' @md
 #' @concept data
 NULL

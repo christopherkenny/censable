@@ -1,0 +1,28 @@
+template:
+  params:
+    bootswatch: journal
+reference:
+- title: "Build Data"
+  desc: "Wrappers around tidycensus to build redistricting data at various geographies"
+- contents:
+  - has_concept("build")
+- title: "Collapse"
+  desc: "Functions to collapse racial categories"
+- contents:
+  - has_concept("collapse")
+- title: "Recode"
+  desc: "Functions to recode common state variables as other identifiers"
+- contents:
+  - has_concept("recode")
+- title: "Join"
+  desc: "Functions to join common state variables to other identifiers"
+- contents:
+  - has_concept("join")
+- title: "Example Data"
+  desc: "Data Included for Examples and Testing"
+- contents:
+  - has_concept("data")
+- title: "Other"
+  desc: "Functions to join common state variables to other identifiers"
+- contents:
+  - lacks_concept(c("build", "recode", "join"))

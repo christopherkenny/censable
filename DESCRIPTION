@@ -1,6 +1,6 @@
 Package: censable
-Title: Make Other Data Usable with Census Data
-Version: 0.0.0.9000
+Title: Making Census Data More Usable
+Version: 0.0.1
 Authors@R: 
     person(given = "Christopher T.",
            family = "Kenny",
@@ -24,7 +24,8 @@ Imports:
     tigris,
     sf (>= 1.0.0),
     tibble,
-    stringr
+    stringr,
+    memoise
 Depends: 
     R (>= 2.10)
 Config/testthat/edition: 3
