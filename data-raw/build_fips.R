@@ -1,5 +1,5 @@
 # Create FIPS 2000
-fips_2000 <- readxl::read_excel('~/../Downloads/fips_2000.xlsx', col_names = FALSE)
+fips_2000 <- readxl::read_excel('fips_2000.xlsx', col_names = FALSE)
 names(fips_2000) <- 'raw'
 fips_2000 <- fips_2000 %>%
   dplyr::mutate(
@@ -36,7 +36,7 @@ fips_2010 <- fips_2010 %>% dplyr::select(state = V2, county = V3, name = V4)
 fips_2010 <- fips_2010 %>% dplyr::filter(state %in% unique(fips_2000$state))
 
 # Create FIPS 2020
-fips_2020 <- readxl::read_excel('~/../Downloads/all-geocodes-v2020.xlsx', skip = 4)
+fips_2020 <- readxl::read_excel('all-geocodes-v2020.xlsx', skip = 4)
 fips_2020 <- fips_2020 %>%
   dplyr::filter(`Summary Level` == '050')
 fips_2020 <- fips_2020 %>% dplyr::filter(state %in% unique(fips_2000$state))
