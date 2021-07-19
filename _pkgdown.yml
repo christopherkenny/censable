@@ -18,11 +18,15 @@ reference:
   desc: "Functions to join common state variables to other identifiers"
 - contents:
   - has_concept("join")
+- title: "GEOID Tools"
+  desc: "Mimic or work with Census GEOIDs"
+- contents:
+  - has_concept("geoid")
 - title: "Example Data"
   desc: "Data Included for Examples and Testing"
 - contents:
   - has_concept("data")
 - title: "Other"
-  desc: "Functions to join common state variables to other identifiers"
+  desc: "Other Functions"
 - contents:
-  - lacks_concept(c("build", "recode", "join"))
+  - lacks_concepts(c("build", "collapse", "recode", "join", "geoid", "data"))

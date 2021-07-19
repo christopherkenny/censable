@@ -1,8 +1,54 @@
 #' Build Data from the Decennial Census
 #'
+#' @description
 #' Creates a dataset, using the decennial census information, with the
 #' standard variables used for redistricting. Creates a stable base for getting
 #' data from tidycensus for common calls in redistricting.
+#'
+#' #' # Output columns are:
+#' - GEOID: Geographic Identifier
+#' - NAME: Name of County
+#' - pop: total population
+#' - pop_white: total population, Non-Hispanic White
+#' - pop_black: total population, Non-Hispanic Black
+#' - pop_hisp: total population, Hispanic
+#' - pop_aian: total population, Non-Hispanic American Indian and Alaskan Native
+#' - pop_asian: total population, Non-Hispanic Asian
+#' - pop_nhpi: total population, Non-Hispanic Native Hawaiian and Pacific Islander
+#' - pop_other: total population, Non-Hispanic Other
+#' - pop_two: total population, Non-Hispanic Two Plus Races
+#' - vap: voting age population
+#' - vap_white: voting age population, Non-Hispanic White
+#' - vap_black: voting age population, Non-Hispanic Black
+#' - vap_hisp: voting age population, Hispanic
+#' - vap_aian: voting age population, Non-Hispanic American Indian and Alaskan Native
+#' - vap_asian: voting age population, Non-Hispanic Asian
+#' - vap_nhpi: voting age population, Non-Hispanic Native Hawaiian and Pacific Islander
+#' - vap_other: voting age population, Non-Hispanic Other
+#' - vap_two: voting age population, Non-Hispanic Two Plus Races
+#' - geometry: sf geometry
+#'
+#'
+#' Arguments for `geography` are not checked, so will fail with `tidycensus` errors if invalid.
+#' This is by design to avoid blocking usage that could become valid, especially following
+#' the 2020 Census data release.
+#'
+#' Currently valid options for `geography`:
+#' - 'state'
+#' - 'county'
+#' - 'tract'
+#' - 'block group'
+#' - 'block'
+#' - 'county subdivision'
+#' - 'zcta'
+#' - 'congressional district'
+#' - 'state legislative district (upper chamber)'
+#' - 'state legislative district (lower chamber)'
+#' - 'school district (unified)'
+#'
+#' Full options for `geography` that may or may not be valid depending on year and geometry
+#' are listed at:
+#' [Kyle Walker's tidycensus site](https://walker-data.com/tidycensus/articles/basic-usage.html).
 #'
 #' @param geography Required. The geography level to use.
 #' @param state Required. Two letter state postal code.
@@ -23,69 +69,83 @@
 #' # uses the Census API
 #' tb <- build_dec(geography = 'block', state = 'NY', county = 'Rockland', geometry = TRUE)
 #' }
-build_acs <- function(geography, state, county, geometry = TRUE, year = 2010, survey = 'acs5'){
-
-  if(year < 2009) {
-    stop('ACS endpoint for years before 2009 is not available.')
+build_acs <- function(geography, state, county, geometry = TRUE, year = 2010, survey = 'acs5') {
+  if (year < 2005) {
+    stop('ACS endpoint for years before 2005 is not available.')
   }
 
   # totals + white + black + hisp / for total, vap, and cvap (by sex because acs...)
-  vars <- c(pop         = 'B03002_001',
-            pop_white   = 'B03002_003',
-            pop_black   = 'B03002_004',
-            pop_hisp    = 'B03002_012',
-            pop_aian    = 'B03002_005',
-            pop_asian   = 'B03002_006',
-            pop_nhpi    = 'B03002_007',
-            pop_other   = 'B03002_008',
-            pop_two     = 'B03002_009',
-            m_vap       = 'B05003_008',  m_nvap        = 'B05003_012',
-            f_vap       = 'B05003_019',  f_nvap        = 'B05003_023',
-            m_vap_black = 'B05003B_008', m_nvap_black  = 'B05003B_012',
-            f_vap_black = 'B05003B_019', f_nvap_black  = 'B05003B_023',
-            m_vap_white = 'B05003H_008', m_nvap_white  = 'B05003H_012',
-            f_vap_white = 'B05003H_019', f_nvap_white  = 'B05003H_023',
-            m_vap_hisp  = 'B05003I_008', m_nvap_hisp   = 'B05003I_012',
-            f_vap_hisp  = 'B05003I_019', f_nvap_hisp   = 'B05003I_023',
-            m_vap_aian  = 'B05003C_008', m_nvap_aian   = 'B05003C_012',
-            f_vap_aian  = 'B05003C_019', f_nvap_aian   = 'B05003C_023',
-            m_vap_asian = 'B05003D_008', m_nvap_asian  = 'B05003D_012',
-            f_vap_asian = 'B05003D_019', f_nvap_asian  = 'B05003D_023',
-            m_vap_nhpi  = 'B05003E_008', m_nvap_nhpi   = 'B05003E_012',
-            f_vap_nhpi  = 'B05003E_019', f_nvap_nhpi   = 'B05003E_023',
-            m_vap_other = 'B05003F_008', m_nvap_other  = 'B05003F_012',
-            f_vap_other = 'B05003F_019', f_nvap_other  = 'B05003F_023',
-            m_vap_two   = 'B05003G_008', m_nvap_two    = 'B05003G_012',
-            f_vap_two   = 'B05003G_019', f_nvap_two    = 'B05003G_023'
+  vars <- c(
+    pop = 'B03002_001',
+    pop_white = 'B03002_003',
+    pop_black = 'B03002_004',
+    pop_hisp = 'B03002_012',
+    pop_aian = 'B03002_005',
+    pop_asian = 'B03002_006',
+    pop_nhpi = 'B03002_007',
+    pop_other = 'B03002_008',
+    pop_two = 'B03002_009',
+    m_vap = 'B05003_008', m_nvap = 'B05003_012',
+    f_vap = 'B05003_019', f_nvap = 'B05003_023',
+    m_vap_black = 'B05003B_008', m_nvap_black = 'B05003B_012',
+    f_vap_black = 'B05003B_019', f_nvap_black = 'B05003B_023',
+    m_vap_white = 'B05003H_008', m_nvap_white = 'B05003H_012',
+    f_vap_white = 'B05003H_019', f_nvap_white = 'B05003H_023',
+    m_vap_hisp = 'B05003I_008', m_nvap_hisp = 'B05003I_012',
+    f_vap_hisp = 'B05003I_019', f_nvap_hisp = 'B05003I_023',
+    m_vap_aian = 'B05003C_008', m_nvap_aian = 'B05003C_012',
+    f_vap_aian = 'B05003C_019', f_nvap_aian = 'B05003C_023',
+    m_vap_asian = 'B05003D_008', m_nvap_asian = 'B05003D_012',
+    f_vap_asian = 'B05003D_019', f_nvap_asian = 'B05003D_023',
+    m_vap_nhpi = 'B05003E_008', m_nvap_nhpi = 'B05003E_012',
+    f_vap_nhpi = 'B05003E_019', f_nvap_nhpi = 'B05003E_023',
+    m_vap_other = 'B05003F_008', m_nvap_other = 'B05003F_012',
+    f_vap_other = 'B05003F_019', f_nvap_other = 'B05003F_023',
+    m_vap_two = 'B05003G_008', m_nvap_two = 'B05003G_012',
+    f_vap_two = 'B05003G_019', f_nvap_two = 'B05003G_023'
   )
 
-  out <- tidycensus::get_acs(geography = geography, state = state, year = year,
-                                   geometry = geometry, keep_geo_vars = FALSE,
-                                   variables = vars, output = 'wide') %>%
+  if (missing(county)) {
+    out <- tidycensus::get_acs(
+      geography = geography, state = state, year = year,
+      geometry = geometry, keep_geo_vars = FALSE,
+      variables = vars, output = 'wide', survey = survey
+    )
+  } else {
+    out <- tidycensus::get_acs(
+      geography = geography, state = state,
+      year = year, county = county,
+      geometry = geometry, keep_geo_vars = FALSE,
+      variables = vars, output = 'wide', survey = survey
+    )
+  }
+
+  out <- out %>%
     dplyr::select(-dplyr::ends_with('M')) %>%
     dplyr::rename_with(drop_E)
 
-  out %>% dplyr::mutate(
-    vap = .data$m_vap + .data$f_vap,
-    vap_white = .data$m_vap_white + .data$f_vap_white,
-    vap_black = .data$m_vap_black + .data$f_vap_black,
-    vap_hisp  = .data$m_vap_hisp  + .data$f_vap_hisp,
-    vap_aian  = .data$m_vap_aian  + .data$f_vap_aian,
-    vap_asian = .data$m_vap_asian + .data$f_vap_asian,
-    vap_nhpi  = .data$m_vap_nhpi  + .data$f_vap_nhpi,
-    vap_other = .data$m_vap_other + .data$f_vap_other,
-    vap_two   = .data$m_vap_two   + .data$f_vap_two
-  ) %>% dplyr::mutate(
-    cvap = .data$vap - .data$m_nvap - .data$f_nvap,
-    cvap_white = .data$vap_white - .data$m_nvap_white - .data$f_nvap_white,
-    cvap_black = .data$vap_black - .data$m_nvap_black - .data$f_nvap_black,
-    cvap_hisp  = .data$vap_hisp  - .data$m_nvap_hisp  - .data$f_nvap_hisp,
-    cvap_aian  = .data$vap_aian  - .data$m_nvap_aian  - .data$f_nvap_aian,
-    cvap_asian = .data$vap_asian - .data$m_nvap_asian - .data$f_nvap_asian,
-    cvap_nhpi  = .data$vap_nhpi  - .data$m_nvap_nhpi  - .data$f_nvap_nhpi,
-    cvap_other = .data$vap_other - .data$m_nvap_other - .data$f_nvap_other,
-    cvap_two   = .data$vap_two   - .data$m_nvap_two   - .data$f_nvap_two
-  ) %>% dplyr::select(-dplyr::starts_with(c('m','f'))
-  )
-
+  out %>%
+    dplyr::mutate(
+      vap = .data$m_vap + .data$f_vap,
+      vap_white = .data$m_vap_white + .data$f_vap_white,
+      vap_black = .data$m_vap_black + .data$f_vap_black,
+      vap_hisp = .data$m_vap_hisp + .data$f_vap_hisp,
+      vap_aian = .data$m_vap_aian + .data$f_vap_aian,
+      vap_asian = .data$m_vap_asian + .data$f_vap_asian,
+      vap_nhpi = .data$m_vap_nhpi + .data$f_vap_nhpi,
+      vap_other = .data$m_vap_other + .data$f_vap_other,
+      vap_two = .data$m_vap_two + .data$f_vap_two
+    ) %>%
+    dplyr::mutate(
+      cvap = .data$vap - .data$m_nvap - .data$f_nvap,
+      cvap_white = .data$vap_white - .data$m_nvap_white - .data$f_nvap_white,
+      cvap_black = .data$vap_black - .data$m_nvap_black - .data$f_nvap_black,
+      cvap_hisp = .data$vap_hisp - .data$m_nvap_hisp - .data$f_nvap_hisp,
+      cvap_aian = .data$vap_aian - .data$m_nvap_aian - .data$f_nvap_aian,
+      cvap_asian = .data$vap_asian - .data$m_nvap_asian - .data$f_nvap_asian,
+      cvap_nhpi = .data$vap_nhpi - .data$m_nvap_nhpi - .data$f_nvap_nhpi,
+      cvap_other = .data$vap_other - .data$m_nvap_other - .data$f_nvap_other,
+      cvap_two = .data$vap_two - .data$m_nvap_two - .data$f_nvap_two
+    ) %>%
+    dplyr::select(-dplyr::starts_with(c('m', 'f')))
 }

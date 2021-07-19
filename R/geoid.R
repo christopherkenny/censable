@@ -10,7 +10,7 @@
 #'
 #' @return .data with added identifying columns based on area_type
 #' @export
-#'
+#' @concept geoid
 #' @examples
 #' data(mt_county)
 #' mt_county <- mt_county %>% breakdown_geoid()
@@ -84,7 +84,7 @@ breakdown_geoid <- function(.data, GEOID = 'GEOID', area_type = 'spine') {
 #'
 #' @return .data with new column GEOID
 #' @export
-#'
+#' @concept geoid
 #' @examples
 #' data(mt_county)
 #' mt_county <- mt_county %>% breakdown_geoid()
@@ -176,7 +176,7 @@ construct_geoid <- function(.data, area_type, state = 'state', county = 'county'
 #'
 #' @return .data with new column GEOID
 #' @export
-#'
+#' @concept geoid
 #' @examples
 #' data(mt_county)
 #' mt_county <- mt_county %>% custom_geoid(GEOID)

@@ -51,7 +51,6 @@ NULL
 #' - vap_two: voting age population, Non-Hispanic Two Plus Races
 #' - geometry: sf geometry
 #'
-#' @md
 #' @return sf tibble with one observation for each county in Montana
 #'
 #' @usage
@@ -59,6 +58,72 @@ NULL
 #'
 #' @examples
 #' data('mt_county')
+#'
+#' @md
+#' @concept data
+NULL
+
+#' Counties FIPS 2000
+#'
+#' @name fips_2000
+#'
+#' @description
+#' Contains three columns:
+#' - state: state FIPS
+#' - county: county FIPS
+#' - name: county name
+#'
+#' @return tibble
+#'
+#' @usage
+#' data('fips_2000')
+#'
+#' @examples
+#' data('fips_2000')
+#'
+#' @md
+#' @concept data
+NULL
+
+#' Counties FIPS 2010
+#'
+#' @name fips_2010
+#'
+#' @description
+#' Contains three columns:
+#' - state: state FIPS
+#' - county: county FIPS
+#' - name: county name
+#'
+#' @return tibble
+#'
+#' @usage
+#' data('fips_2010')
+#'
+#' @examples
+#' data('fips_2010')
+#'
+#' @md
+#' @concept data
+NULL
+
+#' Counties FIPS 2020
+#'
+#' @name fips_2020
+#'
+#' @description
+#' Contains three columns:
+#' - state: state FIPS
+#' - county: county FIPS
+#' - name: county name
+#'
+#' @return tibble
+#'
+#' @usage
+#' data('fips_2020')
+#'
+#' @examples
+#' data('fips_2020')
 #'
 #' @md
 #' @concept data

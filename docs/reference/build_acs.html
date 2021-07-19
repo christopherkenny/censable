@@ -42,7 +42,51 @@
 <meta property="og:title" content="Build Data from the Decennial Census — build_acs" />
 <meta property="og:description" content="Creates a dataset, using the decennial census information, with the
 standard variables used for redistricting. Creates a stable base for getting
-data from tidycensus for common calls in redistricting." />
+data from tidycensus for common calls in redistricting.
+#' # Output columns are:
+GEOID: Geographic Identifier
+NAME: Name of County
+pop: total population
+pop_white: total population, Non-Hispanic White
+pop_black: total population, Non-Hispanic Black
+pop_hisp: total population, Hispanic
+pop_aian: total population, Non-Hispanic American Indian and Alaskan Native
+pop_asian: total population, Non-Hispanic Asian
+pop_nhpi: total population, Non-Hispanic Native Hawaiian and Pacific Islander
+pop_other: total population, Non-Hispanic Other
+pop_two: total population, Non-Hispanic Two Plus Races
+vap: voting age population
+vap_white: voting age population, Non-Hispanic White
+vap_black: voting age population, Non-Hispanic Black
+vap_hisp: voting age population, Hispanic
+vap_aian: voting age population, Non-Hispanic American Indian and Alaskan Native
+vap_asian: voting age population, Non-Hispanic Asian
+vap_nhpi: voting age population, Non-Hispanic Native Hawaiian and Pacific Islander
+vap_other: voting age population, Non-Hispanic Other
+vap_two: voting age population, Non-Hispanic Two Plus Races
+geometry: sf geometry
+
+
+Arguments for geography are not checked, so will fail with tidycensus errors if invalid.
+This is by design to avoid blocking usage that could become valid, especially following
+the 2020 Census data release.
+Currently valid options for geography:
+'state'
+'county'
+'tract'
+'block group'
+'block'
+'county subdivision'
+'zcta'
+'congressional district'
+'state legislative district (upper chamber)'
+'state legislative district (lower chamber)'
+'school district (unified)'
+
+
+Full options for geography that may or may not be valid depending on year and geometry
+are listed at:
+Kyle Walker's tidycensus site." />
 
 
 
@@ -114,6 +158,50 @@ data from tidycensus for common calls in redistricting." />
     <p>Creates a dataset, using the decennial census information, with the
 standard variables used for redistricting. Creates a stable base for getting
 data from tidycensus for common calls in redistricting.</p>
+<p>#' # Output columns are:</p><ul>
+<li><p>GEOID: Geographic Identifier</p></li>
+<li><p>NAME: Name of County</p></li>
+<li><p>pop: total population</p></li>
+<li><p>pop_white: total population, Non-Hispanic White</p></li>
+<li><p>pop_black: total population, Non-Hispanic Black</p></li>
+<li><p>pop_hisp: total population, Hispanic</p></li>
+<li><p>pop_aian: total population, Non-Hispanic American Indian and Alaskan Native</p></li>
+<li><p>pop_asian: total population, Non-Hispanic Asian</p></li>
+<li><p>pop_nhpi: total population, Non-Hispanic Native Hawaiian and Pacific Islander</p></li>
+<li><p>pop_other: total population, Non-Hispanic Other</p></li>
+<li><p>pop_two: total population, Non-Hispanic Two Plus Races</p></li>
+<li><p>vap: voting age population</p></li>
+<li><p>vap_white: voting age population, Non-Hispanic White</p></li>
+<li><p>vap_black: voting age population, Non-Hispanic Black</p></li>
+<li><p>vap_hisp: voting age population, Hispanic</p></li>
+<li><p>vap_aian: voting age population, Non-Hispanic American Indian and Alaskan Native</p></li>
+<li><p>vap_asian: voting age population, Non-Hispanic Asian</p></li>
+<li><p>vap_nhpi: voting age population, Non-Hispanic Native Hawaiian and Pacific Islander</p></li>
+<li><p>vap_other: voting age population, Non-Hispanic Other</p></li>
+<li><p>vap_two: voting age population, Non-Hispanic Two Plus Races</p></li>
+<li><p>geometry: sf geometry</p></li>
+</ul>
+
+<p>Arguments for <code>geography</code> are not checked, so will fail with <code>tidycensus</code> errors if invalid.
+This is by design to avoid blocking usage that could become valid, especially following
+the 2020 Census data release.</p>
+<p>Currently valid options for <code>geography</code>:</p><ul>
+<li><p>'state'</p></li>
+<li><p>'county'</p></li>
+<li><p>'tract'</p></li>
+<li><p>'block group'</p></li>
+<li><p>'block'</p></li>
+<li><p>'county subdivision'</p></li>
+<li><p>'zcta'</p></li>
+<li><p>'congressional district'</p></li>
+<li><p>'state legislative district (upper chamber)'</p></li>
+<li><p>'state legislative district (lower chamber)'</p></li>
+<li><p>'school district (unified)'</p></li>
+</ul>
+
+<p>Full options for <code>geography</code> that may or may not be valid depending on year and geometry
+are listed at:
+<a href='https://walker-data.com/tidycensus/articles/basic-usage.html'>Kyle Walker's tidycensus site</a>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>build_acs</span><span class='op'>(</span>

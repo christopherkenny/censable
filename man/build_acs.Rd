@@ -46,6 +46,54 @@ population (pop) and voting age population (vap)
 Creates a dataset, using the decennial census information, with the
 standard variables used for redistricting. Creates a stable base for getting
 data from tidycensus for common calls in redistricting.
+
+#' # Output columns are:
+\itemize{
+\item GEOID: Geographic Identifier
+\item NAME: Name of County
+\item pop: total population
+\item pop_white: total population, Non-Hispanic White
+\item pop_black: total population, Non-Hispanic Black
+\item pop_hisp: total population, Hispanic
+\item pop_aian: total population, Non-Hispanic American Indian and Alaskan Native
+\item pop_asian: total population, Non-Hispanic Asian
+\item pop_nhpi: total population, Non-Hispanic Native Hawaiian and Pacific Islander
+\item pop_other: total population, Non-Hispanic Other
+\item pop_two: total population, Non-Hispanic Two Plus Races
+\item vap: voting age population
+\item vap_white: voting age population, Non-Hispanic White
+\item vap_black: voting age population, Non-Hispanic Black
+\item vap_hisp: voting age population, Hispanic
+\item vap_aian: voting age population, Non-Hispanic American Indian and Alaskan Native
+\item vap_asian: voting age population, Non-Hispanic Asian
+\item vap_nhpi: voting age population, Non-Hispanic Native Hawaiian and Pacific Islander
+\item vap_other: voting age population, Non-Hispanic Other
+\item vap_two: voting age population, Non-Hispanic Two Plus Races
+\item geometry: sf geometry
+}
+
+Arguments for \code{geography} are not checked, so will fail with \code{tidycensus} errors if invalid.
+This is by design to avoid blocking usage that could become valid, especially following
+the 2020 Census data release.
+
+Currently valid options for \code{geography}:
+\itemize{
+\item 'state'
+\item 'county'
+\item 'tract'
+\item 'block group'
+\item 'block'
+\item 'county subdivision'
+\item 'zcta'
+\item 'congressional district'
+\item 'state legislative district (upper chamber)'
+\item 'state legislative district (lower chamber)'
+\item 'school district (unified)'
+}
+
+Full options for \code{geography} that may or may not be valid depending on year and geometry
+are listed at:
+\href{https://walker-data.com/tidycensus/articles/basic-usage.html}{Kyle Walker's tidycensus site}.
 }
 \examples{
 \dontrun{
