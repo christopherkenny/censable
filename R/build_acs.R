@@ -57,10 +57,12 @@
 #' @param year year, must be 2000, 2010, or 2020 (after August 2021)
 #' @param survey whether the get estimates from the 5-year ('acs5'), 3-year ('acs3'),
 #' or 1-year ('acs1') survey. Default is 'acs5'.
+#' @param groups defaults to 'all', which gets pop and vap. If 'pop', only gets pop.
+#' If 'vap', only gets vap. Any other strings default to 'all'.
 #'
 #' @return tibble with observations for each observation of the geography in the state
-#' or county. Data includes 2 sets of columns for each race or ethnicity category:
-#' population (pop) and voting age population (vap)
+#' or county. Data includes up to 3 sets of columns for each race or ethnicity category:
+#' population (pop), voting age population (vap), and citizen voting age population (cvap)
 #'
 #' @export
 #' @concept build
@@ -69,7 +71,13 @@
 #' # uses the Census API
 #' tb <- build_dec(geography = 'block', state = 'NY', county = 'Rockland', geometry = TRUE)
 #' }
-build_acs <- function(geography, state, county, geometry = TRUE, year = 2010, survey = 'acs5') {
+build_acs <- function(geography, state, county = NULL, geometry = TRUE, year = 2010,
+                      survey = 'acs5', groups = 'all') {
+
+  if (!isTRUE(groups[1] %in% c('all', 'pop', 'vap'))) {
+    groups <- 'all'
+  }
+
   if (year < 2005) {
     stop('ACS endpoint for years before 2005 is not available.')
   }
@@ -105,47 +113,58 @@ build_acs <- function(geography, state, county, geometry = TRUE, year = 2010, su
     f_vap_two = 'B05003G_019', f_nvap_two = 'B05003G_023'
   )
 
-  if (missing(county)) {
-    out <- tidycensus::get_acs(
-      geography = geography, state = state, year = year,
-      geometry = geometry, keep_geo_vars = FALSE,
-      variables = vars, output = 'wide', survey = survey
-    )
-  } else {
-    out <- tidycensus::get_acs(
-      geography = geography, state = state,
-      year = year, county = county,
-      geometry = geometry, keep_geo_vars = FALSE,
-      variables = vars, output = 'wide', survey = survey
-    )
+  if (groups == 'pop') {
+    vars <- vars[stringr::str_detect(names(vars), 'pop')]
+  } else if (groups == 'vap') {
+    vars <- vars[stringr::str_detect(names(vars), '_vap')]
+  } else if (groups == 'cvap') {
+    vars <- vars[stringr::str_detect(names(vars), 'vap')]
   }
+
+  out <- tidycensus::get_acs(
+    geography = geography, state = state,
+    year = year, county = county,
+    geometry = geometry, keep_geo_vars = FALSE,
+    variables = vars, output = 'wide', survey = survey
+  )
 
   out <- out %>%
     dplyr::select(-dplyr::ends_with('M')) %>%
     dplyr::rename_with(drop_E)
 
-  out %>%
-    dplyr::mutate(
-      vap = .data$m_vap + .data$f_vap,
-      vap_white = .data$m_vap_white + .data$f_vap_white,
-      vap_black = .data$m_vap_black + .data$f_vap_black,
-      vap_hisp = .data$m_vap_hisp + .data$f_vap_hisp,
-      vap_aian = .data$m_vap_aian + .data$f_vap_aian,
-      vap_asian = .data$m_vap_asian + .data$f_vap_asian,
-      vap_nhpi = .data$m_vap_nhpi + .data$f_vap_nhpi,
-      vap_other = .data$m_vap_other + .data$f_vap_other,
-      vap_two = .data$m_vap_two + .data$f_vap_two
-    ) %>%
-    dplyr::mutate(
-      cvap = .data$vap - .data$m_nvap - .data$f_nvap,
-      cvap_white = .data$vap_white - .data$m_nvap_white - .data$f_nvap_white,
-      cvap_black = .data$vap_black - .data$m_nvap_black - .data$f_nvap_black,
-      cvap_hisp = .data$vap_hisp - .data$m_nvap_hisp - .data$f_nvap_hisp,
-      cvap_aian = .data$vap_aian - .data$m_nvap_aian - .data$f_nvap_aian,
-      cvap_asian = .data$vap_asian - .data$m_nvap_asian - .data$f_nvap_asian,
-      cvap_nhpi = .data$vap_nhpi - .data$m_nvap_nhpi - .data$f_nvap_nhpi,
-      cvap_other = .data$vap_other - .data$m_nvap_other - .data$f_nvap_other,
-      cvap_two = .data$vap_two - .data$m_nvap_two - .data$f_nvap_two
-    ) %>%
-    dplyr::select(-dplyr::starts_with(c('m', 'f')))
+  if (groups[1] %in% c('cvap', 'vap', 'all')){
+    out <- out %>%
+      dplyr::mutate(
+        vap = .data$m_vap + .data$f_vap,
+        vap_white = .data$m_vap_white + .data$f_vap_white,
+        vap_black = .data$m_vap_black + .data$f_vap_black,
+        vap_hisp = .data$m_vap_hisp + .data$f_vap_hisp,
+        vap_aian = .data$m_vap_aian + .data$f_vap_aian,
+        vap_asian = .data$m_vap_asian + .data$f_vap_asian,
+        vap_nhpi = .data$m_vap_nhpi + .data$f_vap_nhpi,
+        vap_other = .data$m_vap_other + .data$f_vap_other,
+        vap_two = .data$m_vap_two + .data$f_vap_two
+      )
+
+    if (groups[1] %in% c('cvap', 'all')) {
+      out <- out %>%
+        dplyr::mutate(
+          cvap = .data$vap - .data$m_nvap - .data$f_nvap,
+          cvap_white = .data$vap_white - .data$m_nvap_white - .data$f_nvap_white,
+          cvap_black = .data$vap_black - .data$m_nvap_black - .data$f_nvap_black,
+          cvap_hisp = .data$vap_hisp - .data$m_nvap_hisp - .data$f_nvap_hisp,
+          cvap_aian = .data$vap_aian - .data$m_nvap_aian - .data$f_nvap_aian,
+          cvap_asian = .data$vap_asian - .data$m_nvap_asian - .data$f_nvap_asian,
+          cvap_nhpi = .data$vap_nhpi - .data$m_nvap_nhpi - .data$f_nvap_nhpi,
+          cvap_other = .data$vap_other - .data$m_nvap_other - .data$f_nvap_other,
+          cvap_two = .data$vap_two - .data$m_nvap_two - .data$f_nvap_two
+        ) %>%
+        dplyr::select(-dplyr::starts_with(c('m', 'f')))
+    } else {
+      out <- out %>%
+        dplyr::select(-dplyr::starts_with(c('m', 'f')))
+    }
+  }
+
+  out
 }

@@ -21,3 +21,4 @@ Create a GEOID from Columns
 data(mt_county)
 mt_county <- mt_county \%>\% custom_geoid(GEOID)
 }
+\concept{geoid}

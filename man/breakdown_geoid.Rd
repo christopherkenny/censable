@@ -26,3 +26,4 @@ Breakdown Census GEOID into Components
 data(mt_county)
 mt_county <- mt_county \%>\% breakdown_geoid()
 }
+\concept{geoid}
