@@ -20,6 +20,7 @@ jobs:
 
       - name: Install spatial dependencies
         run: |
+          rm '/usr/local/bin/gfortran'
           brew install gdal proj
 
       - name: Query dependencies
