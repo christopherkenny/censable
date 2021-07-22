@@ -8,19 +8,21 @@
 build_acs(
   geography,
   state,
-  county,
+  county = NULL,
   geometry = TRUE,
   year = 2010,
-  survey = "acs5"
+  survey = "acs5",
+  groups = "all"
 )
 
 mem_build_acs(
   geography,
   state,
-  county,
+  county = NULL,
   geometry = TRUE,
   year = 2010,
-  survey = "acs5"
+  survey = "acs5",
+  groups = "all"
 )
 }
 \arguments{
@@ -36,11 +38,14 @@ mem_build_acs(
 
 \item{survey}{whether the get estimates from the 5-year ('acs5'), 3-year ('acs3'),
 or 1-year ('acs1') survey. Default is 'acs5'.}
+
+\item{groups}{defaults to 'all', which gets pop and vap. If 'pop', only gets pop.
+If 'vap', only gets vap. Any other strings default to 'all'.}
 }
 \value{
 tibble with observations for each observation of the geography in the state
-or county. Data includes 2 sets of columns for each race or ethnicity category:
-population (pop) and voting age population (vap)
+or county. Data includes up to 3 sets of columns for each race or ethnicity category:
+population (pop), voting age population (vap), and citizen voting age population (cvap)
 }
 \description{
 Creates a dataset, using the decennial census information, with the

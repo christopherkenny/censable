@@ -5,9 +5,23 @@
 \alias{mem_build_dec}
 \title{Build Data from the Decennial Census}
 \usage{
-build_dec(geography, state, county, geometry = TRUE, year = 2010)
+build_dec(
+  geography,
+  state,
+  county = NULL,
+  geometry = TRUE,
+  year = 2010,
+  groups = "all"
+)
 
-mem_build_dec(geography, state, county, geometry = TRUE, year = 2010)
+mem_build_dec(
+  geography,
+  state,
+  county = NULL,
+  geometry = TRUE,
+  year = 2010,
+  groups = "all"
+)
 }
 \arguments{
 \item{geography}{Required. The geography level to use.}
@@ -19,6 +33,9 @@ mem_build_dec(geography, state, county, geometry = TRUE, year = 2010)
 \item{geometry}{Defaults to TRUE. Whether to return the geometry or not.}
 
 \item{year}{year, must be 2000, 2010, or 2020 (after August 2021)}
+
+\item{groups}{defaults to 'all', which gets pop and vap. If 'pop', only gets pop.
+If 'vap', only gets vap. Any other strings default to 'all'.}
 }
 \value{
 tibble with observations for each observation of the geography in the state

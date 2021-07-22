@@ -57,6 +57,8 @@
 #' @param county Optional. Name of county.  If not provided, returns blocks for the entire state.
 #' @param geometry Defaults to TRUE. Whether to return the geometry or not.
 #' @param year year, must be 2000, 2010, or 2020 (after August 2021)
+#' @param groups defaults to 'all', which gets pop and vap. If 'pop', only gets pop.
+#' If 'vap', only gets vap. Any other strings default to 'all'.
 #'
 #' @return tibble with observations for each observation of the geography in the state
 #' or county. Data includes 2 sets of columns for each race or ethnicity category:
@@ -70,7 +72,13 @@
 #' # uses the Census API
 #' tb <- build_dec(geography = 'block', state = 'NY', county = 'Rockland', geometry = TRUE)
 #' }
-build_dec <- function(geography, state, county, geometry = TRUE, year = 2010) {
+build_dec <- function(geography, state, county = NULL, geometry = TRUE,
+                      year = 2010, groups = 'all') {
+
+  if (!isTRUE(groups[1] %in% c('all', 'pop', 'vap'))) {
+    groups <- 'all'
+  }
+
   if (year %% 10 != 0) {
     stop('Decennial data only available for years ending in 0.')
   }
@@ -89,24 +97,19 @@ build_dec <- function(geography, state, county, geometry = TRUE, year = 2010) {
       vap_nhpi = 'P011009', vap_other = 'P011010', vap_two = 'P011011'
     )
 
-    if (missing(county)) {
-      #if (geography %in% get_by_county()){
-      #  out <- loop_dec_counties(geography, state, year, geometry, vars)
-      #} else {
-      out <- tidycensus::get_decennial(
-        geography = geography, state = state, year = year,
-        geometry = geometry, keep_geo_vars = FALSE,
-        variables = vars, output = 'wide'
-      )
-      #}
-    } else {
-      out <- tidycensus::get_decennial(
-        geography = geography, state = state,
-        year = year, county = county,
-        geometry = geometry, keep_geo_vars = FALSE,
-        variables = vars, output = 'wide'
-      )
+    if (groups == 'pop') {
+      vars <- vars[stringr::str_detect(names(vars), 'pop')]
+    } else if (groups == 'vap') {
+      vars <- vars[stringr::str_detect(names(vars), 'vap')]
     }
+
+    out <- tidycensus::get_decennial(
+      geography = geography, state = state,
+      year = year, county = county,
+      geometry = geometry, keep_geo_vars = FALSE,
+      variables = vars, output = 'wide'
+    )
+
   } else { # 2000
     vars_pop <- c(
       pop = 'P004001', pop_white = 'P004005', pop_black = 'P004006',
@@ -121,35 +124,44 @@ build_dec <- function(geography, state, county, geometry = TRUE, year = 2010) {
     )
 
     if (!missing(county)) {
-      out_pop <- tidycensus::get_decennial(
-        geography = geography, state = state,
-        year = year,
-        geometry = geometry, keep_geo_vars = FALSE,
-        variables = vars_pop
-      )
-      out_vap <- tidycensus::get_decennial(
-        geography = 'block', state = state, year = year,
-        geometry = FALSE, keep_geo_vars = FALSE,
-        variables = vars_vap, output = 'wide'
-      )
+      if (groups[1] %in% c('pop', 'all')) {
+        out_pop <- tidycensus::get_decennial(
+          geography = geography, state = state,
+          year = year,
+          geometry = geometry, keep_geo_vars = FALSE,
+          variables = vars_pop
+        )
+      }
+      if (groups[1] %in% c('vap', 'all')) {
+        out_vap <- tidycensus::get_decennial(
+          geography = 'block', state = state, year = year,
+          geometry = FALSE, keep_geo_vars = FALSE,
+          variables = vars_vap, output = 'wide'
+        )
+      }
     } else {
-      out_pop <- tidycensus::get_decennial(
-        geography = geography, state = state,
-        year = year, county = county,
-        geometry = geometry, keep_geo_vars = FALSE,
-        variables = vars_pop
-      )
-      out_vap <- tidycensus::get_decennial(
-        geography = geography, state = state,
-        year = year, county = county,
-        geometry = FALSE, keep_geo_vars = FALSE,
-        variables = vars_vap, output = 'wide'
-      )
+      if (groups[1] %in% c('pop', 'all')) {
+        out_pop <- tidycensus::get_decennial(
+          geography = geography, state = state,
+          year = year, county = county,
+          geometry = geometry, keep_geo_vars = FALSE,
+          variables = vars_pop
+        )
+      }
+      if (groups[1] %in% c('vap', 'all')) {
+        out_vap <- tidycensus::get_decennial(
+          geography = geography, state = state,
+          year = year, county = county,
+          geometry = FALSE, keep_geo_vars = FALSE,
+          variables = vars_vap, output = 'wide'
+        )
+      }
     }
-    out <- out_pop %>%
-      dplyr::left_join(out_vap, by = 'GEOID') %>%
-      sf::st_as_sf()
+    if (groups[1] == 'all') {
+      out <- out_pop %>%
+        dplyr::left_join(out_vap, by = 'GEOID') %>%
+        sf::st_as_sf()
+    }
   }
-
   out
 }
