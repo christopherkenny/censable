@@ -103,7 +103,13 @@
     <loc>https://christopherkenny.github.io/censable/reference/match_abb.html</loc>
   </url>
   <url>
+    <loc>https://christopherkenny.github.io/censable/reference/match_ansi.html</loc>
+  </url>
+  <url>
     <loc>https://christopherkenny.github.io/censable/reference/match_fips.html</loc>
+  </url>
+  <url>
+    <loc>https://christopherkenny.github.io/censable/reference/match_name.html</loc>
   </url>
   <url>
     <loc>https://christopherkenny.github.io/censable/reference/mt_county.html</loc>
