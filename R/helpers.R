@@ -81,8 +81,6 @@ loop_acs_counties <- function(.geography, .state, .year, .geometry, .vars, .surv
   })
 
   out <- do.call('rbind', out)
-  cat(class(out), '\n')
-  cat('here\n')
   out
 }
 
