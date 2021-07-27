@@ -23,6 +23,10 @@ reference:
   desc: "Mimic or work with Census GEOIDs"
 - contents:
   - has_concept("geoid")
+- title: "Matching Functions"
+  desc: "Transform State Identifiers"
+- contents:
+  - has_concept("match")
 - title: "Example Data"
   desc: "Data Included for Examples and Testing"
 - contents:
@@ -30,4 +34,4 @@ reference:
 - title: "Other"
   desc: "Other Functions"
 - contents:
-  - lacks_concepts(c("build", "collapse", "recode", "join", "geoid", "data"))
+  - lacks_concepts(c("build", "collapse", "recode", "join", "geoid", "data", "match"))

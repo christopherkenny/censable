@@ -7,7 +7,7 @@
 match_fips(state)
 }
 \arguments{
-\item{state}{character with state FIPS, Abbreviation, or Name}
+\item{state}{character with state FIPS, Abbreviation, Name, or ANSI}
 }
 \value{
 FIPS code if a match is found or character(0) if no match is found
@@ -17,4 +17,6 @@ Searches for an exact match and offers the best match if no exact match
 }
 \examples{
 match_fips('NY')
+match_fips('01')
 }
+\concept{match}

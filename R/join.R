@@ -8,6 +8,7 @@
 #' @return .data with column .name replaced with abbreviation
 #' @export
 #'
+#' @concept join
 #' @examples
 #' data('stata')
 #' stata %>% join_abb_name(name)

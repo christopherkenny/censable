@@ -7,7 +7,7 @@
 match_abb(state)
 }
 \arguments{
-\item{state}{character with state FIPS, Abbreviation, or Name}
+\item{state}{character with state FIPS, Abbreviation, Name, or ANSI}
 }
 \value{
 Abbreviation if a match is found or character(0) if no match is found
@@ -19,3 +19,4 @@ Searches for an exact match and offers the best match if no exact match
 match_abb('NY')
 match_abb('01')
 }
+\concept{match}
