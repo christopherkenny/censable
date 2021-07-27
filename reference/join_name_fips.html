@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="Join Name by FIPS — join_name_fips" />
-<meta property="og:description" content="Replaces state fips with state name" />
+<meta property="og:description" content="Adds a column with state name joining by a column with state fips" />
 <meta property="og:image" content="https://christopherkenny.github.io/censable/logo.png" />
 
 
@@ -117,7 +117,7 @@
     </div>
 
     <div class="ref-description">
-    <p>Replaces state fips with state name</p>
+    <p>Adds a column with state name joining by a column with state fips</p>
     </div>
 
     <pre class="usage"><span class='fu'>join_name_fips</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>.fips</span><span class='op'>)</span></pre>
@@ -142,7 +142,7 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>'stata'</span><span class='op'>)</span>
 <span class='va'>stata</span> <span class='op'>%&gt;%</span> <span class='fu'>join_name_fips</span><span class='op'>(</span><span class='va'>fips</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;    fips abb                        name    ansi    region           division
+</div><div class='output co'>#&gt;    fips abb                      name.x    ansi    region           division
 #&gt; 1    01  AL                     Alabama 1779775     South East South Central
 #&gt; 2    02  AK                      Alaska 1785533      West            Pacific
 #&gt; 3    04  AZ                     Arizona 1779777      West           Mountain
@@ -200,64 +200,64 @@
 #&gt; 55   72  PR                 Puerto Rico 1779808      &lt;NA&gt;               &lt;NA&gt;
 #&gt; 56   74  UM U.S. Minor Outlying Islands 1878752      &lt;NA&gt;               &lt;NA&gt;
 #&gt; 57   78  VI         U.S. Virgin Islands 1802710      &lt;NA&gt;               &lt;NA&gt;
-#&gt;    fips.y
-#&gt; 1    &lt;NA&gt;
-#&gt; 2    &lt;NA&gt;
-#&gt; 3    &lt;NA&gt;
-#&gt; 4    &lt;NA&gt;
-#&gt; 5    &lt;NA&gt;
-#&gt; 6    &lt;NA&gt;
-#&gt; 7    &lt;NA&gt;
-#&gt; 8    &lt;NA&gt;
-#&gt; 9    &lt;NA&gt;
-#&gt; 10   &lt;NA&gt;
-#&gt; 11   &lt;NA&gt;
-#&gt; 12   &lt;NA&gt;
-#&gt; 13   &lt;NA&gt;
-#&gt; 14   &lt;NA&gt;
-#&gt; 15   &lt;NA&gt;
-#&gt; 16   &lt;NA&gt;
-#&gt; 17   &lt;NA&gt;
-#&gt; 18   &lt;NA&gt;
-#&gt; 19   &lt;NA&gt;
-#&gt; 20   &lt;NA&gt;
-#&gt; 21   &lt;NA&gt;
-#&gt; 22   &lt;NA&gt;
-#&gt; 23   &lt;NA&gt;
-#&gt; 24   &lt;NA&gt;
-#&gt; 25   &lt;NA&gt;
-#&gt; 26   &lt;NA&gt;
-#&gt; 27   &lt;NA&gt;
-#&gt; 28   &lt;NA&gt;
-#&gt; 29   &lt;NA&gt;
-#&gt; 30   &lt;NA&gt;
-#&gt; 31   &lt;NA&gt;
-#&gt; 32   &lt;NA&gt;
-#&gt; 33   &lt;NA&gt;
-#&gt; 34   &lt;NA&gt;
-#&gt; 35   &lt;NA&gt;
-#&gt; 36   &lt;NA&gt;
-#&gt; 37   &lt;NA&gt;
-#&gt; 38   &lt;NA&gt;
-#&gt; 39   &lt;NA&gt;
-#&gt; 40   &lt;NA&gt;
-#&gt; 41   &lt;NA&gt;
-#&gt; 42   &lt;NA&gt;
-#&gt; 43   &lt;NA&gt;
-#&gt; 44   &lt;NA&gt;
-#&gt; 45   &lt;NA&gt;
-#&gt; 46   &lt;NA&gt;
-#&gt; 47   &lt;NA&gt;
-#&gt; 48   &lt;NA&gt;
-#&gt; 49   &lt;NA&gt;
-#&gt; 50   &lt;NA&gt;
-#&gt; 51   &lt;NA&gt;
-#&gt; 52   &lt;NA&gt;
-#&gt; 53   &lt;NA&gt;
-#&gt; 54   &lt;NA&gt;
-#&gt; 55   &lt;NA&gt;
-#&gt; 56   &lt;NA&gt;
-#&gt; 57   &lt;NA&gt;</div></pre>
+#&gt;                         name.y
+#&gt; 1                      Alabama
+#&gt; 2                       Alaska
+#&gt; 3                      Arizona
+#&gt; 4                     Arkansas
+#&gt; 5                   California
+#&gt; 6                     Colorado
+#&gt; 7                  Connecticut
+#&gt; 8                     Delaware
+#&gt; 9         District of Columbia
+#&gt; 10                     Florida
+#&gt; 11                     Georgia
+#&gt; 12                      Hawaii
+#&gt; 13                       Idaho
+#&gt; 14                    Illinois
+#&gt; 15                     Indiana
+#&gt; 16                        Iowa
+#&gt; 17                      Kansas
+#&gt; 18                    Kentucky
+#&gt; 19                   Louisiana
+#&gt; 20                       Maine
+#&gt; 21                    Maryland
+#&gt; 22               Massachusetts
+#&gt; 23                    Michigan
+#&gt; 24                   Minnesota
+#&gt; 25                 Mississippi
+#&gt; 26                    Missouri
+#&gt; 27                     Montana
+#&gt; 28                    Nebraska
+#&gt; 29                      Nevada
+#&gt; 30               New Hampshire
+#&gt; 31                  New Jersey
+#&gt; 32                  New Mexico
+#&gt; 33                    New York
+#&gt; 34              North Carolina
+#&gt; 35                North Dakota
+#&gt; 36                        Ohio
+#&gt; 37                    Oklahoma
+#&gt; 38                      Oregon
+#&gt; 39                Pennsylvania
+#&gt; 40                Rhode Island
+#&gt; 41              South Carolina
+#&gt; 42                South Dakota
+#&gt; 43                   Tennessee
+#&gt; 44                       Texas
+#&gt; 45                        Utah
+#&gt; 46                     Vermont
+#&gt; 47                    Virginia
+#&gt; 48                  Washington
+#&gt; 49               West Virginia
+#&gt; 50                   Wisconsin
+#&gt; 51                     Wyoming
+#&gt; 52              American Samoa
+#&gt; 53                        Guam
+#&gt; 54    Northern Mariana Islands
+#&gt; 55                 Puerto Rico
+#&gt; 56 U.S. Minor Outlying Islands
+#&gt; 57         U.S. Virgin Islands</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

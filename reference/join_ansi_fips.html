@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="Join ANSI by FIPS — join_ansi_fips" />
-<meta property="og:description" content="Replaces state fips with state ansi" />
+<meta property="og:description" content="Adds a column with state ansi joining by a column with state fips" />
 <meta property="og:image" content="https://christopherkenny.github.io/censable/logo.png" />
 
 
@@ -117,7 +117,7 @@
     </div>
 
     <div class="ref-description">
-    <p>Replaces state fips with state ansi</p>
+    <p>Adds a column with state ansi joining by a column with state fips</p>
     </div>
 
     <pre class="usage"><span class='fu'>join_ansi_fips</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>.fips</span><span class='op'>)</span></pre>
@@ -142,7 +142,7 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>'stata'</span><span class='op'>)</span>
 <span class='va'>stata</span> <span class='op'>%&gt;%</span> <span class='fu'>join_ansi_fips</span><span class='op'>(</span><span class='va'>fips</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;    fips abb                        name    ansi    region           division
+</div><div class='output co'>#&gt;    fips abb                        name  ansi.x    region           division
 #&gt; 1    01  AL                     Alabama 1779775     South East South Central
 #&gt; 2    02  AK                      Alaska 1785533      West            Pacific
 #&gt; 3    04  AZ                     Arizona 1779777      West           Mountain
@@ -200,64 +200,64 @@
 #&gt; 55   72  PR                 Puerto Rico 1779808      &lt;NA&gt;               &lt;NA&gt;
 #&gt; 56   74  UM U.S. Minor Outlying Islands 1878752      &lt;NA&gt;               &lt;NA&gt;
 #&gt; 57   78  VI         U.S. Virgin Islands 1802710      &lt;NA&gt;               &lt;NA&gt;
-#&gt;    fips.y
-#&gt; 1    &lt;NA&gt;
-#&gt; 2    &lt;NA&gt;
-#&gt; 3    &lt;NA&gt;
-#&gt; 4    &lt;NA&gt;
-#&gt; 5    &lt;NA&gt;
-#&gt; 6    &lt;NA&gt;
-#&gt; 7    &lt;NA&gt;
-#&gt; 8    &lt;NA&gt;
-#&gt; 9    &lt;NA&gt;
-#&gt; 10   &lt;NA&gt;
-#&gt; 11   &lt;NA&gt;
-#&gt; 12   &lt;NA&gt;
-#&gt; 13   &lt;NA&gt;
-#&gt; 14   &lt;NA&gt;
-#&gt; 15   &lt;NA&gt;
-#&gt; 16   &lt;NA&gt;
-#&gt; 17   &lt;NA&gt;
-#&gt; 18   &lt;NA&gt;
-#&gt; 19   &lt;NA&gt;
-#&gt; 20   &lt;NA&gt;
-#&gt; 21   &lt;NA&gt;
-#&gt; 22   &lt;NA&gt;
-#&gt; 23   &lt;NA&gt;
-#&gt; 24   &lt;NA&gt;
-#&gt; 25   &lt;NA&gt;
-#&gt; 26   &lt;NA&gt;
-#&gt; 27   &lt;NA&gt;
-#&gt; 28   &lt;NA&gt;
-#&gt; 29   &lt;NA&gt;
-#&gt; 30   &lt;NA&gt;
-#&gt; 31   &lt;NA&gt;
-#&gt; 32   &lt;NA&gt;
-#&gt; 33   &lt;NA&gt;
-#&gt; 34   &lt;NA&gt;
-#&gt; 35   &lt;NA&gt;
-#&gt; 36   &lt;NA&gt;
-#&gt; 37   &lt;NA&gt;
-#&gt; 38   &lt;NA&gt;
-#&gt; 39   &lt;NA&gt;
-#&gt; 40   &lt;NA&gt;
-#&gt; 41   &lt;NA&gt;
-#&gt; 42   &lt;NA&gt;
-#&gt; 43   &lt;NA&gt;
-#&gt; 44   &lt;NA&gt;
-#&gt; 45   &lt;NA&gt;
-#&gt; 46   &lt;NA&gt;
-#&gt; 47   &lt;NA&gt;
-#&gt; 48   &lt;NA&gt;
-#&gt; 49   &lt;NA&gt;
-#&gt; 50   &lt;NA&gt;
-#&gt; 51   &lt;NA&gt;
-#&gt; 52   &lt;NA&gt;
-#&gt; 53   &lt;NA&gt;
-#&gt; 54   &lt;NA&gt;
-#&gt; 55   &lt;NA&gt;
-#&gt; 56   &lt;NA&gt;
-#&gt; 57   &lt;NA&gt;</div></pre>
+#&gt;     ansi.y
+#&gt; 1  1779775
+#&gt; 2  1785533
+#&gt; 3  1779777
+#&gt; 4  0068085
+#&gt; 5  1779778
+#&gt; 6  1779779
+#&gt; 7  1779780
+#&gt; 8  1779781
+#&gt; 9  1702382
+#&gt; 10 0294478
+#&gt; 11 1705317
+#&gt; 12 1779782
+#&gt; 13 1779783
+#&gt; 14 1779784
+#&gt; 15 0448508
+#&gt; 16 1779785
+#&gt; 17 0481813
+#&gt; 18 1779786
+#&gt; 19 1629543
+#&gt; 20 1779787
+#&gt; 21 1714934
+#&gt; 22 0606926
+#&gt; 23 1779789
+#&gt; 24 0662849
+#&gt; 25 1779790
+#&gt; 26 1779791
+#&gt; 27 0767982
+#&gt; 28 1779792
+#&gt; 29 1779793
+#&gt; 30 1779794
+#&gt; 31 1779795
+#&gt; 32 0897535
+#&gt; 33 1779796
+#&gt; 34 1027616
+#&gt; 35 1779797
+#&gt; 36 1085497
+#&gt; 37 1102857
+#&gt; 38 1155107
+#&gt; 39 1779798
+#&gt; 40 1219835
+#&gt; 41 1779799
+#&gt; 42 1785534
+#&gt; 43 1325873
+#&gt; 44 1779801
+#&gt; 45 1455989
+#&gt; 46 1779802
+#&gt; 47 1779803
+#&gt; 48 1779804
+#&gt; 49 1779805
+#&gt; 50 1779806
+#&gt; 51 1779807
+#&gt; 52 1802701
+#&gt; 53 1802705
+#&gt; 54 1779809
+#&gt; 55 1779808
+#&gt; 56 1878752
+#&gt; 57 1802710</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

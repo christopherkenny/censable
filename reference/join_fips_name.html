@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="Join FIPS by Name — join_fips_name" />
-<meta property="og:description" content="Replaces state name with state fips" />
+<meta property="og:description" content="Adds a column with state fips joining by a column with state name" />
 <meta property="og:image" content="https://christopherkenny.github.io/censable/logo.png" />
 
 
@@ -117,7 +117,7 @@
     </div>
 
     <div class="ref-description">
-    <p>Replaces state name with state fips</p>
+    <p>Adds a column with state fips joining by a column with state name</p>
     </div>
 
     <pre class="usage"><span class='fu'>join_fips_name</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>.name</span><span class='op'>)</span></pre>
@@ -131,7 +131,7 @@
     </tr>
     <tr>
       <th>.name</th>
-      <td><p>column with state fips</p></td>
+      <td><p>column with state name</p></td>
     </tr>
     </table>
 
@@ -142,122 +142,122 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>'stata'</span><span class='op'>)</span>
 <span class='va'>stata</span> <span class='op'>%&gt;%</span> <span class='fu'>join_fips_name</span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;    fips abb                        name    ansi    region           division
-#&gt; 1    01  AL                     Alabama 1779775     South East South Central
-#&gt; 2    02  AK                      Alaska 1785533      West            Pacific
-#&gt; 3    04  AZ                     Arizona 1779777      West           Mountain
-#&gt; 4    05  AR                    Arkansas 0068085     South West South Central
-#&gt; 5    06  CA                  California 1779778      West            Pacific
-#&gt; 6    08  CO                    Colorado 1779779      West           Mountain
-#&gt; 7    09  CT                 Connecticut 1779780 Northeast        New England
-#&gt; 8    10  DE                    Delaware 1779781     South     South Atlantic
-#&gt; 9    11  DC        District of Columbia 1702382     South     South Atlantic
-#&gt; 10   12  FL                     Florida 0294478     South     South Atlantic
-#&gt; 11   13  GA                     Georgia 1705317     South     South Atlantic
-#&gt; 12   15  HI                      Hawaii 1779782      West            Pacific
-#&gt; 13   16  ID                       Idaho 1779783      West           Mountain
-#&gt; 14   17  IL                    Illinois 1779784   Midwest East North Central
-#&gt; 15   18  IN                     Indiana 0448508   Midwest East North Central
-#&gt; 16   19  IA                        Iowa 1779785   Midwest West North Central
-#&gt; 17   20  KS                      Kansas 0481813   Midwest West North Central
-#&gt; 18   21  KY                    Kentucky 1779786     South East South Central
-#&gt; 19   22  LA                   Louisiana 1629543     South West South Central
-#&gt; 20   23  ME                       Maine 1779787 Northeast        New England
-#&gt; 21   24  MD                    Maryland 1714934     South     South Atlantic
-#&gt; 22   25  MA               Massachusetts 0606926 Northeast        New England
-#&gt; 23   26  MI                    Michigan 1779789   Midwest East North Central
-#&gt; 24   27  MN                   Minnesota 0662849   Midwest West North Central
-#&gt; 25   28  MS                 Mississippi 1779790     South East South Central
-#&gt; 26   29  MO                    Missouri 1779791   Midwest West North Central
-#&gt; 27   30  MT                     Montana 0767982      West           Mountain
-#&gt; 28   31  NE                    Nebraska 1779792   Midwest West North Central
-#&gt; 29   32  NV                      Nevada 1779793      West           Mountain
-#&gt; 30   33  NH               New Hampshire 1779794 Northeast        New England
-#&gt; 31   34  NJ                  New Jersey 1779795 Northeast       Mid-Atlantic
-#&gt; 32   35  NM                  New Mexico 0897535      West           Mountain
-#&gt; 33   36  NY                    New York 1779796 Northeast       Mid-Atlantic
-#&gt; 34   37  NC              North Carolina 1027616     South     South Atlantic
-#&gt; 35   38  ND                North Dakota 1779797   Midwest West North Central
-#&gt; 36   39  OH                        Ohio 1085497   Midwest East North Central
-#&gt; 37   40  OK                    Oklahoma 1102857     South West South Central
-#&gt; 38   41  OR                      Oregon 1155107      West            Pacific
-#&gt; 39   42  PA                Pennsylvania 1779798 Northeast       Mid-Atlantic
-#&gt; 40   44  RI                Rhode Island 1219835 Northeast        New England
-#&gt; 41   45  SC              South Carolina 1779799     South     South Atlantic
-#&gt; 42   46  SD                South Dakota 1785534   Midwest West North Central
-#&gt; 43   47  TN                   Tennessee 1325873     South East South Central
-#&gt; 44   48  TX                       Texas 1779801     South West South Central
-#&gt; 45   49  UT                        Utah 1455989      West           Mountain
-#&gt; 46   50  VT                     Vermont 1779802 Northeast        New England
-#&gt; 47   51  VA                    Virginia 1779803     South     South Atlantic
-#&gt; 48   53  WA                  Washington 1779804      West            Pacific
-#&gt; 49   54  WV               West Virginia 1779805     South     South Atlantic
-#&gt; 50   55  WI                   Wisconsin 1779806   Midwest East North Central
-#&gt; 51   56  WY                     Wyoming 1779807      West           Mountain
-#&gt; 52   60  AS              American Samoa 1802701      &lt;NA&gt;               &lt;NA&gt;
-#&gt; 53   66  GU                        Guam 1802705      &lt;NA&gt;               &lt;NA&gt;
-#&gt; 54   69  MP    Northern Mariana Islands 1779809      &lt;NA&gt;               &lt;NA&gt;
-#&gt; 55   72  PR                 Puerto Rico 1779808      &lt;NA&gt;               &lt;NA&gt;
-#&gt; 56   74  UM U.S. Minor Outlying Islands 1878752      &lt;NA&gt;               &lt;NA&gt;
-#&gt; 57   78  VI         U.S. Virgin Islands 1802710      &lt;NA&gt;               &lt;NA&gt;
-#&gt;    name.y
-#&gt; 1    &lt;NA&gt;
-#&gt; 2    &lt;NA&gt;
-#&gt; 3    &lt;NA&gt;
-#&gt; 4    &lt;NA&gt;
-#&gt; 5    &lt;NA&gt;
-#&gt; 6    &lt;NA&gt;
-#&gt; 7    &lt;NA&gt;
-#&gt; 8    &lt;NA&gt;
-#&gt; 9    &lt;NA&gt;
-#&gt; 10   &lt;NA&gt;
-#&gt; 11   &lt;NA&gt;
-#&gt; 12   &lt;NA&gt;
-#&gt; 13   &lt;NA&gt;
-#&gt; 14   &lt;NA&gt;
-#&gt; 15   &lt;NA&gt;
-#&gt; 16   &lt;NA&gt;
-#&gt; 17   &lt;NA&gt;
-#&gt; 18   &lt;NA&gt;
-#&gt; 19   &lt;NA&gt;
-#&gt; 20   &lt;NA&gt;
-#&gt; 21   &lt;NA&gt;
-#&gt; 22   &lt;NA&gt;
-#&gt; 23   &lt;NA&gt;
-#&gt; 24   &lt;NA&gt;
-#&gt; 25   &lt;NA&gt;
-#&gt; 26   &lt;NA&gt;
-#&gt; 27   &lt;NA&gt;
-#&gt; 28   &lt;NA&gt;
-#&gt; 29   &lt;NA&gt;
-#&gt; 30   &lt;NA&gt;
-#&gt; 31   &lt;NA&gt;
-#&gt; 32   &lt;NA&gt;
-#&gt; 33   &lt;NA&gt;
-#&gt; 34   &lt;NA&gt;
-#&gt; 35   &lt;NA&gt;
-#&gt; 36   &lt;NA&gt;
-#&gt; 37   &lt;NA&gt;
-#&gt; 38   &lt;NA&gt;
-#&gt; 39   &lt;NA&gt;
-#&gt; 40   &lt;NA&gt;
-#&gt; 41   &lt;NA&gt;
-#&gt; 42   &lt;NA&gt;
-#&gt; 43   &lt;NA&gt;
-#&gt; 44   &lt;NA&gt;
-#&gt; 45   &lt;NA&gt;
-#&gt; 46   &lt;NA&gt;
-#&gt; 47   &lt;NA&gt;
-#&gt; 48   &lt;NA&gt;
-#&gt; 49   &lt;NA&gt;
-#&gt; 50   &lt;NA&gt;
-#&gt; 51   &lt;NA&gt;
-#&gt; 52   &lt;NA&gt;
-#&gt; 53   &lt;NA&gt;
-#&gt; 54   &lt;NA&gt;
-#&gt; 55   &lt;NA&gt;
-#&gt; 56   &lt;NA&gt;
-#&gt; 57   &lt;NA&gt;</div></pre>
+</div><div class='output co'>#&gt;    fips.x abb                        name    ansi    region           division
+#&gt; 1      01  AL                     Alabama 1779775     South East South Central
+#&gt; 2      02  AK                      Alaska 1785533      West            Pacific
+#&gt; 3      04  AZ                     Arizona 1779777      West           Mountain
+#&gt; 4      05  AR                    Arkansas 0068085     South West South Central
+#&gt; 5      06  CA                  California 1779778      West            Pacific
+#&gt; 6      08  CO                    Colorado 1779779      West           Mountain
+#&gt; 7      09  CT                 Connecticut 1779780 Northeast        New England
+#&gt; 8      10  DE                    Delaware 1779781     South     South Atlantic
+#&gt; 9      11  DC        District of Columbia 1702382     South     South Atlantic
+#&gt; 10     12  FL                     Florida 0294478     South     South Atlantic
+#&gt; 11     13  GA                     Georgia 1705317     South     South Atlantic
+#&gt; 12     15  HI                      Hawaii 1779782      West            Pacific
+#&gt; 13     16  ID                       Idaho 1779783      West           Mountain
+#&gt; 14     17  IL                    Illinois 1779784   Midwest East North Central
+#&gt; 15     18  IN                     Indiana 0448508   Midwest East North Central
+#&gt; 16     19  IA                        Iowa 1779785   Midwest West North Central
+#&gt; 17     20  KS                      Kansas 0481813   Midwest West North Central
+#&gt; 18     21  KY                    Kentucky 1779786     South East South Central
+#&gt; 19     22  LA                   Louisiana 1629543     South West South Central
+#&gt; 20     23  ME                       Maine 1779787 Northeast        New England
+#&gt; 21     24  MD                    Maryland 1714934     South     South Atlantic
+#&gt; 22     25  MA               Massachusetts 0606926 Northeast        New England
+#&gt; 23     26  MI                    Michigan 1779789   Midwest East North Central
+#&gt; 24     27  MN                   Minnesota 0662849   Midwest West North Central
+#&gt; 25     28  MS                 Mississippi 1779790     South East South Central
+#&gt; 26     29  MO                    Missouri 1779791   Midwest West North Central
+#&gt; 27     30  MT                     Montana 0767982      West           Mountain
+#&gt; 28     31  NE                    Nebraska 1779792   Midwest West North Central
+#&gt; 29     32  NV                      Nevada 1779793      West           Mountain
+#&gt; 30     33  NH               New Hampshire 1779794 Northeast        New England
+#&gt; 31     34  NJ                  New Jersey 1779795 Northeast       Mid-Atlantic
+#&gt; 32     35  NM                  New Mexico 0897535      West           Mountain
+#&gt; 33     36  NY                    New York 1779796 Northeast       Mid-Atlantic
+#&gt; 34     37  NC              North Carolina 1027616     South     South Atlantic
+#&gt; 35     38  ND                North Dakota 1779797   Midwest West North Central
+#&gt; 36     39  OH                        Ohio 1085497   Midwest East North Central
+#&gt; 37     40  OK                    Oklahoma 1102857     South West South Central
+#&gt; 38     41  OR                      Oregon 1155107      West            Pacific
+#&gt; 39     42  PA                Pennsylvania 1779798 Northeast       Mid-Atlantic
+#&gt; 40     44  RI                Rhode Island 1219835 Northeast        New England
+#&gt; 41     45  SC              South Carolina 1779799     South     South Atlantic
+#&gt; 42     46  SD                South Dakota 1785534   Midwest West North Central
+#&gt; 43     47  TN                   Tennessee 1325873     South East South Central
+#&gt; 44     48  TX                       Texas 1779801     South West South Central
+#&gt; 45     49  UT                        Utah 1455989      West           Mountain
+#&gt; 46     50  VT                     Vermont 1779802 Northeast        New England
+#&gt; 47     51  VA                    Virginia 1779803     South     South Atlantic
+#&gt; 48     53  WA                  Washington 1779804      West            Pacific
+#&gt; 49     54  WV               West Virginia 1779805     South     South Atlantic
+#&gt; 50     55  WI                   Wisconsin 1779806   Midwest East North Central
+#&gt; 51     56  WY                     Wyoming 1779807      West           Mountain
+#&gt; 52     60  AS              American Samoa 1802701      &lt;NA&gt;               &lt;NA&gt;
+#&gt; 53     66  GU                        Guam 1802705      &lt;NA&gt;               &lt;NA&gt;
+#&gt; 54     69  MP    Northern Mariana Islands 1779809      &lt;NA&gt;               &lt;NA&gt;
+#&gt; 55     72  PR                 Puerto Rico 1779808      &lt;NA&gt;               &lt;NA&gt;
+#&gt; 56     74  UM U.S. Minor Outlying Islands 1878752      &lt;NA&gt;               &lt;NA&gt;
+#&gt; 57     78  VI         U.S. Virgin Islands 1802710      &lt;NA&gt;               &lt;NA&gt;
+#&gt;    fips.y
+#&gt; 1      01
+#&gt; 2      02
+#&gt; 3      04
+#&gt; 4      05
+#&gt; 5      06
+#&gt; 6      08
+#&gt; 7      09
+#&gt; 8      10
+#&gt; 9      11
+#&gt; 10     12
+#&gt; 11     13
+#&gt; 12     15
+#&gt; 13     16
+#&gt; 14     17
+#&gt; 15     18
+#&gt; 16     19
+#&gt; 17     20
+#&gt; 18     21
+#&gt; 19     22
+#&gt; 20     23
+#&gt; 21     24
+#&gt; 22     25
+#&gt; 23     26
+#&gt; 24     27
+#&gt; 25     28
+#&gt; 26     29
+#&gt; 27     30
+#&gt; 28     31
+#&gt; 29     32
+#&gt; 30     33
+#&gt; 31     34
+#&gt; 32     35
+#&gt; 33     36
+#&gt; 34     37
+#&gt; 35     38
+#&gt; 36     39
+#&gt; 37     40
+#&gt; 38     41
+#&gt; 39     42
+#&gt; 40     44
+#&gt; 41     45
+#&gt; 42     46
+#&gt; 43     47
+#&gt; 44     48
+#&gt; 45     49
+#&gt; 46     50
+#&gt; 47     51
+#&gt; 48     53
+#&gt; 49     54
+#&gt; 50     55
+#&gt; 51     56
+#&gt; 52     60
+#&gt; 53     66
+#&gt; 54     69
+#&gt; 55     72
+#&gt; 56     74
+#&gt; 57     78</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
