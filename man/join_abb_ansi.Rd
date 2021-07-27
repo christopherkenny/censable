@@ -15,7 +15,7 @@ join_abb_ansi(.data, .ansi)
 .data with column .ansi replaced with state abbreviation
 }
 \description{
-Replaces state ansi with state abbreviation
+Adds a column with state abbreviation joining by a column with state ansi
 }
 \examples{
 data('stata')

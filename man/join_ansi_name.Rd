@@ -9,13 +9,13 @@ join_ansi_name(.data, .name)
 \arguments{
 \item{.data}{data.frame or tibble}
 
-\item{.name}{column with state ansi}
+\item{.name}{column with state name}
 }
 \value{
 .data with column .name replaced with ansi
 }
 \description{
-Replaces state name with state ansi
+Adds a column with state ansi joining by a column with state name
 }
 \examples{
 data('stata')

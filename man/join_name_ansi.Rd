@@ -15,7 +15,7 @@ join_name_ansi(.data, .ansi)
 .data with column .ansi replaced with state name
 }
 \description{
-Replaces state ansi with state name
+Adds a column with state name joining by a column with state ansi
 }
 \examples{
 data('stata')

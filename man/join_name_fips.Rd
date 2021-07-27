@@ -15,7 +15,7 @@ join_name_fips(.data, .fips)
 .data with column .fips replaced with state name
 }
 \description{
-Replaces state fips with state name
+Adds a column with state name joining by a column with state fips
 }
 \examples{
 data('stata')

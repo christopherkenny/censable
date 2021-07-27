@@ -15,7 +15,7 @@ join_abb_fips(.data, .fips)
 .data with column .fips replaced with state abb
 }
 \description{
-Replaces state fips with state abb
+Adds a column with state abbreviation joining by a column with state fips
 }
 \examples{
 data('stata')

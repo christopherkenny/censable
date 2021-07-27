@@ -3,7 +3,7 @@
 #' Adds a column with state abbs joining by a column with state names
 #'
 #' @param .data data.frame or tibble
-#' @param .name column with state abbreviation
+#' @param .name column with state name
 #'
 #' @return .data with column .name replaced with abbreviation
 #' @export
@@ -14,7 +14,7 @@
 join_abb_name <- function(.data, .name) {
   stata <- get('stata')
   stata <- stata %>% dplyr::select(.data$name, .data$abb)
-  by_char <- 'abb'
+  by_char <- 'name'
   names(by_char) <- rlang::as_name(rlang::enquo(.name))
 
   .data %>% dplyr::left_join(stata, by = by_char)
@@ -23,10 +23,10 @@ join_abb_name <- function(.data, .name) {
 
 #' Join FIPS by Name
 #'
-#' Replaces state name with state fips
+#' Adds a column with state fips joining by a column with state name
 #'
 #' @param .data data.frame or tibble
-#' @param .name column with state fips
+#' @param .name column with state name
 #'
 #' @return .data with column .name replaced with fips
 #' @export
@@ -38,7 +38,7 @@ join_abb_name <- function(.data, .name) {
 join_fips_name <- function(.data, .name) {
   stata <- get('stata')
   stata <- stata %>% dplyr::select(.data$name, .data$fips)
-  by_char <- 'fips'
+  by_char <- 'name'
   names(by_char) <- rlang::as_name(rlang::enquo(.name))
 
   .data %>% dplyr::left_join(stata, by = by_char)
@@ -46,10 +46,10 @@ join_fips_name <- function(.data, .name) {
 
 #' Join ANSI by Name
 #'
-#' Replaces state name with state ansi
+#' Adds a column with state ansi joining by a column with state name
 #'
 #' @param .data data.frame or tibble
-#' @param .name column with state ansi
+#' @param .name column with state name
 #'
 #' @return .data with column .name replaced with ansi
 #' @export
@@ -61,7 +61,7 @@ join_fips_name <- function(.data, .name) {
 join_ansi_name <- function(.data, .name) {
   stata <- get('stata')
   stata <- stata %>% dplyr::select(.data$name, .data$ansi)
-  by_char <- 'ansi'
+  by_char <- 'name'
   names(by_char) <- rlang::as_name(rlang::enquo(.name))
 
   .data %>% dplyr::left_join(stata, by = by_char)
@@ -69,10 +69,10 @@ join_ansi_name <- function(.data, .name) {
 
 #' Join Name by Abb
 #'
-#' Replaces state abbreviation with state name
+#' Adds a column with state name joining by a column with state abbreviatio
 #'
 #' @param .data data.frame or tibble
-#' @param .abb column with state abbrevaition
+#' @param .abb column with state abbreviation
 #'
 #' @return .data with column .abb replaced with state name
 #' @export
@@ -84,7 +84,7 @@ join_ansi_name <- function(.data, .name) {
 join_name_abb <- function(.data, .abb) {
   stata <- get('stata')
   stata <- stata %>% dplyr::select(.data$name, .data$abb)
-  by_char <- 'name'
+  by_char <- 'abb'
   names(by_char) <- rlang::as_name(rlang::enquo(.abb))
 
   .data %>% dplyr::left_join(stata, by = by_char)
@@ -93,10 +93,10 @@ join_name_abb <- function(.data, .abb) {
 
 #' Join FIPS by Abb
 #'
-#' Replaces state abbreviation with state fips
+#' Adds a column with state fips joining by a column with state abbreviation
 #'
 #' @param .data data.frame or tibble
-#' @param .abb column with state abbrevaition
+#' @param .abb column with state abbreviation
 #'
 #' @return .data with column .abb replaced with state name
 #' @export
@@ -108,7 +108,7 @@ join_name_abb <- function(.data, .abb) {
 join_fips_abb <- function(.data, .abb) {
   stata <- get('stata')
   stata <- stata %>% dplyr::select(.data$fips, .data$abb)
-  by_char <- 'fips'
+  by_char <- 'abb'
   names(by_char) <- rlang::as_name(rlang::enquo(.abb))
 
   .data %>% dplyr::left_join(stata, by = by_char)
@@ -116,10 +116,10 @@ join_fips_abb <- function(.data, .abb) {
 
 #' Join ANSI by Abb
 #'
-#' Replaces state abbreviation with state ansi
+#' Adds a column with state ansi joining by a column with state abbreviation
 #'
 #' @param .data data.frame or tibble
-#' @param .abb column with state abbrevaition
+#' @param .abb column with state abbreviation
 #'
 #' @return .data with column .abb replaced with state ansi
 #' @export
@@ -131,7 +131,7 @@ join_fips_abb <- function(.data, .abb) {
 join_ansi_abb <- function(.data, .abb) {
   stata <- get('stata')
   stata <- stata %>% dplyr::select(.data$ansi, .data$abb)
-  by_char <- 'ansi'
+  by_char <- 'abb'
   names(by_char) <- rlang::as_name(rlang::enquo(.abb))
 
   .data %>% dplyr::left_join(stata, by = by_char)
@@ -140,7 +140,7 @@ join_ansi_abb <- function(.data, .abb) {
 
 #' Join Abb by ANSI
 #'
-#' Replaces state ansi with state abbreviation
+#' Adds a column with state abbreviation joining by a column with state ansi
 #'
 #' @param .data data.frame or tibble
 #' @param .ansi column with state ansi
@@ -155,7 +155,7 @@ join_ansi_abb <- function(.data, .abb) {
 join_abb_ansi <- function(.data, .ansi) {
   stata <- get('stata')
   stata <- stata %>% dplyr::select(.data$ansi, .data$abb)
-  by_char <- 'abb'
+  by_char <- 'ansi'
   names(by_char) <- rlang::as_name(rlang::enquo(.ansi))
 
   .data %>% dplyr::left_join(stata, by = by_char)
@@ -163,7 +163,7 @@ join_abb_ansi <- function(.data, .ansi) {
 
 #' Join Name by ANSI
 #'
-#' Replaces state ansi with state name
+#' Adds a column with state name joining by a column with state ansi
 #'
 #' @param .data data.frame or tibble
 #' @param .ansi column with state ansi
@@ -178,7 +178,7 @@ join_abb_ansi <- function(.data, .ansi) {
 join_name_ansi <- function(.data, .ansi) {
   stata <- get('stata')
   stata <- stata %>% dplyr::select(.data$name, .data$ansi)
-  by_char <- 'name'
+  by_char <- 'ansi'
   names(by_char) <- rlang::as_name(rlang::enquo(.ansi))
 
   .data %>% dplyr::left_join(stata, by = by_char)
@@ -186,7 +186,7 @@ join_name_ansi <- function(.data, .ansi) {
 
 #' Join FIPS by ANSI
 #'
-#' Replaces state ansi with state fips
+#' Adds a column with state fips joining by a column with state ansi
 #'
 #' @param .data data.frame or tibble
 #' @param .ansi column with state ansi
@@ -201,7 +201,7 @@ join_name_ansi <- function(.data, .ansi) {
 join_fips_ansi <- function(.data, .ansi) {
   stata <- get('stata')
   stata <- stata %>% dplyr::select(.data$fips, .data$ansi)
-  by_char <- 'fips'
+  by_char <- 'ansi'
   names(by_char) <- rlang::as_name(rlang::enquo(.ansi))
 
   .data %>% dplyr::left_join(stata, by = by_char)
@@ -210,7 +210,7 @@ join_fips_ansi <- function(.data, .ansi) {
 
 #' Join ANSI by FIPS
 #'
-#' Replaces state fips with state ansi
+#' Adds a column with state ansi joining by a column with state fips
 #'
 #' @param .data data.frame or tibble
 #' @param .fips column with state fips
@@ -225,7 +225,7 @@ join_fips_ansi <- function(.data, .ansi) {
 join_ansi_fips <- function(.data, .fips) {
   stata <- get('stata')
   stata <- stata %>% dplyr::select(.data$fips, .data$ansi)
-  by_char <- 'ansi'
+  by_char <- 'fips'
   names(by_char) <- rlang::as_name(rlang::enquo(.fips))
 
   .data %>% dplyr::left_join(stata, by = by_char)
@@ -233,7 +233,7 @@ join_ansi_fips <- function(.data, .fips) {
 
 #' Join Abb by FIPS
 #'
-#' Replaces state fips with state abb
+#' Adds a column with state abbreviation joining by a column with state fips
 #'
 #' @param .data data.frame or tibble
 #' @param .fips column with state fips
@@ -248,7 +248,7 @@ join_ansi_fips <- function(.data, .fips) {
 join_abb_fips <- function(.data, .fips) {
   stata <- get('stata')
   stata <- stata %>% dplyr::select(.data$fips, .data$abb)
-  by_char <- 'abb'
+  by_char <- 'fips'
   names(by_char) <- rlang::as_name(rlang::enquo(.fips))
 
   .data %>% dplyr::left_join(stata, by = by_char)
@@ -257,7 +257,7 @@ join_abb_fips <- function(.data, .fips) {
 
 #' Join Name by FIPS
 #'
-#' Replaces state fips with state name
+#' Adds a column with state name joining by a column with state fips
 #'
 #' @param .data data.frame or tibble
 #' @param .fips column with state fips
@@ -272,7 +272,7 @@ join_abb_fips <- function(.data, .fips) {
 join_name_fips <- function(.data, .fips) {
   stata <- get('stata')
   stata <- stata %>% dplyr::select(.data$name, .data$fips)
-  by_char <- 'name'
+  by_char <- 'fips'
   names(by_char) <- rlang::as_name(rlang::enquo(.fips))
 
   .data %>% dplyr::left_join(stata, by = by_char)
@@ -281,7 +281,7 @@ join_name_fips <- function(.data, .fips) {
 
 # #' Join new by old
 # #'
-# #' Replaces state old with state new
+# #' Adds a column with state new joining by a column with state old
 # #'
 # #' @param .data data.frame or tibble
 # #' @param .old column with state old
@@ -295,8 +295,8 @@ join_name_fips <- function(.data, .fips) {
 # #' stata %>% join_new_old(old)
 # join_new_old <- function(.data, .old) {
 #   stata <- get('stata')
-#   stata <- stata %>% dplyr::select(.data$new, .data$abb)
-#   by_char <- 'new'
+#   stata <- stata %>% dplyr::select(.data$new, .data$old)
+#   by_char <- 'old'
 #   names(by_char) <- rlang::as_name(rlang::enquo(.old))
 #
 #   .data %>% dplyr::left_join(stata, by = by_char)

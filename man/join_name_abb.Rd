@@ -9,13 +9,13 @@ join_name_abb(.data, .abb)
 \arguments{
 \item{.data}{data.frame or tibble}
 
-\item{.abb}{column with state abbrevaition}
+\item{.abb}{column with state abbreviation}
 }
 \value{
 .data with column .abb replaced with state name
 }
 \description{
-Replaces state abbreviation with state name
+Adds a column with state name joining by a column with state abbreviatio
 }
 \examples{
 data('stata')

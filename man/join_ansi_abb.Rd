@@ -9,13 +9,13 @@ join_ansi_abb(.data, .abb)
 \arguments{
 \item{.data}{data.frame or tibble}
 
-\item{.abb}{column with state abbrevaition}
+\item{.abb}{column with state abbreviation}
 }
 \value{
 .data with column .abb replaced with state ansi
 }
 \description{
-Replaces state abbreviation with state ansi
+Adds a column with state ansi joining by a column with state abbreviation
 }
 \examples{
 data('stata')

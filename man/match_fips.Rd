@@ -13,7 +13,7 @@ match_fips(state)
 FIPS code if a match is found or character(0) if no match is found
 }
 \description{
-Searches for an exact match and offers
+Searches for an exact match and offers the best match if no exact match
 }
 \examples{
 match_fips('NY')

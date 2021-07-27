@@ -15,7 +15,7 @@ join_ansi_fips(.data, .fips)
 .data with column .fips replaced with state ansi
 }
 \description{
-Replaces state fips with state ansi
+Adds a column with state ansi joining by a column with state fips
 }
 \examples{
 data('stata')
