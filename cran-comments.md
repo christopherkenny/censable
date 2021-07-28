@@ -10,3 +10,8 @@
 0 errors | 0 warnings | 1 note
 
 * This is a new release.
+
+## Additional Submission Notes
+* Adds link to API in description.
+* Adds missing @noRd tags to two internal helper functions
+* 
