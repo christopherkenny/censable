@@ -1,13 +1,16 @@
 Package: censable
 Title: Making Census Data More Usable
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: 
     person(given = "Christopher T.",
            family = "Kenny",
            role = c("aut", "cre"),
            email = "christopherkenny@fas.harvard.edu",
            comment = c(ORCID = "0000-0002-9386-6860"))
-Description: Creates a common framework for gathering population, age, race, and ethnicity data from the Census Bureau API. Provides tools for adding information to existing data to line up with Census data.
+Date: 2021-07-28
+URL: https://christopherkenny.github.io/censable/, https://github.com/christopherkenny/censable
+BugReports: https://github.com/christopherkenny/censable/issues
+Description: Creates a common framework for organizing, naming, and gathering population, age, race, and ethnicity data from the Census Bureau. Accesses the API <[https://www.census.gov/data/developers/data-sets.html]https://www.census.gov/data/developers/data-sets.html> via tidycensus. Provides tools for adding information to existing data to line up with Census data.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
