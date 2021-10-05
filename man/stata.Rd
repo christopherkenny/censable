@@ -22,6 +22,5 @@ tibble with columns:
 }
 \examples{
 data('stata')
-
 }
 \concept{data}

@@ -19,6 +19,5 @@ Contains three columns:
 }
 \examples{
 data('fips_2000')
-
 }
 \concept{data}

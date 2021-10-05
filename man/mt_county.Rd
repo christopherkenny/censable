@@ -36,6 +36,5 @@ sf tibble with one observation for each county in Montana
 }
 \examples{
 data('mt_county')
-
 }
 \concept{data}
