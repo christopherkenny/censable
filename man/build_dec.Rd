@@ -10,7 +10,7 @@ build_dec(
   state,
   county = NULL,
   geometry = TRUE,
-  year = 2010,
+  year = 2020,
   groups = "all"
 )
 
@@ -19,7 +19,7 @@ mem_build_dec(
   state,
   county = NULL,
   geometry = TRUE,
-  year = 2010,
+  year = 2020,
   groups = "all"
 )
 }
