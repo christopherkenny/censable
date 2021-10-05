@@ -8,7 +8,7 @@ Authors@R:
            email = "christopherkenny@fas.harvard.edu",
            comment = c(ORCID = "0000-0002-9386-6860"))
 Date: 2021-10-05
-URL: https://christopherkenny.github.io/censable/, https://github.com/christopherkenny/censable
+URL: https://www.christophertkenny.com/censable/, https://github.com/christopherkenny/censable
 BugReports: https://github.com/christopherkenny/censable/issues
 Description: Creates a common framework for organizing, naming, and gathering population, age, race, and ethnicity data from the Census Bureau. Accesses the API <https://www.census.gov/data/developers/data-sets.html> via the package tidycensus. Provides tools for adding information to existing data to line up with Census data.
 License: MIT + file LICENSE
