@@ -93,7 +93,6 @@ breakdown_geoid <- function(.data, GEOID = 'GEOID', area_type = 'spine') {
 construct_geoid <- function(.data, area_type, state = 'state', county = 'county', tract = 'tract',
                             block_group = 'block group', block = 'block', cd = 'cd', shd = 'shd',
                             ssd = 'ssd', zcta = 'zcta') {
-
   if (missing(area_type) || area_type == 'spine') {
     if (all(c(block, tract, county, state) %in% names(.data))) {
       area_type <- 'block'
@@ -133,17 +132,17 @@ construct_geoid <- function(.data, area_type, state = 'state', county = 'county'
 
   if (area_type == 'tract') {
     .data <- .data %>%
-      dplyr::mutate(GEOID = paste0({{ state }}, {{ county }}, {{tract}}))
+      dplyr::mutate(GEOID = paste0({{ state }}, {{ county }}, {{ tract }}))
   }
 
   if (area_type == 'block group') {
     .data <- .data %>%
-      dplyr::mutate(GEOID = paste0({{ state }}, {{ county }}, {{tract}}, {{ block_group }}))
+      dplyr::mutate(GEOID = paste0({{ state }}, {{ county }}, {{ tract }}, {{ block_group }}))
   }
 
   if (area_type == 'block') {
     .data <- .data %>%
-      dplyr::mutate(GEOID = paste0({{ state }}, {{ county }}, {{tract}}, {{ block }}))
+      dplyr::mutate(GEOID = paste0({{ state }}, {{ county }}, {{ tract }}, {{ block }}))
   }
 
   if (area_type == 'cd') {

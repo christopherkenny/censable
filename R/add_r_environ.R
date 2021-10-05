@@ -14,7 +14,7 @@
 #'
 #' @examples
 #' \dontrun{
-#'add_r_environ('1234', 'SECRET_API_KEY')
+#' add_r_environ('1234', 'SECRET_API_KEY')
 #' }
 #'
 add_r_environ <- function(value, name = 'CENSUS_API_KEY', overwrite = FALSE, install = FALSE) {
@@ -36,7 +36,7 @@ add_r_environ <- function(value, name = 'CENSUS_API_KEY', overwrite = FALSE, ins
     newline <- paste0(name, "='", value, "'")
 
 
-    exists <- stringr::str_detect(lines, paste0(name,'='))
+    exists <- stringr::str_detect(lines, paste0(name, '='))
 
     if (any(exists)) {
       if (sum(exists) > 1) {

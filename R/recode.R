@@ -17,7 +17,7 @@ recode_abb_name <- function(.data, .name) {
   rec <- stata$abb
   names(rec) <- stata$name
 
-  .data %>% dplyr::mutate({{.name}} := unname(!!rec))
+  .data %>% dplyr::mutate({{ .name }} := unname(!!rec))
 }
 
 
@@ -40,7 +40,7 @@ recode_fips_name <- function(.data, .name) {
   rec <- stata$fips
   names(rec) <- stata$name
 
-  .data %>% dplyr::mutate({{.name}} := unname(!!rec))
+  .data %>% dplyr::mutate({{ .name }} := unname(!!rec))
 }
 
 #' Recode ANSI by Name
@@ -62,7 +62,7 @@ recode_ansi_name <- function(.data, .name) {
   rec <- stata$ansi
   names(rec) <- stata$name
 
-  .data %>% dplyr::mutate({{.name}} := unname(!!rec))
+  .data %>% dplyr::mutate({{ .name }} := unname(!!rec))
 }
 
 #' Recode Name by Abb
@@ -84,7 +84,7 @@ recode_name_abb <- function(.data, .abb) {
   rec <- stata$name
   names(rec) <- stata$abb
 
-  .data %>% dplyr::mutate({{.abb}} := unname(!!rec))
+  .data %>% dplyr::mutate({{ .abb }} := unname(!!rec))
 }
 
 
@@ -107,7 +107,7 @@ recode_fips_abb <- function(.data, .abb) {
   rec <- stata$fips
   names(rec) <- stata$abb
 
-  .data %>% dplyr::mutate({{.abb}} := unname(!!rec))
+  .data %>% dplyr::mutate({{ .abb }} := unname(!!rec))
 }
 
 #' Recode ANSI by Abb
@@ -129,7 +129,7 @@ recode_ansi_abb <- function(.data, .abb) {
   rec <- stata$ansi
   names(rec) <- stata$abb
 
-  .data %>% dplyr::mutate({{.abb}} := unname(!!rec))
+  .data %>% dplyr::mutate({{ .abb }} := unname(!!rec))
 }
 
 
@@ -152,7 +152,7 @@ recode_abb_ansi <- function(.data, .ansi) {
   rec <- stata$abb
   names(rec) <- stata$ansi
 
-  .data %>% dplyr::mutate({{.ansi}} := unname(!!rec))
+  .data %>% dplyr::mutate({{ .ansi }} := unname(!!rec))
 }
 
 #' Recode Name by ANSI
@@ -174,7 +174,7 @@ recode_name_ansi <- function(.data, .ansi) {
   rec <- stata$name
   names(rec) <- stata$ansi
 
-  .data %>% dplyr::mutate({{.ansi}} := unname(!!rec))
+  .data %>% dplyr::mutate({{ .ansi }} := unname(!!rec))
 }
 
 #' Recode FIPS by ANSI
@@ -196,7 +196,7 @@ recode_fips_ansi <- function(.data, .ansi) {
   rec <- stata$fips
   names(rec) <- stata$ansi
 
-  .data %>% dplyr::mutate({{.ansi}} := unname(!!rec))
+  .data %>% dplyr::mutate({{ .ansi }} := unname(!!rec))
 }
 
 
@@ -219,7 +219,7 @@ recode_ansi_fips <- function(.data, .fips) {
   rec <- stata$ansi
   names(rec) <- stata$fips
 
-  .data %>% dplyr::mutate({{.fips}} := unname(!!rec))
+  .data %>% dplyr::mutate({{ .fips }} := unname(!!rec))
 }
 
 #' Recode Abb by FIPS
@@ -241,7 +241,7 @@ recode_abb_fips <- function(.data, .fips) {
   rec <- stata$abb
   names(rec) <- stata$fips
 
-  .data %>% dplyr::mutate({{.fips}} := unname(!!rec))
+  .data %>% dplyr::mutate({{ .fips }} := unname(!!rec))
 }
 
 
@@ -264,7 +264,7 @@ recode_name_fips <- function(.data, .fips) {
   rec <- stata$name
   names(rec) <- stata$fips
 
-  .data %>% dplyr::mutate({{.fips}} := unname(!!rec))
+  .data %>% dplyr::mutate({{ .fips }} := unname(!!rec))
 }
 
 # #' Recode new by old

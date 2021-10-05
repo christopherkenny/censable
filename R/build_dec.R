@@ -74,7 +74,6 @@
 #' }
 build_dec <- function(geography, state, county = NULL, geometry = TRUE,
                       year = 2020, groups = 'all') {
-
   if (!isTRUE(groups[1] %in% c('all', 'pop', 'vap'))) {
     groups <- 'all'
   }
@@ -131,7 +130,6 @@ build_dec <- function(geography, state, county = NULL, geometry = TRUE,
       geometry = geometry, keep_geo_vars = FALSE,
       variables = vars, output = 'wide'
     )
-
   } else { # 2000
     vars_pop <- c(
       pop = 'P004001', pop_white = 'P004005', pop_black = 'P004006',

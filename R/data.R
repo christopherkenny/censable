@@ -18,7 +18,6 @@
 #'
 #' @examples
 #' data('stata')
-#'
 #' @md
 #' @concept data
 NULL
@@ -58,7 +57,6 @@ NULL
 #'
 #' @examples
 #' data('mt_county')
-#'
 #' @md
 #' @concept data
 NULL
@@ -80,7 +78,6 @@ NULL
 #'
 #' @examples
 #' data('fips_2000')
-#'
 #' @md
 #' @concept data
 NULL
@@ -102,7 +99,6 @@ NULL
 #'
 #' @examples
 #' data('fips_2010')
-#'
 #' @md
 #' @concept data
 NULL
@@ -124,7 +120,6 @@ NULL
 #'
 #' @examples
 #' data('fips_2020')
-#'
 #' @md
 #' @concept data
 NULL

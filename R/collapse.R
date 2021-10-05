@@ -50,8 +50,7 @@ collapse4_vap <- function(.data, prefix = 'vap_') {
 #' data(mt_county)
 #' mt_county <- mt_county %>% collapse4(prefix = c('pop_', 'vap_'))
 collapse4 <- function(.data, prefix) {
-
-  if (!inherits(prefix, 'character')){
+  if (!inherits(prefix, 'character')) {
     stop('`prefix` must be a character vector.')
   }
 
@@ -64,7 +63,7 @@ collapse4 <- function(.data, prefix) {
     new_var_oth <- vars[1]
     .data <- .data %>%
       dplyr::mutate({{ new_var_oth }} := .data[[vars[[1]]]] + .data[[vars[[2]]]] + .data[[vars[[3]]]] +
-                      .data[[vars[[4]]]] + .data[[vars[[5]]]]) %>%
+        .data[[vars[[4]]]] + .data[[vars[[5]]]]) %>%
       dplyr::select(!dplyr::all_of(vars[2:5]))
   }
   .data
@@ -87,8 +86,7 @@ collapse4 <- function(.data, prefix) {
 #' data(mt_county)
 #' mt_county <- mt_county %>% collapse5(prefix = c('pop_', 'vap_'))
 collapse5 <- function(.data, prefix) {
-
-  if (!inherits(prefix, 'character')){
+  if (!inherits(prefix, 'character')) {
     stop('`prefix` must be a character vector.')
   }
 
@@ -101,7 +99,7 @@ collapse5 <- function(.data, prefix) {
     new_var_oth <- vars[1]
     .data <- .data %>%
       dplyr::mutate({{ new_var_oth }} := .data[[vars[[1]]]] + .data[[vars[[2]]]] +
-                      .data[[vars[[3]]]] + .data[[vars[[4]]]]) %>%
+        .data[[vars[[3]]]] + .data[[vars[[4]]]]) %>%
       dplyr::select(!dplyr::all_of(vars[2:4]))
   }
   .data

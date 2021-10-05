@@ -21,14 +21,16 @@ fips_2010 <- lapply(1:57, function(x) {
   fip <- stata$fips[x]
   labb <- tolower(stata$abb)[x]
   x <- NULL
-  try({x <- readr::read_lines(glue::glue('https://www2.census.gov/geo/docs/reference/codes/files/st{fip}_{labb}_cou.txt'))})
-  x
+  try({
+    x <- readr::read_lines(glue::glue('https://www2.census.gov/geo/docs/reference/codes/files/st{fip}_{labb}_cou.txt'))
   })
-fips_2010 <- lapply(fips_2010, function(x){
+  x
+})
+fips_2010 <- lapply(fips_2010, function(x) {
   do.call('rbind', stringr::str_split(x, ','))
 })
-fips_2010 <- lapply(fips_2010, function(x){
-  names(x) <- c('abb','fips','county','name','v')
+fips_2010 <- lapply(fips_2010, function(x) {
+  names(x) <- c('abb', 'fips', 'county', 'name', 'v')
   tibble::as_tibble(x)
 })
 fips_2010 <- do.call('rbind', fips_2010)

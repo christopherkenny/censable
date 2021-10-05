@@ -73,7 +73,6 @@
 #' }
 build_acs <- function(geography, state, county = NULL, geometry = TRUE, year = 2010,
                       survey = 'acs5', groups = 'all') {
-
   if (!isTRUE(groups[1] %in% c('all', 'pop', 'vap'))) {
     groups <- 'all'
   }
@@ -132,7 +131,7 @@ build_acs <- function(geography, state, county = NULL, geometry = TRUE, year = 2
     dplyr::select(-dplyr::ends_with('M')) %>%
     dplyr::rename_with(drop_E)
 
-  if (groups[1] %in% c('cvap', 'vap', 'all')){
+  if (groups[1] %in% c('cvap', 'vap', 'all')) {
     out <- out %>%
       dplyr::mutate(
         vap = .data$m_vap + .data$f_vap,
