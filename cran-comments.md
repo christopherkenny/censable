@@ -14,4 +14,4 @@
 
 ## Additional Submission Notes
 * UTF-8 issue should be fixed. Replaced a remaining UTF character with ASCII.
-* Existing note for memoise appears to be a false positive, as it is used in two functions.
+* Corrects memoise issue following <https://github.com/r-lib/memoise/issues/76>. This introduces the use of `<<-` to modify the package namespace. This does not modify the global environment.
