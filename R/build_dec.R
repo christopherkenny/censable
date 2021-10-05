@@ -73,7 +73,7 @@
 #' tb <- build_dec(geography = 'block', state = 'NY', county = 'Rockland', geometry = TRUE)
 #' }
 build_dec <- function(geography, state, county = NULL, geometry = TRUE,
-                      year = 2010, groups = 'all') {
+                      year = 2020, groups = 'all') {
 
   if (!isTRUE(groups[1] %in% c('all', 'pop', 'vap'))) {
     groups <- 'all'
@@ -87,7 +87,29 @@ build_dec <- function(geography, state, county = NULL, geometry = TRUE,
     stop('Decennial endpoint for years before 2000 is not available.')
   }
 
-  if (year >= 2010) {
+  if (year == 2020) {
+    vars <- c(
+      pop = 'P2_001N', pop_white = 'P2_005N', pop_black = 'P2_006N',
+      pop_hisp = 'P2_002N', pop_aian = 'P2_007N', pop_asian = 'P2_008N',
+      pop_nhpi = 'P2_009N', pop_other = 'P2_010N', pop_two = 'P2_011N',
+      vap = 'P4_001N', vap_white = 'P4_005N', vap_black = 'P4_006N',
+      vap_hisp = 'P4_002N', vap_aian = 'P4_007N', vap_asian = 'P4_008N',
+      vap_nhpi = 'P4_009N', vap_other = 'P4_010N', vap_two = 'P4_011N'
+    )
+
+    if (groups == 'pop') {
+      vars <- vars[stringr::str_detect(names(vars), 'pop')]
+    } else if (groups == 'vap') {
+      vars <- vars[stringr::str_detect(names(vars), 'vap')]
+    }
+
+    out <- tidycensus::get_decennial(
+      geography = geography, state = state,
+      year = year, county = county,
+      geometry = geometry, keep_geo_vars = FALSE,
+      variables = vars, output = 'wide'
+    )
+  } else if (year == 2010) {
     vars <- c(
       pop = 'P003001', pop_white = 'P005003', pop_black = 'P005004',
       pop_hisp = 'P004003', pop_aian = 'P005005', pop_asian = 'P005006',
