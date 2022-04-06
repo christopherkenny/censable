@@ -1,8 +1,8 @@
 pandoc: 2.7.3
-pkgdown: 1.6.1
+pkgdown: 2.0.2
 pkgdown_sha: ~
 articles: {}
-last_built: 2021-10-07T15:00Z
+last_built: 2022-04-06T06:34Z
 urls:
   reference: https://christopherkenny.github.io/censable/reference
   article: https://christopherkenny.github.io/censable/articles

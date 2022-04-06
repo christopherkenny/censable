@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://christopherkenny.github.io/censable/404.html</loc>
+  </url>
+  <url>
+    <loc>https://christopherkenny.github.io/censable/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://christopherkenny.github.io/censable/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://christopherkenny.github.io/censable/authors.html</loc>
+  </url>
+  <url>
     <loc>https://christopherkenny.github.io/censable/index.html</loc>
+  </url>
+  <url>
+    <loc>https://christopherkenny.github.io/censable/news/index.html</loc>
   </url>
   <url>
     <loc>https://christopherkenny.github.io/censable/reference/add_r_environ.html</loc>
@@ -47,6 +62,9 @@
   </url>
   <url>
     <loc>https://christopherkenny.github.io/censable/reference/fips_2020.html</loc>
+  </url>
+  <url>
+    <loc>https://christopherkenny.github.io/censable/reference/index.html</loc>
   </url>
   <url>
     <loc>https://christopherkenny.github.io/censable/reference/join_abb_ansi.html</loc>
