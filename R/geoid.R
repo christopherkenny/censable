@@ -56,7 +56,8 @@ breakdown_geoid <- function(.data, GEOID = 'GEOID', area_type = 'spine') {
     .data <- .data %>% dplyr::mutate(state = stringr::str_sub({{ GEOID }}, 1, 2))
     .data <- .data %>% dplyr::mutate(cd = stringr::str_sub({{ GEOID }}, 3, 4))
   } else if (area_type == 'zcta') {
-    .data <- .data %>% dplyr::mutate(zcta = {{ GEOID }})
+    .data <- .data %>% dplyr::mutate(state = stringr::str_sub({{ GEOID }}, 1, 2),
+                                     zcta = stringr::str_sub({{ GEOID }}, 3))
   }
 
   .data
