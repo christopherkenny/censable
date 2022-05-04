@@ -96,6 +96,15 @@ build_dec <- function(geography, state, county = NULL, geometry = TRUE,
       vap_nhpi = 'P4_009N', vap_other = 'P4_010N', vap_two = 'P4_011N'
     )
 
+    vars7 <- c(
+      pop7 = 'P1_001N', pop7_white = 'P1_003N', pop7_black = 'P1_004N',
+      pop_aian = 'P1_005N', pop_asian = 'P1_006N',
+      pop_nhpi = 'P1_007N', pop_other = 'P1_008N', pop_two = 'P1_009N',
+      vap7 = 'P3_001N', vap7_white = 'P3_003N', vap7_black = 'P3_004N',
+      vap7_aian = 'P3_005N', vap7_asian = 'P3_006N',
+      vap7_nhpi = 'P3_007N', vap7_other = 'P3_008N', vap7_two = 'P3_009N',
+    )
+
     if (groups == 'pop') {
       vars <- vars[stringr::str_detect(names(vars), 'pop')]
     } else if (groups == 'vap') {
@@ -116,6 +125,15 @@ build_dec <- function(geography, state, county = NULL, geometry = TRUE,
       vap = 'P010001', vap_white = 'P011005', vap_black = 'P011006',
       vap_hisp = 'P011002', vap_aian = 'P011007', vap_asian = 'P011008',
       vap_nhpi = 'P011009', vap_other = 'P011010', vap_two = 'P011011'
+    )
+
+    vars7 <- c(
+      pop7 = 'P003001', pop7_white = 'P003002', pop7_black = 'P003003',
+      pop7_aian = 'P003004', pop7_asian = 'P003005',
+      pop7_nhpi = 'P003006', pop7_other = 'P003007', pop7_two = 'P005008',
+      vap7 = 'P010001', vap7_white = 'P010003', vap7_black = 'P010004',
+      vap7_aian = 'P010005', vap7_asian = 'P010006',
+      vap7_nhpi = 'P010007', vap7_other = 'P010008', vap7_two = 'P010009'
     )
 
     if (groups == 'pop') {
