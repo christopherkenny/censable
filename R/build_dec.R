@@ -161,6 +161,13 @@ build_dec <- function(geography, state, county = NULL, geometry = TRUE,
       vap_nhpi = 'P006009', vap_other = 'P006010', vap_two = 'P006011'
     )
 
+    vars_pop7 <- c(
+      pop7 = 'P004001', pop7_white = 'P004005', pop7_black = 'P004006',
+      pop7_aian = 'P004007', pop7_asian = 'P004008',
+      pop7_nhpi = 'P004009', pop7_other = 'P004010', pop7_two = 'P004011'
+    )
+
+
     if (!missing(county)) {
       if (groups[1] %in% c('pop', 'all')) {
         out_pop <- tidycensus::get_decennial(
