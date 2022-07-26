@@ -34,12 +34,13 @@ mem_build_dec(
 
 \item{year}{year, must be 2000, 2010, or 2020 (after August 2021)}
 
-\item{groups}{defaults to 'all', which gets pop and vap. If 'pop', only gets pop.
-If 'vap', only gets vap. Any other strings default to 'all'.}
+\item{groups}{defaults to \code{'all'}, which gets pop and vap. If \code{'pop'}, only gets pop.
+If \code{'vap'}, only gets vap. Allows for analogous seven category race with \code{'all7'}, \code{'pop7'}, and \code{'vap7'}.
+Any other strings default to \code{'all'}.}
 }
 \value{
 tibble with observations for each observation of the geography in the state
-or county. Data includes 2 sets of columns for each race or ethnicity category:
+or county. Data includes up to 2 sets of columns for each race or ethnicity category:
 population (pop) and voting age population (vap)
 }
 \description{
@@ -47,7 +48,7 @@ Creates a dataset, using the decennial census information, with the
 standard variables used for redistricting. Creates a stable base for getting
 data from tidycensus for common calls in redistricting.
 }
-\section{Output columns are:}{
+\section{Default output columns are:}{
 \itemize{
 \item GEOID: Geographic Identifier
 \item NAME: Name of County
@@ -89,6 +90,7 @@ Currently valid options for \code{geography}:
 \item 'state legislative district (upper chamber)'
 \item 'state legislative district (lower chamber)'
 \item 'school district (unified)'
+Depending on the day, weather, and other unrelated things, \code{'voting district'} may also work.
 }
 
 Full options for \code{geography} that may or may not be valid depending on year and geometry

@@ -1,13 +1,13 @@
 Package: censable
 Title: Making Census Data More Usable
-Version: 0.0.3
+Version: 0.0.4
 Authors@R: 
     person(given = "Christopher T.",
            family = "Kenny",
            role = c("aut", "cre"),
            email = "christopherkenny@fas.harvard.edu",
            comment = c(ORCID = "0000-0002-9386-6860"))
-Date: 2021-10-05
+Date: 2022-07-26
 URL: https://www.christophertkenny.com/censable/, https://github.com/christopherkenny/censable
 BugReports: https://github.com/christopherkenny/censable/issues
 Description: Creates a common framework for organizing, naming, and gathering population, age, race, and ethnicity data from the Census Bureau. Accesses the API <https://www.census.gov/data/developers/data-sets.html> via the package tidycensus. Provides tools for adding information to existing data to line up with Census data.
@@ -15,7 +15,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.0
 Suggests: 
     roxygen2,
     testthat (>= 3.0.0)
@@ -27,7 +27,8 @@ Imports:
     sf (>= 1.0.0),
     tibble,
     stringr,
-    memoise
+    memoise,
+    purrr
 Depends: 
     R (>= 2.10)
 Config/testthat/edition: 3
