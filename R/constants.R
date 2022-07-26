@@ -1,4 +1,4 @@
-full_names  <- list(
+full_race_names  <- list(
   white = 'White',
   black = 'Black or African American',
   hisp = 'Hispanic or Latino',

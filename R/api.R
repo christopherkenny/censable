@@ -99,7 +99,7 @@ fetch_api_vars_ap <- function(year, group, race) {
     TRUE ~ NA_character_
   )
   tidycensus::load_variables(year, dataset = 'pl') %>%
-    dplyr::filter(stringr::str_detect(.data$label, paste0('(?i)', race))) %>%
+    dplyr::filter(stringr::str_detect(.data$label, paste0('(?i)', full_race_names[race]))) %>%
     dplyr::filter(startsWith(.data$name, group)) %>%
     dplyr::pull(.data$name)
 }

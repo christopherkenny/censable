@@ -36,7 +36,8 @@ mem_build_dec(
 
 \item{groups}{defaults to \code{'all'}, which gets pop and vap. If \code{'pop'}, only gets pop.
 If \code{'vap'}, only gets vap. Allows for analogous seven category race with \code{'all7'}, \code{'pop7'}, and \code{'vap7'}.
-Any other strings default to \code{'all'}.}
+For counts for any part by race, you can supply \code{ap:race}, where race is in \code{c('black', 'white', 'aian', 'other', 'asian', 'nhpi')}.
+Anything that can't be matched defaults to \code{'all'}, so you can pass \code{''} to get \code{'all'}.}
 }
 \value{
 tibble with observations for each observation of the geography in the state

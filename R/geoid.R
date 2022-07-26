@@ -32,32 +32,50 @@ breakdown_geoid <- function(.data, GEOID = 'GEOID', area_type = 'spine') {
     len <- stringr::str_length(geoid_col[1])
   }
 
+  if (area_type %in% c('block', 'block group', 'tract', 'county', 'state')) {
+    area_type <- 'spine'
+  }
+
   if (area_type == 'spine') {
-    .data <- .data %>% dplyr::mutate(state = stringr::str_sub({{ GEOID }}, 1, 2))
+    .data <- .data %>% dplyr::mutate(state = stringr::str_sub({{ GEOID }}, 1, 2),
+                                     .after = GEOID)
     if (len >= 5) {
-      .data <- .data %>% dplyr::mutate(county = stringr::str_sub({{ GEOID }}, 3, 5))
+      .data <- .data %>% dplyr::mutate(county = stringr::str_sub({{ GEOID }}, 3, 5),
+                                       .after = .data$state)
     }
     if (len >= 11) {
-      .data <- .data %>% dplyr::mutate(tract = stringr::str_sub({{ GEOID }}, 6, 11))
+      .data <- .data %>% dplyr::mutate(tract = stringr::str_sub({{ GEOID }}, 6, 11),
+                                       .after = .data$county)
     }
     if (len >= 12) {
-      .data <- .data %>% dplyr::mutate(block_group = stringr::str_sub({{ GEOID }}, 12, 12))
+      .data <- .data %>% dplyr::mutate(block_group = stringr::str_sub({{ GEOID }}, 12, 12),
+                                       .after = .data$tract)
     }
     if (len >= 15) {
-      .data <- .data %>% dplyr::mutate(block = stringr::str_sub({{ GEOID }}, 12, 15))
+      .data <- .data %>% dplyr::mutate(block = stringr::str_sub({{ GEOID }}, 12, 15),
+                                       .after = .data$block_group)
     }
   } else if (area_type == 'shd') {
-    .data <- .data %>% dplyr::mutate(state = stringr::str_sub({{ GEOID }}, 1, 2))
-    .data <- .data %>% dplyr::mutate(shd = stringr::str_sub({{ GEOID }}, 3, 5))
+    .data <- .data %>% dplyr::mutate(state = stringr::str_sub({{ GEOID }}, 1, 2),
+                                     shd = stringr::str_sub({{ GEOID }}, 3, 5),
+                                     .after = GEOID)
   } else if (area_type == 'ssd') {
-    .data <- .data %>% dplyr::mutate(state = stringr::str_sub({{ GEOID }}, 1, 2))
-    .data <- .data %>% dplyr::mutate(ssd = stringr::str_sub({{ GEOID }}, 3, 5))
+    .data <- .data %>% dplyr::mutate(state = stringr::str_sub({{ GEOID }}, 1, 2),
+                                     ssd = stringr::str_sub({{ GEOID }}, 3, 5),
+                                     .after = GEOID)
   } else if (area_type == 'cd') {
-    .data <- .data %>% dplyr::mutate(state = stringr::str_sub({{ GEOID }}, 1, 2))
-    .data <- .data %>% dplyr::mutate(cd = stringr::str_sub({{ GEOID }}, 3, 4))
+    .data <- .data %>% dplyr::mutate(state = stringr::str_sub({{ GEOID }}, 1, 2),
+                                     cd = stringr::str_sub({{ GEOID }}, 3, 4),
+                                     .after = GEOID)
   } else if (area_type == 'zcta') {
     .data <- .data %>% dplyr::mutate(state = stringr::str_sub({{ GEOID }}, 1, 2),
-                                     zcta = stringr::str_sub({{ GEOID }}, 3))
+                                     zcta = stringr::str_sub({{ GEOID }}, 3),
+                                     .after = GEOID)
+  } else if (area_type == 'voting district') {
+    .data <- .data %>% dplyr::mutate(state = stringr::str_sub({{ GEOID }}, 1, 2),
+                                     county = stringr::str_sub({{ GEOID }}, 3, 4),
+                                     vtd = stringr::str_sub({{ GEOID }}, 5),
+                                     .after = GEOID)
   }
 
   .data
