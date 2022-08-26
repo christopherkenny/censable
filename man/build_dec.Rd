@@ -74,9 +74,8 @@ data from tidycensus for common calls in redistricting.
 \item geometry: sf geometry
 }
 
-Arguments for \code{geography} are not checked, so will fail with \code{tidycensus} errors if invalid.
-This is by design to avoid blocking usage that could become valid, especially following
-the 2020 Census data release.
+Arguments for \code{geography} are not checked, so will error if invalid.
+This is by design, to avoid blocking usage that could become valid.
 
 Currently valid options for \code{geography}:
 \itemize{
@@ -93,10 +92,6 @@ Currently valid options for \code{geography}:
 \item 'school district (unified)'
 Depending on the day, weather, and other unrelated things, \code{'voting district'} may also work.
 }
-
-Full options for \code{geography} that may or may not be valid depending on year and geometry
-are listed at:
-\href{https://walker-data.com/tidycensus/articles/basic-usage.html}{Kyle Walker's tidycensus site}.
 }
 
 \examples{

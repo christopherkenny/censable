@@ -119,7 +119,7 @@ get_census_key <- function(key = '') {
 }
 
 get_dec <- function(geography, state, year, county = NULL,
-                    geometry = TRUE, variables, tab = 'dec/pl', show_call = FALSE) {
+                    variables, tab = 'dec/pl', show_call = FALSE) {
 
   state <- match_fips(state)
   rg <- format_regions(geography, state, county, decade = year - (year %% 10))
@@ -135,7 +135,7 @@ get_dec <- function(geography, state, year, county = NULL,
   )
 
   if (!is.null(names(variables)[1])) {
-    names(out)[which(!is.na(match(names(out), variables)))] <- names(variables)[na.omit(match(names(out), variables))]
+    names(out)[which(!is.na(match(names(out), variables)))] <- names(variables)[stats::na.omit(match(names(out), variables))]
   }
   out <- out %>%
     dplyr::relocate(GEOID = .data$GEO_ID) %>%
@@ -179,7 +179,7 @@ col_var <- function(...) {
 get_geometry <- function(geography, ...) {
   geography <- clean_geographies(geography)
   fn <- eval(parse(text = paste0('tinytiger::tt_', geography)))
-  do.call(fn, list(...)[formalArgs(fn)]) %>%
+  do.call(fn, list(...)[methods::formalArgs(fn)]) %>%
     dplyr::rename_with(.fn = function(x) stringr::str_sub(x, end = -3),
                        .cols = dplyr::any_of(c('GEOID20', 'GEOID10', 'GEOID00'))) %>%
     dplyr::select(.data$GEOID, .data$geometry)

@@ -118,7 +118,7 @@ build_dec <- function(geography, state, county = NULL, geometry = TRUE,
         get_dec(
           geography = geography, state = state,
           year = year, county = county,
-          geometry = (geometry & i <= 1), variables = vars[[i]],
+          variables = vars[[i]],
           tab = ifelse(year == 2020, 'dec/pl', 'dec/sf1')
         )
       })
@@ -191,7 +191,6 @@ build_dec_ap <- function(geography, state, county = NULL, geometry = FALSE,
       get_dec(
         geography = geography, state = state,
         year = year, county = county,
-        geometry = (geometry && i <= 1),
         variables = vars[[i]],
         tab = 'dec/pl'
       ) %>%
