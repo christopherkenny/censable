@@ -115,7 +115,7 @@ build_dec <- function(geography, state, county = NULL, geometry = TRUE,
 
     out <- lapply(
       seq_along(vars), function(i) {
-        get_dec(
+        get_census_api(
           geography = geography, state = state,
           year = year, county = county,
           variables = vars[[i]],
@@ -188,7 +188,7 @@ build_dec_ap <- function(geography, state, county = NULL, geometry = FALSE,
   out <- lapply(
     seq_along(vars), function(i) {
       x <- noms[i]
-      get_dec(
+      get_census_api(
         geography = geography, state = state,
         year = year, county = county,
         variables = vars[[i]],

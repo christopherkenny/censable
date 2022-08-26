@@ -89,19 +89,14 @@ fetch_api_vars <- function(survey, year, groups) {
 }
 
 fetch_api_vars_ap <- function(year, group, race) {
-  group <- dplyr::case_when(
-    year == 2020 & group == 'pop' ~ 'P1',
-    year == 2020 & group == 'vap' ~ 'P3',
-    year == 2010 & group == 'pop' ~ 'P001',
-    year == 2010 & group == 'vap' ~ 'P003',
-    year == 2000 & group == 'pop' ~ 'PL001',
-    year == 2000 & group == 'vap' ~ 'PL003',
-    TRUE ~ NA_character_
-  )
-  tidycensus::load_variables(year, dataset = 'pl') %>%
-    dplyr::filter(stringr::str_detect(.data$label, paste0('(?i)', full_race_names[race]))) %>%
-    dplyr::filter(startsWith(.data$name, group)) %>%
-    dplyr::pull(.data$name)
+  api_vars_ap %>%
+    dplyr::filter(
+      .env$year == .data$year,
+      .env$group == .data$group,
+      .env$race == .data$race
+    ) %>%
+    dplyr::pull(.data$vars) %>%
+    unlist()
 }
 
 
@@ -118,7 +113,7 @@ get_census_key <- function(key = '') {
   key
 }
 
-get_dec <- function(geography, state, year, county = NULL,
+get_census_api <- function(geography, state, year, county = NULL,
                     variables, tab = 'dec/pl', show_call = FALSE) {
 
   state <- match_fips(state)
