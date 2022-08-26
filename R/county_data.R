@@ -1,5 +1,5 @@
 match_county <- function(state, counties, decade) {
-  st <- get(paste0('fips_', decade), envir = parent.env(parent.frame()))
+  st <- get(paste0('fips_', decade), envir = parent.env(environment()))
   st <- st[st$state %in% state, ]
 
   pos <- tolower(c(st$county, st$name))
