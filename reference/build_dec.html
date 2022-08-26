@@ -137,9 +137,8 @@ population (pop) and voting age population (vap)</p>
 <li><p>vap_other: voting age population, Non-Hispanic Other</p></li>
 <li><p>vap_two: voting age population, Non-Hispanic Two Plus Races</p></li>
 <li><p>geometry: sf geometry</p></li>
-</ul><p>Arguments for <code>geography</code> are not checked, so will fail with <code>tidycensus</code> errors if invalid.
-This is by design to avoid blocking usage that could become valid, especially following
-the 2020 Census data release.</p>
+</ul><p>Arguments for <code>geography</code> are not checked, so will error if invalid.
+This is by design, to avoid blocking usage that could become valid.</p>
 <p>Currently valid options for <code>geography</code>:</p><ul><li><p>'state'</p></li>
 <li><p>'county'</p></li>
 <li><p>'tract'</p></li>
@@ -152,10 +151,7 @@ the 2020 Census data release.</p>
 <li><p>'state legislative district (lower chamber)'</p></li>
 <li><p>'school district (unified)'
 Depending on the day, weather, and other unrelated things, <code>'voting district'</code> may also work.</p></li>
-</ul><p>Full options for <code>geography</code> that may or may not be valid depending on year and geometry
-are listed at:
-<a href="https://walker-data.com/tidycensus/articles/basic-usage.html" class="external-link">Kyle Walker's tidycensus site</a>.</p>
-    </div>
+</ul></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
