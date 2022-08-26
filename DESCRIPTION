@@ -26,7 +26,6 @@ Imports:
     magrittr,
     dplyr (>= 1.0.4),
     rlang (>= 0.1.2),
-    tidycensus,
     sf (>= 1.0.0),
     tibble,
     stringr,
