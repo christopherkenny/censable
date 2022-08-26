@@ -32,7 +32,8 @@ Imports:
     memoise,
     purrr,
     censusapi,
-    methods
+    methods,
+    tinytiger
 Depends: 
     R (>= 2.10)
 Config/testthat/edition: 3

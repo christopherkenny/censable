@@ -3,6 +3,7 @@
 #' @importFrom rlang .env
 #' @importFrom rlang :=
 #' @importFrom tibble tibble
+#' @importFrom tinytiger tt_cache_clear
 ## usethis namespace: end
 NULL
 
