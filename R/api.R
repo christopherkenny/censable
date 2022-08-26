@@ -103,3 +103,106 @@ fetch_api_vars_ap <- function(year, group, race) {
     dplyr::filter(startsWith(.data$name, group)) %>%
     dplyr::pull(.data$name)
 }
+
+
+get_census_key <- function(key = '') {
+  if (key == '') {
+    key <- Sys.getenv('CENSUS_API_KEY')
+  }
+  if (key == '') {
+    key <- Sys.getenv('CENSUS_KEY')
+  }
+  if (key == '') {
+    stop('Must either supply a key or have one set as `CENSUS_API_KEY` or `CENSUS_KEY`.')
+  }
+  key
+}
+
+get_dec <- function(geography, state, year, county = NULL,
+                    geometry = TRUE, variables, tab = 'dec/pl', show_call = FALSE) {
+
+  state <- match_fips(state)
+  rg <- format_regions(geography, state, county, decade = year - (year %% 10))
+
+  out <- censusapi::getCensus(
+    name = tab,
+    vintage = year,
+    vars = c('GEO_ID', variables),
+    region = rg$region,
+    regionin = rg$regionin,
+    key = get_census_key(),
+    show_call = show_call
+  )
+
+  if (!is.null(names(variables)[1])) {
+    names(out)[which(!is.na(match(names(out), variables)))] <- names(variables)[na.omit(match(names(out), variables))]
+  }
+  out <- out %>%
+    dplyr::relocate(GEOID = .data$GEO_ID) %>%
+    dplyr::mutate(GEOID = stringr::str_sub(GEOID, start = 10))
+
+  out
+}
+
+format_regions <- function(geography, state, county, decade) {
+
+  if (is.null(county)) {
+    ct <- '*'
+  } else {
+    ct <- match_county(state = state, counties = county, decade = decade)
+  }
+
+  if (!geography %in% c('state', 'county')) {
+    rgin <- paste0('state:', state)
+    if (!is.null(county)) {
+      rgin <- paste0(rgin, '+county:', col_var(ct))
+    }
+    rg <- paste0(geography, ':*')
+  } else if (geography != state) {
+    rgin <- paste0('state:', state)
+    rg <- paste0(geography, ':', col_var(ct))
+  } else {
+    rgin <- NULL
+    rg <- paste0('state:', col_var(state))
+  }
+
+  list(
+    region = rg,
+    regionin = rgin
+  )
+}
+
+col_var <- function(...) {
+  paste0(..., collapse = ',')
+}
+
+get_geometry <- function(geography, ...) {
+  geography <- clean_geographies(geography)
+  fn <- eval(parse(text = paste0('tinytiger::tt_', geography)))
+  do.call(fn, list(...)[formalArgs(fn)]) %>%
+    dplyr::rename_with(.fn = function(x) stringr::str_sub(x, end = -3),
+                       .cols = dplyr::any_of(c('GEOID20', 'GEOID10', 'GEOID00'))) %>%
+    dplyr::select(.data$GEOID, .data$geometry)
+}
+
+clean_geographies <- function(x) {
+  if (x %in% c('state', 'tract', 'block group', 'block',
+               'county subdivision', 'place', 'voting district',
+               'congressional district')) {
+    x <- paste0(x, 's')
+  } else if (x == 'county') {
+    x <- 'counties'
+  } else if (x == 'state legislative district (upper chamber)') {
+    x <- 'state leg upper'
+  } else if (x == 'state legislative district (lower chamber)') {
+    x <- 'state leg lower'
+  } else if (x == 'school district (unified)') {
+    x <- 'unified school districts'
+  } else if (x == 'school district (secondary)') {
+    x <- 'secondary school districts'
+  } else if (x == 'school district (elementary)') {
+    x <- 'elementary school districts'
+  }
+
+  stringr::str_replace_all(x, ' ', '_')
+}

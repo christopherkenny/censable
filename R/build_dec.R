@@ -30,9 +30,8 @@
 #' - geometry: sf geometry
 #'
 #'
-#' Arguments for `geography` are not checked, so will fail with `tidycensus` errors if invalid.
-#' This is by design to avoid blocking usage that could become valid, especially following
-#' the 2020 Census data release.
+#' Arguments for `geography` are not checked, so will error if invalid.
+#' This is by design, to avoid blocking usage that could become valid.
 #'
 #' Currently valid options for `geography`:
 #' - 'state'
@@ -47,10 +46,6 @@
 #' - 'state legislative district (lower chamber)'
 #' - 'school district (unified)'
 #' Depending on the day, weather, and other unrelated things, `'voting district'` may also work.
-#'
-#' Full options for `geography` that may or may not be valid depending on year and geometry
-#' are listed at:
-#' [Kyle Walker's tidycensus site](https://walker-data.com/tidycensus/articles/basic-usage.html).
 #'
 #'
 #' @param geography Required. The geography level to use.
@@ -120,11 +115,11 @@ build_dec <- function(geography, state, county = NULL, geometry = TRUE,
 
     out <- lapply(
       seq_along(vars), function(i) {
-        tidycensus::get_decennial(
+        get_dec(
           geography = geography, state = state,
           year = year, county = county,
-          geometry = (geometry & i <= 1), keep_geo_vars = FALSE,
-          variables = vars[[i]], output = 'wide'
+          geometry = (geometry & i <= 1), variables = vars[[i]],
+          tab = ifelse(year == 2020, 'dec/pl', 'dec/sf1')
         )
       })
 
@@ -156,12 +151,16 @@ build_dec <- function(geography, state, county = NULL, geometry = TRUE,
 
   if (geometry) {
     out <- out %>%
+      dplyr::left_join(
+        get_geometry(geography, year = year, state = state, county = county),
+        by = 'GEOID'
+      ) %>%
       dplyr::relocate('geometry', .after = dplyr::everything()) %>%
       sf::st_as_sf()
   }
 
+
   out %>%
-    breakdown_geoid(area_type = geography) %>%
     dplyr::rename_with(.fn = function(x) stringr::str_sub(x, end = -3), .cols = dplyr::ends_with('.x')) %>%
     dplyr::select(-dplyr::contains('.'))
 }
@@ -189,12 +188,12 @@ build_dec_ap <- function(geography, state, county = NULL, geometry = FALSE,
   out <- lapply(
     seq_along(vars), function(i) {
       x <- noms[i]
-      tidycensus::get_decennial(
+      get_dec(
         geography = geography, state = state,
         year = year, county = county,
-        geometry = (geometry & i <= 1), keep_geo_vars = FALSE,
-        variables = vars[[i]], output = 'wide',
-        sumfile = 'pl'
+        geometry = (geometry && i <= 1),
+        variables = vars[[i]],
+        tab = 'dec/pl'
       ) %>%
         dplyr::transmute(
           GEOID = GEOID,
@@ -202,7 +201,6 @@ build_dec_ap <- function(geography, state, county = NULL, geometry = FALSE,
         )
     }
   )
-
 
   if (all(class(out) == 'list')) {
     if (length(out) > 1) {
@@ -214,5 +212,3 @@ build_dec_ap <- function(geography, state, county = NULL, geometry = FALSE,
 
   out
 }
-
-
