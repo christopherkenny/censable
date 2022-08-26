@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censable</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.4</span>
       </span>
     </div>
 
@@ -53,61 +53,84 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">construct_geoid</span><span class="op">(</span>
-  <span class="va">.data</span>,
-  <span class="va">area_type</span>,
-  state <span class="op">=</span> <span class="st">"state"</span>,
-  county <span class="op">=</span> <span class="st">"county"</span>,
-  tract <span class="op">=</span> <span class="st">"tract"</span>,
-  block_group <span class="op">=</span> <span class="st">"block group"</span>,
-  block <span class="op">=</span> <span class="st">"block"</span>,
-  cd <span class="op">=</span> <span class="st">"cd"</span>,
-  shd <span class="op">=</span> <span class="st">"shd"</span>,
-  ssd <span class="op">=</span> <span class="st">"ssd"</span>,
-  zcta <span class="op">=</span> <span class="st">"zcta"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">construct_geoid</span><span class="op">(</span></span>
+<span>  <span class="va">.data</span>,</span>
+<span>  <span class="va">area_type</span>,</span>
+<span>  state <span class="op">=</span> <span class="st">"state"</span>,</span>
+<span>  county <span class="op">=</span> <span class="st">"county"</span>,</span>
+<span>  tract <span class="op">=</span> <span class="st">"tract"</span>,</span>
+<span>  block_group <span class="op">=</span> <span class="st">"block group"</span>,</span>
+<span>  block <span class="op">=</span> <span class="st">"block"</span>,</span>
+<span>  cd <span class="op">=</span> <span class="st">"cd"</span>,</span>
+<span>  shd <span class="op">=</span> <span class="st">"shd"</span>,</span>
+<span>  ssd <span class="op">=</span> <span class="st">"ssd"</span>,</span>
+<span>  zcta <span class="op">=</span> <span class="st">"zcta"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>dataframe, tibble, or sf tibble</p></dd>
+
+
 <dt>area_type</dt>
 <dd><p>Defaults to creating the smallest possible with 'spine'
 for states, counties, tracts, block groups, and blocks. You can also pass
 one of the on spine geographies to create that specific level. Other options are 'shd' for lower
 state legislative districts, 'ssd' for upper state legislative districts, 'cd'
 for congressional districts, or 'zcta' for zip code tabulation areas.</p></dd>
+
+
 <dt>state</dt>
 <dd><p>name of column with state component</p></dd>
+
+
 <dt>county</dt>
 <dd><p>name of column with county component</p></dd>
+
+
 <dt>tract</dt>
 <dd><p>name of column with tract component</p></dd>
+
+
 <dt>block_group</dt>
 <dd><p>name of column with block group component</p></dd>
+
+
 <dt>block</dt>
 <dd><p>name of column with block component</p></dd>
+
+
 <dt>cd</dt>
 <dd><p>name of column with cd component</p></dd>
+
+
 <dt>shd</dt>
 <dd><p>name of column with shd component</p></dd>
+
+
 <dt>ssd</dt>
 <dd><p>name of column with ssd component</p></dd>
+
+
 <dt>zcta</dt>
 <dd><p>name of column with zcta component</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>.data with new column GEOID</p>
+    
+
+<p>.data with new column GEOID</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">mt_county</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">mt_county</span> <span class="op">&lt;-</span> <span class="va">mt_county</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="breakdown_geoid.html">breakdown_geoid</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">mt_county</span> <span class="op">&lt;-</span> <span class="va">mt_county</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="st">'GEOID'</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">mt_county</span> <span class="op">&lt;-</span> <span class="va">mt_county</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">construct_geoid</span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">mt_county</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">mt_county</span> <span class="op">&lt;-</span> <span class="va">mt_county</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="breakdown_geoid.html">breakdown_geoid</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">mt_county</span> <span class="op">&lt;-</span> <span class="va">mt_county</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="st">'GEOID'</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">mt_county</span> <span class="op">&lt;-</span> <span class="va">mt_county</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">construct_geoid</span><span class="op">(</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -122,7 +145,7 @@ for congressional districts, or 'zcta' for zip code tabulation areas.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

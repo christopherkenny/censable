@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">censable</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.4</span>
       </span>
     </div>
 
@@ -76,7 +76,6 @@
 <div class="page-header"><h1 id="censable-">censable <img src="reference/figures/logo.png" align="right" height="139"><a class="anchor" aria-label="anchor" href="#censable-"></a>
 </h1></div>
 <!-- badges: start -->
-
 <p><code>censable</code> creates a common interface to <code>tidycensus</code>, with <a href="https://github.com/r-lib/memoise" class="external-link">memoized</a> data functions. With a growing redistricting universe in R, it seems right to partition out some use cases, to allow imports to be more targeted and to stop packages from repeating each other.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -87,31 +86,30 @@ You can install the released version of censable from [CRAN](https://CRAN.R-proj
 ``` r
 install.packages("censable")
 ```
--->
-<p>You can download the development version from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+--><p>You can download the development version from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"christopherkenny/censable"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"christopherkenny/censable"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.christophertkenny.com/censable/" class="external-link">censable</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.christophertkenny.com/censable/" class="external-link">censable</a></span><span class="op">)</span></span></code></pre></div>
 <p>The primary data functions are <code>build_dec</code> and <code>build_acs</code></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">de</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/build_dec.html">build_dec</a></span><span class="op">(</span>geography <span class="op">=</span> <span class="st">'county'</span>, state <span class="op">=</span> <span class="st">'DE'</span><span class="op">)</span>
-<span class="co">#&gt; Getting data from the 2010 decennial Census</span>
-<span class="co">#&gt; Downloading feature geometry from the Census website.  To cache shapefiles for use in future sessions, set `options(tigris_use_cache = TRUE)`.</span>
-<span class="co">#&gt; Using Census Summary File 1</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">de</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/build_dec.html">build_dec</a></span><span class="op">(</span>geography <span class="op">=</span> <span class="st">'county'</span>, state <span class="op">=</span> <span class="st">'DE'</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Getting data from the 2010 decennial Census</span></span>
+<span><span class="co">#&gt; Downloading feature geometry from the Census website.  To cache shapefiles for use in future sessions, set `options(tigris_use_cache = TRUE)`.</span></span>
+<span><span class="co">#&gt; Using Census Summary File 1</span></span></code></pre></div>
 <p>The <code>build_*</code> functions take arguments on geography and state, at a minimum. If you’re looking at a smaller piece of a state, you can use <code>county</code> to subset it. Year defaults to 2010, but will be updated to 2020 around October 2021, following the API release of the 2020 Census data.</p>
 <p>The <code>build_*</code> functions are a convenient wrapper around <code>tidycensus</code>, with an eye towards collecting data on total population and voting age population by race. Total population variables begin with the prefix <code>pop</code>, while voting age population variables begin with the prefix <code>vap</code>.</p>
 <p>Additionally, there are memoised versions of the <code>build_*</code> functions:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">de</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/build_dec.html">mem_build_dec</a></span><span class="op">(</span>geography <span class="op">=</span> <span class="st">'county'</span>, state <span class="op">=</span> <span class="st">'DE'</span><span class="op">)</span>
-<span class="co">#&gt; Getting data from the 2010 decennial Census</span>
-<span class="co">#&gt; Downloading feature geometry from the Census website.  To cache shapefiles for use in future sessions, set `options(tigris_use_cache = TRUE)`.</span>
-<span class="co">#&gt; Using Census Summary File 1</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">de</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/build_dec.html">mem_build_dec</a></span><span class="op">(</span>geography <span class="op">=</span> <span class="st">'county'</span>, state <span class="op">=</span> <span class="st">'DE'</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Getting data from the 2010 decennial Census</span></span>
+<span><span class="co">#&gt; Downloading feature geometry from the Census website.  To cache shapefiles for use in future sessions, set `options(tigris_use_cache = TRUE)`.</span></span>
+<span><span class="co">#&gt; Using Census Summary File 1</span></span></code></pre></div>
 <p>These speed up repeated calls, allowing you to have code that is self contained and reproducable, without taking the time hit of having to redownload the data each time.</p>
 </div>
 </div>
@@ -169,7 +167,7 @@ install.packages("censable")
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

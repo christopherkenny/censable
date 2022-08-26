@@ -19,7 +19,7 @@ data from tidycensus for common calls in redistricting."><meta property="og:imag
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censable</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.4</span>
       </span>
     </div>
 
@@ -57,49 +57,64 @@ data from tidycensus for common calls in redistricting.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">build_dec</span><span class="op">(</span>
-  <span class="va">geography</span>,
-  <span class="va">state</span>,
-  county <span class="op">=</span> <span class="cn">NULL</span>,
-  geometry <span class="op">=</span> <span class="cn">TRUE</span>,
-  year <span class="op">=</span> <span class="fl">2020</span>,
-  groups <span class="op">=</span> <span class="st">"all"</span>
-<span class="op">)</span>
-
-<span class="fu">mem_build_dec</span><span class="op">(</span>
-  <span class="va">geography</span>,
-  <span class="va">state</span>,
-  county <span class="op">=</span> <span class="cn">NULL</span>,
-  geometry <span class="op">=</span> <span class="cn">TRUE</span>,
-  year <span class="op">=</span> <span class="fl">2020</span>,
-  groups <span class="op">=</span> <span class="st">"all"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">build_dec</span><span class="op">(</span></span>
+<span>  <span class="va">geography</span>,</span>
+<span>  <span class="va">state</span>,</span>
+<span>  county <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  geometry <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  year <span class="op">=</span> <span class="fl">2020</span>,</span>
+<span>  groups <span class="op">=</span> <span class="st">"all"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">mem_build_dec</span><span class="op">(</span></span>
+<span>  <span class="va">geography</span>,</span>
+<span>  <span class="va">state</span>,</span>
+<span>  county <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  geometry <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  year <span class="op">=</span> <span class="fl">2020</span>,</span>
+<span>  groups <span class="op">=</span> <span class="st">"all"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>geography</dt>
 <dd><p>Required. The geography level to use.</p></dd>
+
+
 <dt>state</dt>
 <dd><p>Required. Two letter state postal code.</p></dd>
+
+
 <dt>county</dt>
 <dd><p>Optional. Name of county.  If not provided, returns blocks for the entire state.</p></dd>
+
+
 <dt>geometry</dt>
 <dd><p>Defaults to TRUE. Whether to return the geometry or not.</p></dd>
+
+
 <dt>year</dt>
 <dd><p>year, must be 2000, 2010, or 2020 (after August 2021)</p></dd>
+
+
 <dt>groups</dt>
-<dd><p>defaults to 'all', which gets pop and vap. If 'pop', only gets pop.
-If 'vap', only gets vap. Any other strings default to 'all'.</p></dd>
+<dd><p>defaults to <code>'all'</code>, which gets pop and vap. If <code>'pop'</code>, only gets pop.
+If <code>'vap'</code>, only gets vap. Allows for analogous seven category race with <code>'all7'</code>, <code>'pop7'</code>, and <code>'vap7'</code>.
+For counts for any part by race, you can supply <code>ap:race</code>, where race is in <code>c('black', 'white', 'aian', 'other', 'asian', 'nhpi')</code>.
+Anything that can't be matched defaults to <code>'all'</code>, so you can pass <code>''</code> to get <code>'all'</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>tibble with observations for each observation of the geography in the state
-or county. Data includes 2 sets of columns for each race or ethnicity category:
+    
+
+<p>tibble with observations for each observation of the geography in the state
+or county. Data includes up to 2 sets of columns for each race or ethnicity category:
 population (pop) and voting age population (vap)</p>
     </div>
-    <div id="output-columns-are-">
-    <h2>Output columns are:</h2>
+    <div id="default-output-columns-are-">
+    <h2>Default output columns are:</h2>
     
 <ul><li><p>GEOID: Geographic Identifier</p></li>
 <li><p>NAME: Name of County</p></li>
@@ -135,7 +150,8 @@ the 2020 Census data release.</p>
 <li><p>'congressional district'</p></li>
 <li><p>'state legislative district (upper chamber)'</p></li>
 <li><p>'state legislative district (lower chamber)'</p></li>
-<li><p>'school district (unified)'</p></li>
+<li><p>'school district (unified)'
+Depending on the day, weather, and other unrelated things, <code>'voting district'</code> may also work.</p></li>
 </ul><p>Full options for <code>geography</code> that may or may not be valid depending on year and geometry
 are listed at:
 <a href="https://walker-data.com/tidycensus/articles/basic-usage.html" class="external-link">Kyle Walker's tidycensus site</a>.</p>
@@ -143,10 +159,10 @@ are listed at:
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="co"># uses the Census API</span></span>
-<span class="r-in"><span class="va">tb</span> <span class="op">&lt;-</span> <span class="fu">build_dec</span><span class="op">(</span>geography <span class="op">=</span> <span class="st">'block'</span>, state <span class="op">=</span> <span class="st">'NY'</span>, county <span class="op">=</span> <span class="st">'Rockland'</span>, geometry <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co"># uses the Census API</span></span></span>
+<span class="r-in"><span><span class="va">tb</span> <span class="op">&lt;-</span> <span class="fu">build_dec</span><span class="op">(</span>geography <span class="op">=</span> <span class="st">'block'</span>, state <span class="op">=</span> <span class="st">'NY'</span>, county <span class="op">=</span> <span class="st">'Rockland'</span>, geometry <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -161,7 +177,7 @@ are listed at:
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

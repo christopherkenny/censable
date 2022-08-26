@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censable</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.4</span>
       </span>
     </div>
 
@@ -53,25 +53,30 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">join_abb_ansi</span><span class="op">(</span><span class="va">.data</span>, <span class="va">.ansi</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">join_abb_ansi</span><span class="op">(</span><span class="va">.data</span>, <span class="va">.ansi</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>data.frame or tibble</p></dd>
+
+
 <dt>.ansi</dt>
 <dd><p>column with state ansi</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>.data with column .ansi replaced with state abbreviation</p>
+    
+
+<p>.data with column .ansi replaced with state abbreviation</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">'stata'</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">stata</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">join_abb_ansi</span><span class="op">(</span><span class="va">ansi</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">'stata'</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">stata</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">join_abb_ansi</span><span class="op">(</span><span class="va">ansi</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    fips abb.x                        name    ansi    region           division</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1    01    AL                     Alabama 1779775     South East South Central</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2    02    AK                      Alaska 1785533      West            Pacific</span>
@@ -202,7 +207,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
