@@ -26,7 +26,8 @@ value, invisibly
 \description{
 Adds a value to the Renvironment of the form \code{name=value}. Designed for flexibly
 adding API keys for future sessions. Defaults are set up for entering a Census API
-key to work with tidycensus.
+key to work with \code{censusapi}. By default this key will be configured to work
+with \code{tidycensus}.
 }
 \examples{
 \dontrun{

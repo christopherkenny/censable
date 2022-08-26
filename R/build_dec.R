@@ -4,7 +4,7 @@
 #' @description
 #' Creates a dataset, using the decennial census information, with the
 #' standard variables used for redistricting. Creates a stable base for getting
-#' data from tidycensus for common calls in redistricting.
+#' data from `censusapi` for common calls in redistricting.
 #'
 #' # Default output columns are:
 #' - GEOID: Geographic Identifier
@@ -45,7 +45,9 @@
 #' - 'state legislative district (upper chamber)'
 #' - 'state legislative district (lower chamber)'
 #' - 'school district (unified)'
-#' Depending on the day, weather, and other unrelated things, `'voting district'` may also work.
+#' - 'school district (elementary)'
+#' - 'school district (secondary)'
+#' - 'voting district' may also work, though seems to be less reliable
 #'
 #'
 #' @param geography Required. The geography level to use.

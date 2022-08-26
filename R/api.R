@@ -113,7 +113,7 @@ get_census_key <- function(key = '') {
   key
 }
 
-get_census_api <- function(geography, state, year, county = NULL,
+get_census_api <- function(geography, year, state, county = NULL,
                     variables, tab = 'dec/pl', show_call = FALSE) {
 
   state <- match_fips(state)

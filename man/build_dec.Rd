@@ -47,7 +47,7 @@ population (pop) and voting age population (vap)
 \description{
 Creates a dataset, using the decennial census information, with the
 standard variables used for redistricting. Creates a stable base for getting
-data from tidycensus for common calls in redistricting.
+data from \code{censusapi} for common calls in redistricting.
 }
 \section{Default output columns are:}{
 \itemize{
@@ -90,7 +90,9 @@ Currently valid options for \code{geography}:
 \item 'state legislative district (upper chamber)'
 \item 'state legislative district (lower chamber)'
 \item 'school district (unified)'
-Depending on the day, weather, and other unrelated things, \code{'voting district'} may also work.
+\item 'school district (elementary)'
+\item 'school district (secondary)'
+\item 'voting district' may also work, though seems to be less reliable
 }
 }
 

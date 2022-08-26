@@ -3,7 +3,7 @@
 #' @description
 #' Creates a dataset, using the decennial census information, with the
 #' standard variables used for redistricting. Creates a stable base for getting
-#' data from tidycensus for common calls in redistricting.
+#' data from `censusapi` for common calls in redistricting.
 #'
 #' #' # Output columns are:
 #' - GEOID: Geographic Identifier
@@ -29,9 +29,8 @@
 #' - geometry: sf geometry
 #'
 #'
-#' Arguments for `geography` are not checked, so will fail with `tidycensus` errors if invalid.
-#' This is by design to avoid blocking usage that could become valid, especially following
-#' the 2020 Census data release.
+#' Arguments for `geography` are not checked, so will error if invalid.
+#' This is by design to avoid blocking usage that could become valid.
 #'
 #' Currently valid options for `geography`:
 #' - 'state'
@@ -45,10 +44,8 @@
 #' - 'state legislative district (upper chamber)'
 #' - 'state legislative district (lower chamber)'
 #' - 'school district (unified)'
-#'
-#' Full options for `geography` that may or may not be valid depending on year and geometry
-#' are listed at:
-#' [Kyle Walker's tidycensus site](https://walker-data.com/tidycensus/articles/basic-usage.html).
+#' - 'school district (elementary)'
+#' - 'school district (secondary)'
 #'
 #' @param geography Required. The geography level to use.
 #' @param state Required. Two letter state postal code.
@@ -69,9 +66,9 @@
 #' @examples
 #' \dontrun{
 #' # uses the Census API
-#' tb <- build_dec(geography = 'block', state = 'NY', county = 'Rockland', geometry = TRUE)
+#' tb <- build_acs(geography = 'tract', state = 'NY', county = 'Rockland', geometry = TRUE)
 #' }
-build_acs <- function(geography, state, county = NULL, geometry = TRUE, year = 2010,
+build_acs <- function(geography, state, county = NULL, geometry = TRUE, year = 2020,
                       survey = 'acs5', groups = 'all') {
   if (!isTRUE(groups[1] %in% c('all', 'pop', 'vap'))) {
     groups <- 'all'
@@ -120,11 +117,14 @@ build_acs <- function(geography, state, county = NULL, geometry = TRUE, year = 2
     vars <- vars[stringr::str_detect(names(vars), 'vap')]
   }
 
-  out <- tidycensus::get_acs(
+  vars_duct_tape <- paste0(vars, 'E')
+  names(vars_duct_tape) <- names(vars)
+
+  out <- get_census_api(
     geography = geography, state = state,
     year = year, county = county,
-    geometry = geometry, keep_geo_vars = FALSE,
-    variables = vars, output = 'wide', survey = survey
+    variables = vars_duct_tape,
+    tab = paste0('acs/', survey)
   )
 
   out <- out %>%
@@ -163,6 +163,16 @@ build_acs <- function(geography, state, county = NULL, geometry = TRUE, year = 2
       out <- out %>%
         dplyr::select(-dplyr::starts_with(c('m', 'f')))
     }
+  }
+
+  if (geometry) {
+    out <- out %>%
+      dplyr::left_join(
+        get_geometry(geography, year = year, state = state, county = county),
+        by = 'GEOID'
+      ) %>%
+      dplyr::relocate('geometry', .after = dplyr::everything()) %>%
+      sf::st_as_sf()
   }
 
   out

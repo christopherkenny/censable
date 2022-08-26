@@ -10,7 +10,7 @@ build_acs(
   state,
   county = NULL,
   geometry = TRUE,
-  year = 2010,
+  year = 2020,
   survey = "acs5",
   groups = "all"
 )
@@ -20,7 +20,7 @@ mem_build_acs(
   state,
   county = NULL,
   geometry = TRUE,
-  year = 2010,
+  year = 2020,
   survey = "acs5",
   groups = "all"
 )
@@ -50,7 +50,7 @@ population (pop), voting age population (vap), and citizen voting age population
 \description{
 Creates a dataset, using the decennial census information, with the
 standard variables used for redistricting. Creates a stable base for getting
-data from tidycensus for common calls in redistricting.
+data from \code{censusapi} for common calls in redistricting.
 
 #' # Output columns are:
 \itemize{
@@ -77,9 +77,8 @@ data from tidycensus for common calls in redistricting.
 \item geometry: sf geometry
 }
 
-Arguments for \code{geography} are not checked, so will fail with \code{tidycensus} errors if invalid.
-This is by design to avoid blocking usage that could become valid, especially following
-the 2020 Census data release.
+Arguments for \code{geography} are not checked, so will error if invalid.
+This is by design to avoid blocking usage that could become valid.
 
 Currently valid options for \code{geography}:
 \itemize{
@@ -94,16 +93,14 @@ Currently valid options for \code{geography}:
 \item 'state legislative district (upper chamber)'
 \item 'state legislative district (lower chamber)'
 \item 'school district (unified)'
+\item 'school district (elementary)'
+\item 'school district (secondary)'
 }
-
-Full options for \code{geography} that may or may not be valid depending on year and geometry
-are listed at:
-\href{https://walker-data.com/tidycensus/articles/basic-usage.html}{Kyle Walker's tidycensus site}.
 }
 \examples{
 \dontrun{
 # uses the Census API
-tb <- build_dec(geography = 'block', state = 'NY', county = 'Rockland', geometry = TRUE)
+tb <- build_acs(geography = 'tract', state = 'NY', county = 'Rockland', geometry = TRUE)
 }
 }
 \concept{build}
