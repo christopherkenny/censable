@@ -2,8 +2,9 @@
 #'
 #' Adds a value to the Renvironment of the form `name=value`. Designed for flexibly
 #' adding API keys for future sessions. Defaults are set up for entering a Census API
-#' key to work with `censusapi`. By default this key will be configured to work
-#' with `tidycensus`.
+#' key to work with `tidycensus`. By default this key will be configured to work
+#' with `tidycensus`. Package internally allows this key to work with `censusapi`
+#' when used through `censable`.
 #'
 #' @param value Character. Value to add.
 #' @param name Defaults to CENSUS_API_KEY. Character. Name to give `value`.
@@ -35,7 +36,6 @@ add_r_environ <- function(value, name = 'CENSUS_API_KEY', overwrite = FALSE, ins
 
     lines <- readLines(r_env)
     newline <- paste0(name, "='", value, "'")
-
 
     exists <- stringr::str_detect(lines, paste0(name, '='))
 

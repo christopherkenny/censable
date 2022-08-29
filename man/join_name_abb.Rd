@@ -15,7 +15,7 @@ join_name_abb(.data, .abb)
 .data with column .abb replaced with state name
 }
 \description{
-Adds a column with state name joining by a column with state abbreviatio
+Adds a column with state name joining by a column with state abbreviation
 }
 \examples{
 data('stata')

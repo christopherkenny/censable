@@ -70,7 +70,7 @@ join_ansi_name <- function(.data, .name) {
 
 #' Join Name by Abb
 #'
-#' Adds a column with state name joining by a column with state abbreviatio
+#' Adds a column with state name joining by a column with state abbreviation
 #'
 #' @param .data data.frame or tibble
 #' @param .abb column with state abbreviation

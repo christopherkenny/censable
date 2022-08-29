@@ -100,19 +100,6 @@ fetch_api_vars_ap <- function(year, group, race) {
 }
 
 
-get_census_key <- function(key = '') {
-  if (key == '') {
-    key <- Sys.getenv('CENSUS_API_KEY')
-  }
-  if (key == '') {
-    key <- Sys.getenv('CENSUS_KEY')
-  }
-  if (key == '') {
-    stop('Must either supply a key or have one set as `CENSUS_API_KEY` or `CENSUS_KEY`.')
-  }
-  key
-}
-
 get_census_api <- function(geography, year, state, county = NULL,
                     variables, tab = 'dec/pl', show_call = FALSE) {
 
