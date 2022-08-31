@@ -101,7 +101,7 @@ fetch_api_vars_ap <- function(year, group, race) {
 
 
 get_census_api <- function(geography, year, state, county = NULL,
-                    variables, tab = 'dec/pl', show_call = FALSE) {
+                           variables, tab = 'dec/pl', show_call = FALSE) {
 
   state <- match_fips(state)
   rg <- format_regions(geography, state, county, decade = year - (year %% 10))
@@ -158,10 +158,15 @@ col_var <- function(...) {
 get_geometry <- function(geography, ...) {
   geography <- clean_geographies(geography)
   fn <- eval(parse(text = paste0('tinytiger::tt_', geography)))
-  do.call(fn, list(...)[methods::formalArgs(fn)]) %>%
+  args <- list(...)[methods::formalArgs(fn)]
+  if (geography == 'blocks' && 'county' %in% names(list(...)) && is.null(list(...)[['county']])) {
+    args[['county']] <- NULL
+  }
+  do.call(fn, args) %>%
     dplyr::rename_with(.fn = function(x) stringr::str_sub(x, end = -3),
                        .cols = dplyr::any_of(c('GEOID20', 'GEOID10', 'GEOID00'))) %>%
     dplyr::select(.data$GEOID, .data$geometry)
+
 }
 
 clean_geographies <- function(x) {
