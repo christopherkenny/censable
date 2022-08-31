@@ -8,6 +8,9 @@
 [![R-CMD-check](https://github.com/christopherkenny/censable/workflows/R-CMD-check/badge.svg)](https://github.com/christopherkenny/censable/actions)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/censable)](https://CRAN.R-project.org/package=censable)
+![CRAN downloads](http://cranlogs.r-pkg.org/badges/grand-total/censable)
 <!-- badges: end -->
 
 `censable` wraps `censusapi` for common requests, with
