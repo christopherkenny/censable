@@ -10,8 +10,8 @@ api_vars <- list(
     ),
     all7 = c(
       pop7      = 'P1_001N', pop7_white = 'P1_003N', pop7_black = 'P1_004N',
-      pop_aian  = 'P1_005N', pop_asian  = 'P1_006N',
-      pop_nhpi  = 'P1_007N', pop_other  = 'P1_008N', pop_two = 'P1_009N',
+      pop7_aian = 'P1_005N', pop7_asian = 'P1_006N',
+      pop7_nhpi = 'P1_007N', pop7_other = 'P1_008N', pop7_two = 'P1_009N',
       vap7      = 'P3_001N', vap7_white = 'P3_003N', vap7_black = 'P3_004N',
       vap7_aian = 'P3_005N', vap7_asian = 'P3_006N',
       vap7_nhpi = 'P3_007N', vap7_other = 'P3_008N', vap7_two = 'P3_009N'

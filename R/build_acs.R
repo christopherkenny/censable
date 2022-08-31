@@ -173,6 +173,8 @@ build_acs <- function(geography, state, county = NULL, geometry = TRUE, year = 2
       ) %>%
       dplyr::relocate('geometry', .after = dplyr::everything()) %>%
       sf::st_as_sf()
+  } else {
+    out <- tibble::as_tibble(out)
   }
 
   out

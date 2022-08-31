@@ -159,8 +159,9 @@ build_dec <- function(geography, state, county = NULL, geometry = TRUE,
       ) %>%
       dplyr::relocate('geometry', .after = dplyr::everything()) %>%
       sf::st_as_sf()
+  } else {
+    out <- tibble::as_tibble(out)
   }
-
 
   out %>%
     dplyr::rename_with(.fn = function(x) stringr::str_sub(x, end = -3), .cols = dplyr::ends_with('.x')) %>%

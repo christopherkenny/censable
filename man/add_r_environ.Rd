@@ -27,7 +27,7 @@ value, invisibly
 Adds a value to the Renvironment of the form \code{name=value}. Designed for flexibly
 adding API keys for future sessions. Defaults are set up for entering a Census API
 key to work with \code{tidycensus}. By default this key will be configured to work
-with \code{tidycensus}. Package interally allows this key to work with \code{censusapi}
+with \code{tidycensus}. Package internally allows this key to work with \code{censusapi}
 when used through \code{censable}.
 }
 \examples{
