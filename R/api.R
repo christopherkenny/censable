@@ -135,10 +135,7 @@ format_regions <- function(geography, state, county, decade) {
   }
 
   if (!geography %in% c('state', 'county')) {
-    rgin <- paste0('state:', state)
-    if (!is.null(county)) {
-      rgin <- paste0(rgin, '+county:', col_var(ct))
-    }
+    rgin <- paste0('state:', state, '+county:', col_var(ct))
     rg <- paste0(geography, ':*')
   } else if (geography != state) {
     rgin <- paste0('state:', state)
