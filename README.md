@@ -19,9 +19,6 @@ growing redistricting universe in R, it seems right to partition out
 some use cases, to allow imports to be more targeted and to stop
 packages from repeating each other.
 
-It currently uses the `censusapi` package, but plans to return to using
-`tidycensus` after the `r-spatial` reformulates.
-
 ## Installation
 
 You can install the released version of censable from

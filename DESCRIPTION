@@ -7,8 +7,8 @@ Authors@R:
            role = c("aut", "cre"),
            email = "christopherkenny@fas.harvard.edu",
            comment = c(ORCID = "0000-0002-9386-6860"))
-Date: 2022-08-26
-URL: https://www.christophertkenny.com/censable/, https://github.com/christopherkenny/censable
+Date: 2022-09-09
+URL: https://christophertkenny.com/censable/, https://github.com/christopherkenny/censable
 BugReports: https://github.com/christopherkenny/censable/issues
 Description: Creates a common framework for organizing, naming, and gathering 
     population, age, race, and ethnicity data from the Census Bureau. Accesses 
@@ -26,7 +26,7 @@ Suggests:
 Imports: 
     magrittr,
     dplyr (>= 1.0.4),
-    rlang (>= 0.1.2),
+    rlang (>= 0.4.11),
     sf (>= 1.0.0),
     tibble,
     stringr,
