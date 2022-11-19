@@ -1,13 +1,13 @@
 Package: censable
 Title: Making Census Data More Usable
-Version: 0.0.4
+Version: 0.0.5
 Authors@R: 
     person(given = "Christopher T.",
            family = "Kenny",
            role = c("aut", "cre"),
            email = "christopherkenny@fas.harvard.edu",
            comment = c(ORCID = "0000-0002-9386-6860"))
-Date: 2022-09-09
+Date: 2022-11-19
 URL: https://christophertkenny.com/censable/, https://github.com/christopherkenny/censable
 BugReports: https://github.com/christopherkenny/censable/issues
 Description: Creates a common framework for organizing, naming, and gathering 
