@@ -61,7 +61,7 @@ Currently valid options for geography:
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">censable</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.6</span>
       </span>
     </div>
 
@@ -137,7 +137,7 @@ This is by design to avoid blocking usage that could become valid.</p>
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">build_acs</span><span class="op">(</span></span>
 <span>  <span class="va">geography</span>,</span>
-<span>  <span class="va">state</span>,</span>
+<span>  state <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  county <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  geometry <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  year <span class="op">=</span> <span class="fl">2020</span>,</span>
@@ -147,7 +147,7 @@ This is by design to avoid blocking usage that could become valid.</p>
 <span></span>
 <span><span class="fu">mem_build_acs</span><span class="op">(</span></span>
 <span>  <span class="va">geography</span>,</span>
-<span>  <span class="va">state</span>,</span>
+<span>  state <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  county <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  geometry <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  year <span class="op">=</span> <span class="fl">2020</span>,</span>
