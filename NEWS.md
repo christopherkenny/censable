@@ -2,6 +2,11 @@
 
 * Fixes an error where `build_dec()` and `build_acs()` fail when `geography = 'state'`.
 
+# censable 0.0.5
+
+* Resolves an issue where block-level requests with geometry would fail for 2000 data.
+
+
 # censable 0.0.4
 
 * Internal changes to `build_dec()` and `build_acs()` to make variable fetching cleaner.

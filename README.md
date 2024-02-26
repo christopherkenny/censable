@@ -6,6 +6,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/christopherkenny/censable/workflows/R-CMD-check/badge.svg)](https://github.com/christopherkenny/censable/actions)
+[![censable status
+badge](https://christopherkenny.r-universe.dev/badges/censable)](https://christopherkenny.r-universe.dev/censable)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![CRAN

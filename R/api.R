@@ -170,6 +170,7 @@ get_geometry <- function(geography, ...) {
   do.call(fn, args) %>%
     dplyr::rename_with(.fn = function(x) stringr::str_sub(x, end = -3),
                        .cols = dplyr::any_of(c('GEOID20', 'GEOID10', 'GEOID00'))) %>%
+    dplyr::rename_with(.fn = function(x) stringr::str_replace(x, 'BLKIDFP00', 'GEOID')) %>%
     dplyr::select(.data$GEOID, .data$geometry)
 
 }
