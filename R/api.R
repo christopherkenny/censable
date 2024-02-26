@@ -103,7 +103,9 @@ fetch_api_vars_ap <- function(year, group, race) {
 get_census_api <- function(geography, year, state, county = NULL,
                            variables, tab = 'dec/pl', show_call = FALSE) {
 
-  state <- match_fips(state)
+  if (!is.null(state)) {
+    state <- match_fips(state)
+  }
   rg <- format_regions(geography, state, county, decade = year - (year %% 10))
 
   out <- censusapi::getCensus(
@@ -137,11 +139,14 @@ format_regions <- function(geography, state, county, decade) {
   if (!geography %in% c('state', 'county')) {
     rgin <- paste0('state:', state, '+county:', col_var(ct))
     rg <- paste0(geography, ':*')
-  } else if (geography != state) {
+  } else if (geography != 'state') {
     rgin <- paste0('state:', state)
     rg <- paste0(geography, ':', col_var(ct))
   } else {
     rgin <- NULL
+    if (is.null(state)) {
+      state <- '*'
+    }
     rg <- paste0('state:', col_var(state))
   }
 

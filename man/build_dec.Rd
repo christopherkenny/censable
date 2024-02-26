@@ -7,7 +7,7 @@
 \usage{
 build_dec(
   geography,
-  state,
+  state = NULL,
   county = NULL,
   geometry = TRUE,
   year = 2020,
@@ -16,7 +16,7 @@ build_dec(
 
 mem_build_dec(
   geography,
-  state,
+  state = NULL,
   county = NULL,
   geometry = TRUE,
   year = 2020,

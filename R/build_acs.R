@@ -68,7 +68,7 @@
 #' # uses the Census API
 #' tb <- build_acs(geography = 'tract', state = 'NY', county = 'Rockland', geometry = TRUE)
 #' }
-build_acs <- function(geography, state, county = NULL, geometry = TRUE, year = 2020,
+build_acs <- function(geography, state = NULL, county = NULL, geometry = TRUE, year = 2020,
                       survey = 'acs5', groups = 'all') {
   if (!isTRUE(groups[1] %in% c('all', 'pop', 'vap'))) {
     groups <- 'all'

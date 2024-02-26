@@ -72,7 +72,7 @@
 #' # uses the Census API
 #' tb <- build_dec(geography = 'block', state = 'NY', county = 'Rockland', geometry = TRUE)
 #' }
-build_dec <- function(geography, state, county = NULL, geometry = TRUE,
+build_dec <- function(geography, state = NULL, county = NULL, geometry = TRUE,
                       year = 2020, groups = 'all') {
   if (!any(groups %in% c('all', 'pop', 'vap', 'all7', 'pop7', 'vap7') | startsWith(groups, 'ap:'))) {
     groups <- 'all'
@@ -110,7 +110,8 @@ build_dec <- function(geography, state, county = NULL, geometry = TRUE,
         groups == 'all' ~ c('pop', 'vap'),
         groups == 'all7' ~ c('pop7', 'vap7'),
         TRUE ~ groups
-      ) %>% unique()
+      ) %>%
+        unique()
 
       vars <- lapply(to_get, function(x) fetch_api_vars('dec', year, x))
     }

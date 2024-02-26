@@ -7,7 +7,7 @@
 \usage{
 build_acs(
   geography,
-  state,
+  state = NULL,
   county = NULL,
   geometry = TRUE,
   year = 2020,
@@ -17,7 +17,7 @@ build_acs(
 
 mem_build_acs(
   geography,
-  state,
+  state = NULL,
   county = NULL,
   geometry = TRUE,
   year = 2020,
