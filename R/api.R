@@ -167,6 +167,9 @@ get_geometry <- function(geography, ...) {
   if (geography == 'blocks' && 'county' %in% names(list(...)) && is.null(list(...)[['county']])) {
     args[['county']] <- NULL
   }
+  if ('county' %in% names(args) && is.null(args[['county']])) {
+    args <- args[-which(names(args) == 'county')]
+  }
   do.call(fn, args) %>%
     dplyr::rename_with(.fn = function(x) stringr::str_sub(x, end = -3),
                        .cols = dplyr::any_of(c('GEOID20', 'GEOID10', 'GEOID00'))) %>%

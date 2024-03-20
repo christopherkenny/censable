@@ -1,6 +1,7 @@
 # censable 0.0.6
 
 * Fixes an error where `build_dec()` and `build_acs()` fail when `geography = 'state'`.
+* Fixes an error where empty geometries are returned with `county = NULL` for some `geography` entries.
 
 # censable 0.0.5
 
