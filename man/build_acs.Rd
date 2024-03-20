@@ -3,7 +3,7 @@
 \name{build_acs}
 \alias{build_acs}
 \alias{mem_build_acs}
-\title{Build Data from the Decennial Census}
+\title{Build Data from the American Community Survey}
 \usage{
 build_acs(
   geography,

@@ -1,4 +1,4 @@
-#' Build Data from the Decennial Census
+#' Build Data from the American Community Survey
 #'
 #' @description
 #' Creates a dataset, using the decennial census information, with the
