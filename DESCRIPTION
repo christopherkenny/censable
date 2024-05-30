@@ -1,13 +1,12 @@
 Package: censable
 Title: Making Census Data More Usable
-Version: 0.0.6
+Version: 0.0.7
 Authors@R: 
     person(given = "Christopher T.",
            family = "Kenny",
            role = c("aut", "cre"),
            email = "christopherkenny@fas.harvard.edu",
            comment = c(ORCID = "0000-0002-9386-6860"))
-Date: 2022-11-19
 URL: https://christophertkenny.com/censable/, https://github.com/christopherkenny/censable
 BugReports: https://github.com/christopherkenny/censable/issues
 Description: Creates a common framework for organizing, naming, and gathering 
@@ -18,7 +17,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 Suggests: 
     roxygen2,
     spelling,

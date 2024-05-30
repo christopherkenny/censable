@@ -12,18 +12,7 @@
 #' match_fips('NY')
 #' match_fips('01')
 match_fips <- function(state) {
-  stata <- censable::stata
-  pos <- tolower(c(stata$fips, stata$abb, stata$name, stata$ansi))
-  state <- tolower(state)
-  matched <- which(state == pos)
-
-  if (length(matched) == 0) {
-    matched <- agrep(pattern = state, x = pos)
-  }
-
-  matched <- (matched %% nrow(stata))
-  matched <- ifelse(matched == 0, 57, matched)
-  stata$fips[matched]
+  censable::stata$fips[get_state_matches(state)]
 }
 
 #' Try to Match to State Abbreviation
@@ -40,18 +29,7 @@ match_fips <- function(state) {
 #' match_abb('NY')
 #' match_abb('01')
 match_abb <- function(state) {
-  stata <- censable::stata
-  pos <- tolower(c(stata$fips, stata$abb, stata$name, stata$ansi))
-  state <- tolower(state)
-  matched <- which(state == pos)
-
-  if (length(matched) == 0) {
-    matched <- agrep(pattern = state, x = pos)
-  }
-
-  matched <- (matched %% nrow(stata))
-  matched <- ifelse(matched == 0, 57, matched)
-  stata$abb[matched]
+  censable::stata$abb[get_state_matches(state)]
 }
 
 #' Try to Match to State Name
@@ -68,18 +46,7 @@ match_abb <- function(state) {
 #' match_name('NY')
 #' match_name('01')
 match_name <- function(state) {
-  stata <- censable::stata
-  pos <- tolower(c(stata$fips, stata$abb, stata$name, stata$ansi))
-  state <- tolower(state)
-  matched <- which(state == pos)
-
-  if (length(matched) == 0) {
-    matched <- agrep(pattern = state, x = pos)
-  }
-
-  matched <- (matched %% nrow(stata))
-  matched <- ifelse(matched == 0, 57, matched)
-  stata$name[matched]
+  censable::stata$name[get_state_matches(state)]
 }
 
 
@@ -97,16 +64,15 @@ match_name <- function(state) {
 #' match_ansi('NY')
 #' match_ansi('01')
 match_ansi <- function(state) {
+  censable::stata$ansi[get_state_matches(state)]
+}
+
+get_state_matches <- function(state) {
   stata <- censable::stata
   pos <- tolower(c(stata$fips, stata$abb, stata$name, stata$ansi))
   state <- tolower(state)
-  matched <- which(state == pos)
-
-  if (length(matched) == 0) {
-    matched <- agrep(pattern = state, x = pos)
-  }
+  matched <- match(state, pos)
 
   matched <- (matched %% nrow(stata))
-  matched <- ifelse(matched == 0, 57, matched)
-  stata$ansi[matched]
+  ifelse(matched == 0, 57, matched)
 }

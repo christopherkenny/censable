@@ -1,3 +1,7 @@
+# censable 0.0.7
+
+* Add support for `match_*()` function to take multiple states at once.
+
 # censable 0.0.6
 
 * Fixes an error where `build_dec()` and `build_acs()` fail when `geography = 'state'`.
