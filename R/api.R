@@ -106,17 +106,43 @@ get_census_api <- function(geography, year, state, county = NULL,
   if (!is.null(state)) {
     state <- match_fips(state)
   }
-  rg <- format_regions(geography, state, county, decade = year - (year %% 10))
 
-  out <- censusapi::getCensus(
-    name = tab,
-    vintage = year,
-    vars = c('GEO_ID', variables),
-    region = rg$region,
-    regionin = rg$regionin,
-    key = get_census_key(),
-    show_call = show_call
-  )
+  # blocks 2010 require county *but only for 2010, not 2020 or 2000*
+  if (year == 2010 && geography == 'block' && is.null(county)) {
+    # then do all counties
+    fp <- match_fips(state)
+    counties <- fips_2010 |>
+      dplyr::filter(.data$state == fp) |>
+      dplyr::pull(.data$county)
+    print(length(counties))
+
+    out <- lapply(counties, function(ct) {
+      rg <- format_regions(geography, state, ct, decade = year - (year %% 10))
+
+      out <- censusapi::getCensus(
+        name = tab,
+        vintage = year,
+        vars = c('GEO_ID', variables),
+        region = rg$region,
+        regionin = rg$regionin,
+        key = get_census_key(),
+        show_call = show_call
+      )
+    }) |>
+      purrr::list_rbind()
+  } else {
+    rg <- format_regions(geography, state, county, decade = year - (year %% 10))
+
+    out <- censusapi::getCensus(
+      name = tab,
+      vintage = year,
+      vars = c('GEO_ID', variables),
+      region = rg$region,
+      regionin = rg$regionin,
+      key = get_census_key(),
+      show_call = show_call
+    )
+  }
 
   if (!is.null(names(variables)[1])) {
     names(out)[which(!is.na(match(names(out), variables)))] <- names(variables)[stats::na.omit(match(names(out), variables))]
