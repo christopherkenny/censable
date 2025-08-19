@@ -98,9 +98,9 @@ Currently valid options for \code{geography}:
 }
 }
 \examples{
-\dontrun{
+\dontshow{if (has_census_key()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # uses the Census API
 tb <- build_acs(geography = 'tract', state = 'NY', county = 'Rockland', geometry = TRUE)
-}
+\dontshow{\}) # examplesIf}
 }
 \concept{build}
