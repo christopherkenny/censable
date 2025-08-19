@@ -1,6 +1,6 @@
 Package: censable
 Title: Making Census Data More Usable
-Version: 0.0.7
+Version: 0.0.8
 Authors@R: 
     person(given = "Christopher T.",
            family = "Kenny",

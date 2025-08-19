@@ -1,3 +1,7 @@
+# censable 0.0.8
+
+* Fixes issue where `build_dec()` would fail for blocks in 2010.
+
 # censable 0.0.7
 
 * Add support for `match_*()` function to take multiple states at once.

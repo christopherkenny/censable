@@ -111,8 +111,8 @@ get_census_api <- function(geography, year, state, county = NULL,
   if (year == 2010 && geography == 'block' && is.null(county)) {
     # then do all counties
     fp <- match_fips(state)
-    counties <- fips_2010 |>
-      dplyr::filter(.data$state == fp) |>
+    counties <- fips_2010 %>%
+      dplyr::filter(.data$state == fp) %>%
       dplyr::pull(.data$county)
     print(length(counties))
 
@@ -128,7 +128,7 @@ get_census_api <- function(geography, year, state, county = NULL,
         key = get_census_key(),
         show_call = show_call
       )
-    }) |>
+    }) %>%
       purrr::list_rbind()
   } else {
     rg <- format_regions(geography, state, county, decade = year - (year %% 10))
