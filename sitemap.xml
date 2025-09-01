@@ -39,7 +39,6 @@
 <url><loc>https://christopherkenny.github.io/censable/reference/match_fips.html</loc></url>
 <url><loc>https://christopherkenny.github.io/censable/reference/match_name.html</loc></url>
 <url><loc>https://christopherkenny.github.io/censable/reference/mt_county.html</loc></url>
-<url><loc>https://christopherkenny.github.io/censable/reference/pipe.html</loc></url>
 <url><loc>https://christopherkenny.github.io/censable/reference/recode_abb_ansi.html</loc></url>
 <url><loc>https://christopherkenny.github.io/censable/reference/recode_abb_fips.html</loc></url>
 <url><loc>https://christopherkenny.github.io/censable/reference/recode_abb_name.html</loc></url>
@@ -53,6 +52,5 @@
 <url><loc>https://christopherkenny.github.io/censable/reference/recode_name_ansi.html</loc></url>
 <url><loc>https://christopherkenny.github.io/censable/reference/recode_name_fips.html</loc></url>
 <url><loc>https://christopherkenny.github.io/censable/reference/stata.html</loc></url>
-<url><loc>https://christopherkenny.github.io/censable/reference/tidyeval.html</loc></url>
 </urlset>
 
