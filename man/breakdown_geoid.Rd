@@ -24,6 +24,6 @@ Breakdown Census GEOID into Components
 }
 \examples{
 data(mt_county)
-mt_county <- mt_county \%>\% breakdown_geoid()
+mt_county <- mt_county |> breakdown_geoid()
 }
 \concept{geoid}

@@ -19,6 +19,6 @@ Replaces state ansi with state abbreviation
 }
 \examples{
 data('stata')
-stata \%>\% recode_abb_ansi(ansi)
+stata |> recode_abb_ansi(ansi)
 }
 \concept{recode}

@@ -108,7 +108,7 @@ build_dec <- function(geography, state = NULL, county = NULL, geometry = TRUE,
         groups == 'all' ~ c('pop', 'vap'),
         groups == 'all7' ~ c('pop7', 'vap7'),
         TRUE ~ groups
-      ) %>%
+      ) |>
         unique()
 
       vars <- lapply(to_get, function(x) fetch_api_vars('dec', year, x))
@@ -151,19 +151,19 @@ build_dec <- function(geography, state = NULL, county = NULL, geometry = TRUE,
   }
 
   if (geometry) {
-    out <- out %>%
+    out <- out |>
       dplyr::left_join(
         get_geometry(geography, year = year, state = state, county = county),
         by = 'GEOID'
-      ) %>%
-      dplyr::relocate('geometry', .after = dplyr::everything()) %>%
+      ) |>
+      dplyr::relocate('geometry', .after = dplyr::everything()) |>
       sf::st_as_sf()
   } else {
     out <- tibble::as_tibble(out)
   }
 
-  out %>%
-    dplyr::rename_with(.fn = function(x) stringr::str_sub(x, end = -3), .cols = dplyr::ends_with('.x')) %>%
+  out |>
+    dplyr::rename_with(.fn = function(x) stringr::str_sub(x, end = -3), .cols = dplyr::ends_with('.x')) |>
     dplyr::select(-dplyr::contains('.'))
 }
 
@@ -195,7 +195,7 @@ build_dec_ap <- function(geography, state, county = NULL, geometry = FALSE,
         year = year, county = county,
         variables = vars[[i]],
         tab = 'dec/pl'
-      ) %>%
+      ) |>
         dplyr::transmute(
           GEOID = GEOID,
           {{ x }} := rowSums(dplyr::select(dplyr::as_tibble(.), dplyr::starts_with('P')), na.rm = TRUE)

@@ -11,7 +11,7 @@
 #' @concept collapse
 #' @examples
 #' data(mt_county)
-#' mt_county <- mt_county %>% collapse4_pop()
+#' mt_county <- mt_county |> collapse4_pop()
 collapse4_pop <- function(.data, prefix = 'pop_') {
   collapse4(.data = .data, prefix = prefix)
 }
@@ -30,7 +30,7 @@ collapse4_pop <- function(.data, prefix = 'pop_') {
 #' @concept collapse
 #' @examples
 #' data(mt_county)
-#' mt_county <- mt_county %>% collapse4_vap()
+#' mt_county <- mt_county |> collapse4_vap()
 collapse4_vap <- function(.data, prefix = 'vap_') {
   collapse4(.data = .data, prefix = prefix)
 }
@@ -48,7 +48,7 @@ collapse4_vap <- function(.data, prefix = 'vap_') {
 #' @concept collapse
 #' @examples
 #' data(mt_county)
-#' mt_county <- mt_county %>% collapse4(prefix = c('pop_', 'vap_'))
+#' mt_county <- mt_county |> collapse4(prefix = c('pop_', 'vap_'))
 collapse4 <- function(.data, prefix) {
   if (!inherits(prefix, 'character')) {
     stop('`prefix` must be a character vector.')
@@ -61,9 +61,9 @@ collapse4 <- function(.data, prefix) {
   for (i in seq_along(prefix)) {
     vars <- paste0(prefix[i], c('other', 'aian', 'asian', 'nhpi', 'two'))
     new_var_oth <- vars[1]
-    .data <- .data %>%
+    .data <- .data |>
       dplyr::mutate({{ new_var_oth }} := .data[[vars[[1]]]] + .data[[vars[[2]]]] + .data[[vars[[3]]]] +
-        .data[[vars[[4]]]] + .data[[vars[[5]]]]) %>%
+        .data[[vars[[4]]]] + .data[[vars[[5]]]]) |>
       dplyr::select(!dplyr::all_of(vars[2:5]))
   }
   .data
@@ -84,7 +84,7 @@ collapse4 <- function(.data, prefix) {
 #' @concept collapse
 #' @examples
 #' data(mt_county)
-#' mt_county <- mt_county %>% collapse5(prefix = c('pop_', 'vap_'))
+#' mt_county <- mt_county |> collapse5(prefix = c('pop_', 'vap_'))
 collapse5 <- function(.data, prefix) {
   if (!inherits(prefix, 'character')) {
     stop('`prefix` must be a character vector.')
@@ -97,9 +97,9 @@ collapse5 <- function(.data, prefix) {
   for (i in seq_along(prefix)) {
     vars <- paste0(prefix[i], c('other', 'aian', 'nhpi', 'two'))
     new_var_oth <- vars[1]
-    .data <- .data %>%
+    .data <- .data |>
       dplyr::mutate({{ new_var_oth }} := .data[[vars[[1]]]] + .data[[vars[[2]]]] +
-        .data[[vars[[3]]]] + .data[[vars[[4]]]]) %>%
+        .data[[vars[[3]]]] + .data[[vars[[4]]]]) |>
       dplyr::select(!dplyr::all_of(vars[2:4]))
   }
   .data
@@ -118,7 +118,7 @@ collapse5 <- function(.data, prefix) {
 #' @concept collapse
 #' @examples
 #' data(mt_county)
-#' mt_county <- mt_county %>% collapse5_vap()
+#' mt_county <- mt_county |> collapse5_vap()
 collapse5_vap <- function(.data, prefix = 'vap_') {
   collapse5(.data = .data, prefix = prefix)
 }
@@ -137,7 +137,7 @@ collapse5_vap <- function(.data, prefix = 'vap_') {
 #' @concept collapse
 #' @examples
 #' data(mt_county)
-#' mt_county <- mt_county %>% collapse5_pop()
+#' mt_county <- mt_county |> collapse5_pop()
 collapse5_pop <- function(.data, prefix = 'pop_') {
   collapse5(.data = .data, prefix = prefix)
 }

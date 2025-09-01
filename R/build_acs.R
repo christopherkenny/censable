@@ -125,12 +125,12 @@ build_acs <- function(geography, state = NULL, county = NULL, geometry = TRUE, y
     tab = paste0('acs/', survey)
   )
 
-  out <- out %>%
-    dplyr::select(-dplyr::ends_with('M')) %>%
+  out <- out |>
+    dplyr::select(-dplyr::ends_with('M')) |>
     dplyr::rename_with(drop_E)
 
   if (groups[1] %in% c('cvap', 'vap', 'all')) {
-    out <- out %>%
+    out <- out |>
       dplyr::mutate(
         vap = .data$m_vap + .data$f_vap,
         vap_white = .data$m_vap_white + .data$f_vap_white,
@@ -144,7 +144,7 @@ build_acs <- function(geography, state = NULL, county = NULL, geometry = TRUE, y
       )
 
     if (groups[1] %in% c('cvap', 'all')) {
-      out <- out %>%
+      out <- out |>
         dplyr::mutate(
           cvap = .data$vap - .data$m_nvap - .data$f_nvap,
           cvap_white = .data$vap_white - .data$m_nvap_white - .data$f_nvap_white,
@@ -155,21 +155,21 @@ build_acs <- function(geography, state = NULL, county = NULL, geometry = TRUE, y
           cvap_nhpi = .data$vap_nhpi - .data$m_nvap_nhpi - .data$f_nvap_nhpi,
           cvap_other = .data$vap_other - .data$m_nvap_other - .data$f_nvap_other,
           cvap_two = .data$vap_two - .data$m_nvap_two - .data$f_nvap_two
-        ) %>%
+        ) |>
         dplyr::select(-dplyr::starts_with(c('m', 'f')))
     } else {
-      out <- out %>%
+      out <- out |>
         dplyr::select(-dplyr::starts_with(c('m', 'f')))
     }
   }
 
   if (geometry) {
-    out <- out %>%
+    out <- out |>
       dplyr::left_join(
         get_geometry(geography, year = year, state = state, county = county),
         by = 'GEOID'
-      ) %>%
-      dplyr::relocate('geometry', .after = dplyr::everything()) %>%
+      ) |>
+      dplyr::relocate('geometry', .after = dplyr::everything()) |>
       sf::st_as_sf()
   } else {
     out <- tibble::as_tibble(out)

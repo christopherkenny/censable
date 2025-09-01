@@ -19,6 +19,6 @@ Collapses Other, AIAN, NHPI, and Two+ into Other, by prefix.
 }
 \examples{
 data(mt_county)
-mt_county <- mt_county \%>\% collapse5(prefix = c('pop_', 'vap_'))
+mt_county <- mt_county |> collapse5(prefix = c('pop_', 'vap_'))
 }
 \concept{collapse}

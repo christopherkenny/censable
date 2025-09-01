@@ -19,6 +19,6 @@ Adds a column with state name joining by a column with state ansi
 }
 \examples{
 data('stata')
-stata \%>\% join_name_ansi(name)
+stata |> join_name_ansi(name)
 }
 \concept{join}

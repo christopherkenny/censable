@@ -18,20 +18,20 @@ full_race_names  <- list(
 #   year == 2000 & group == 'vap' ~ 'PL003',
 #   TRUE ~ NA_character_
 # )
-# tidycensus::load_variables(year, dataset = 'pl') %>%
-#   dplyr::filter(stringr::str_detect(.data$label, paste0('(?i)', full_race_names[race]))) %>%
-#   dplyr::filter(startsWith(.data$name, group)) %>%
+# tidycensus::load_variables(year, dataset = 'pl') |>
+#   dplyr::filter(stringr::str_detect(.data$label, paste0('(?i)', full_race_names[race]))) |>
+#   dplyr::filter(startsWith(.data$name, group)) |>
 #   dplyr::pull(.data$name)
 # }
 # api_vars_ap <- tidyr::expand_grid(
 #   year = c(2020, 2010, 2000), group = c('pop', 'vap'),
 #   race = setdiff(names(full_race_names), 'hisp')
-# ) %>%
-#   dplyr::rowwise() %>%
+# ) |>
+#   dplyr::rowwise() |>
 #   dplyr::mutate(
 #     vars = list(fetch_api_vars_ap_legacy(year, group, race))
-#     ) %>%
-#   dplyr::ungroup() %>%
+#     ) |>
+#   dplyr::ungroup() |>
 #   datapasta::tribble_paste()
 api_vars_ap <- tibble::tribble(
   ~year, ~group,   ~race,                                                                                                                                                                                                                                                                                                                                                                                             ~vars,

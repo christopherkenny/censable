@@ -19,6 +19,6 @@ Replaces state abbreviation with state name
 }
 \examples{
 data('stata')
-stata \%>\% recode_name_abb(abb)
+stata |> recode_name_abb(abb)
 }
 \concept{recode}

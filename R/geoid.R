@@ -13,7 +13,7 @@
 #' @concept geoid
 #' @examples
 #' data(mt_county)
-#' mt_county <- mt_county %>% breakdown_geoid()
+#' mt_county <- mt_county |> breakdown_geoid()
 breakdown_geoid <- function(.data, GEOID = 'GEOID', area_type = 'spine') {
   if (missing(.data)) {
     stop('`.data` argument missing in `breakdown_geoid()`.')
@@ -37,42 +37,42 @@ breakdown_geoid <- function(.data, GEOID = 'GEOID', area_type = 'spine') {
   }
 
   if (area_type == 'spine') {
-    .data <- .data %>% dplyr::mutate(state = stringr::str_sub({{ GEOID }}, 1, 2),
+    .data <- .data |> dplyr::mutate(state = stringr::str_sub({{ GEOID }}, 1, 2),
                                      .after = GEOID)
     if (len >= 5) {
-      .data <- .data %>% dplyr::mutate(county = stringr::str_sub({{ GEOID }}, 3, 5),
+      .data <- .data |> dplyr::mutate(county = stringr::str_sub({{ GEOID }}, 3, 5),
                                        .after = .data$state)
     }
     if (len >= 11) {
-      .data <- .data %>% dplyr::mutate(tract = stringr::str_sub({{ GEOID }}, 6, 11),
+      .data <- .data |> dplyr::mutate(tract = stringr::str_sub({{ GEOID }}, 6, 11),
                                        .after = .data$county)
     }
     if (len >= 12) {
-      .data <- .data %>% dplyr::mutate(block_group = stringr::str_sub({{ GEOID }}, 12, 12),
+      .data <- .data |> dplyr::mutate(block_group = stringr::str_sub({{ GEOID }}, 12, 12),
                                        .after = .data$tract)
     }
     if (len >= 15) {
-      .data <- .data %>% dplyr::mutate(block = stringr::str_sub({{ GEOID }}, 12, 15),
+      .data <- .data |> dplyr::mutate(block = stringr::str_sub({{ GEOID }}, 12, 15),
                                        .after = .data$block_group)
     }
   } else if (area_type == 'shd') {
-    .data <- .data %>% dplyr::mutate(state = stringr::str_sub({{ GEOID }}, 1, 2),
+    .data <- .data |> dplyr::mutate(state = stringr::str_sub({{ GEOID }}, 1, 2),
                                      shd = stringr::str_sub({{ GEOID }}, 3, 5),
                                      .after = GEOID)
   } else if (area_type == 'ssd') {
-    .data <- .data %>% dplyr::mutate(state = stringr::str_sub({{ GEOID }}, 1, 2),
+    .data <- .data |> dplyr::mutate(state = stringr::str_sub({{ GEOID }}, 1, 2),
                                      ssd = stringr::str_sub({{ GEOID }}, 3, 5),
                                      .after = GEOID)
   } else if (area_type == 'cd') {
-    .data <- .data %>% dplyr::mutate(state = stringr::str_sub({{ GEOID }}, 1, 2),
+    .data <- .data |> dplyr::mutate(state = stringr::str_sub({{ GEOID }}, 1, 2),
                                      cd = stringr::str_sub({{ GEOID }}, 3, 4),
                                      .after = GEOID)
   } else if (area_type == 'zcta') {
-    .data <- .data %>% dplyr::mutate(state = stringr::str_sub({{ GEOID }}, 1, 2),
+    .data <- .data |> dplyr::mutate(state = stringr::str_sub({{ GEOID }}, 1, 2),
                                      zcta = stringr::str_sub({{ GEOID }}, 3),
                                      .after = GEOID)
   } else if (area_type == 'voting district') {
-    .data <- .data %>% dplyr::mutate(state = stringr::str_sub({{ GEOID }}, 1, 2),
+    .data <- .data |> dplyr::mutate(state = stringr::str_sub({{ GEOID }}, 1, 2),
                                      county = stringr::str_sub({{ GEOID }}, 3, 4),
                                      vtd = stringr::str_sub({{ GEOID }}, 5),
                                      .after = GEOID)
@@ -106,9 +106,9 @@ breakdown_geoid <- function(.data, GEOID = 'GEOID', area_type = 'spine') {
 #' @concept geoid
 #' @examples
 #' data(mt_county)
-#' mt_county <- mt_county %>% breakdown_geoid()
-#' mt_county <- mt_county %>% dplyr::select(-dplyr::all_of('GEOID'))
-#' mt_county <- mt_county %>% construct_geoid()
+#' mt_county <- mt_county |> breakdown_geoid()
+#' mt_county <- mt_county |> dplyr::select(-dplyr::all_of('GEOID'))
+#' mt_county <- mt_county |> construct_geoid()
 construct_geoid <- function(.data, area_type, state = 'state', county = 'county', tract = 'tract',
                             block_group = 'block group', block = 'block', cd = 'cd', shd = 'shd',
                             ssd = 'ssd', zcta = 'zcta') {
@@ -140,47 +140,47 @@ construct_geoid <- function(.data, area_type, state = 'state', county = 'county'
 
 
   if (area_type == 'state') {
-    .data <- .data %>%
+    .data <- .data |>
       dplyr::mutate(GEOID = paste0({{ state }}))
   }
 
   if (area_type == 'county') {
-    .data <- .data %>%
+    .data <- .data |>
       dplyr::mutate(GEOID = paste0({{ state }}, {{ county }}))
   }
 
   if (area_type == 'tract') {
-    .data <- .data %>%
+    .data <- .data |>
       dplyr::mutate(GEOID = paste0({{ state }}, {{ county }}, {{ tract }}))
   }
 
   if (area_type == 'block group') {
-    .data <- .data %>%
+    .data <- .data |>
       dplyr::mutate(GEOID = paste0({{ state }}, {{ county }}, {{ tract }}, {{ block_group }}))
   }
 
   if (area_type == 'block') {
-    .data <- .data %>%
+    .data <- .data |>
       dplyr::mutate(GEOID = paste0({{ state }}, {{ county }}, {{ tract }}, {{ block }}))
   }
 
   if (area_type == 'cd') {
-    .data <- .data %>%
+    .data <- .data |>
       dplyr::mutate(GEOID = paste0({{ state }}, {{ cd }}))
   }
 
   if (area_type == 'ssd') {
-    .data <- .data %>%
+    .data <- .data |>
       dplyr::mutate(GEOID = paste0({{ state }}, {{ ssd }}))
   }
 
   if (area_type == 'shd') {
-    .data <- .data %>%
+    .data <- .data |>
       dplyr::mutate(GEOID = paste0({{ state }}, {{ shd }}))
   }
 
   if (area_type == 'zcta') {
-    .data <- .data %>%
+    .data <- .data |>
       dplyr::mutate(GEOID = {{ zcta }})
   }
 
@@ -197,7 +197,7 @@ construct_geoid <- function(.data, area_type, state = 'state', county = 'county'
 #' @concept geoid
 #' @examples
 #' data(mt_county)
-#' mt_county <- mt_county %>% custom_geoid(GEOID)
+#' mt_county <- mt_county |> custom_geoid(GEOID)
 custom_geoid <- function(.data, ...) {
-  .data %>% dplyr::mutate(GEOID = paste0(!!!rlang::enquos(...)))
+  .data |> dplyr::mutate(GEOID = paste0(!!!rlang::enquos(...)))
 }

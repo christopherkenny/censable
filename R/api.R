@@ -89,13 +89,13 @@ fetch_api_vars <- function(survey, year, groups) {
 }
 
 fetch_api_vars_ap <- function(year, group, race) {
-  api_vars_ap %>%
+  api_vars_ap |>
     dplyr::filter(
       .env$year == .data$year,
       .env$group == .data$group,
       .env$race == .data$race
-    ) %>%
-    dplyr::pull(.data$vars) %>%
+    ) |>
+    dplyr::pull(.data$vars) |>
     unlist()
 }
 
@@ -111,8 +111,9 @@ get_census_api <- function(geography, year, state, county = NULL,
   if (year == 2010 && geography == 'block' && is.null(county)) {
     # then do all counties
     fp <- match_fips(state)
-    counties <- fips_2010 %>%
-      dplyr::filter(.data$state == fp) %>%
+    fips_2010 <- get('fips_2010')
+    counties <- fips_2010 |>
+      dplyr::filter(.data$state == fp) |>
       dplyr::pull(.data$county)
     print(length(counties))
 
@@ -128,7 +129,7 @@ get_census_api <- function(geography, year, state, county = NULL,
         key = get_census_key(),
         show_call = show_call
       )
-    }) %>%
+    }) |>
       purrr::list_rbind()
   } else {
     rg <- format_regions(geography, state, county, decade = year - (year %% 10))
@@ -147,8 +148,8 @@ get_census_api <- function(geography, year, state, county = NULL,
   if (!is.null(names(variables)[1])) {
     names(out)[which(!is.na(match(names(out), variables)))] <- names(variables)[stats::na.omit(match(names(out), variables))]
   }
-  out <- out %>%
-    dplyr::relocate(GEOID = .data$GEO_ID) %>%
+  out <- out |>
+    dplyr::relocate(GEOID = .data$GEO_ID) |>
     dplyr::mutate(GEOID = stringr::str_sub(GEOID, start = 10))
 
   out
@@ -196,10 +197,10 @@ get_geometry <- function(geography, ...) {
   if ('county' %in% names(args) && is.null(args[['county']])) {
     args <- args[-which(names(args) == 'county')]
   }
-  do.call(fn, args) %>%
+  do.call(fn, args) |>
     dplyr::rename_with(.fn = function(x) stringr::str_sub(x, end = -3),
-                       .cols = dplyr::any_of(c('GEOID20', 'GEOID10', 'GEOID00'))) %>%
-    dplyr::rename_with(.fn = function(x) stringr::str_replace(x, 'BLKIDFP00', 'GEOID')) %>%
+                       .cols = dplyr::any_of(c('GEOID20', 'GEOID10', 'GEOID00'))) |>
+    dplyr::rename_with(.fn = function(x) stringr::str_replace(x, 'BLKIDFP00', 'GEOID')) |>
     dplyr::select(.data$GEOID, .data$geometry)
 
 }

@@ -19,6 +19,6 @@ Adds a column with state abbs joining by a column with state names
 }
 \examples{
 data('stata')
-stata \%>\% join_abb_name(name)
+stata |> join_abb_name(name)
 }
 \concept{join}

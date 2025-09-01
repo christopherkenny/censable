@@ -11,5 +11,5 @@ drop_E <- function(x) {
 #' @keywords internal
 #' @noRd
 clean_name_suffix <- function(.data) {
-  .data %>% dplyr::rename_with(.fn = drop_E)
+  .data |> dplyr::rename_with(.fn = drop_E)
 }

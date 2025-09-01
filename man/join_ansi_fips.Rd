@@ -19,6 +19,6 @@ Adds a column with state ansi joining by a column with state fips
 }
 \examples{
 data('stata')
-stata \%>\% join_ansi_fips(fips)
+stata |> join_ansi_fips(fips)
 }
 \concept{join}

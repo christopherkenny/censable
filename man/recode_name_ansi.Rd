@@ -19,6 +19,6 @@ Replaces state ansi with state name
 }
 \examples{
 data('stata')
-stata \%>\% recode_name_ansi(name)
+stata |> recode_name_ansi(name)
 }
 \concept{recode}

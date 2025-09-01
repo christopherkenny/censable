@@ -19,6 +19,6 @@ Replaces state ansi with state fips
 }
 \examples{
 data('stata')
-stata \%>\% recode_fips_ansi(ansi)
+stata |> recode_fips_ansi(ansi)
 }
 \concept{recode}

@@ -5,7 +5,7 @@ Authors@R:
     person(given = "Christopher T.",
            family = "Kenny",
            role = c("aut", "cre"),
-           email = "christopherkenny@fas.harvard.edu",
+           email = "ctkenny@proton.me",
            comment = c(ORCID = "0000-0002-9386-6860"))
 URL: https://christophertkenny.com/censable/, https://github.com/christopherkenny/censable
 BugReports: https://github.com/christopherkenny/censable/issues
@@ -23,7 +23,6 @@ Suggests:
     spelling,
     testthat (>= 3.0.0)
 Imports: 
-    magrittr,
     dplyr (>= 1.0.4),
     rlang (>= 0.4.11),
     sf (>= 1.0.0),
@@ -35,6 +34,6 @@ Imports:
     methods,
     tinytiger
 Depends: 
-    R (>= 2.10)
+    R (>= 4.1.0)
 Config/testthat/edition: 3
 Language: en-US

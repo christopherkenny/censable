@@ -19,6 +19,6 @@ Collapses Other, AIAN, NHPI, and Two+ into other.
 }
 \examples{
 data(mt_county)
-mt_county <- mt_county \%>\% collapse5_pop()
+mt_county <- mt_county |> collapse5_pop()
 }
 \concept{collapse}

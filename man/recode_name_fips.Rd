@@ -19,6 +19,6 @@ Replaces state fips with state name
 }
 \examples{
 data('stata')
-stata \%>\% recode_name_fips(fips)
+stata |> recode_name_fips(fips)
 }
 \concept{recode}

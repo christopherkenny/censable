@@ -19,6 +19,6 @@ Replaces state fips with state abb
 }
 \examples{
 data('stata')
-stata \%>\% recode_abb_fips(fips)
+stata |> recode_abb_fips(fips)
 }
 \concept{recode}

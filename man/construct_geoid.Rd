@@ -53,8 +53,8 @@ Create GEOID from Default Columns
 }
 \examples{
 data(mt_county)
-mt_county <- mt_county \%>\% breakdown_geoid()
-mt_county <- mt_county \%>\% dplyr::select(-dplyr::all_of('GEOID'))
-mt_county <- mt_county \%>\% construct_geoid()
+mt_county <- mt_county |> breakdown_geoid()
+mt_county <- mt_county |> dplyr::select(-dplyr::all_of('GEOID'))
+mt_county <- mt_county |> construct_geoid()
 }
 \concept{geoid}

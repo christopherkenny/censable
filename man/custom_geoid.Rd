@@ -19,6 +19,6 @@ Create a GEOID from Columns
 }
 \examples{
 data(mt_county)
-mt_county <- mt_county \%>\% custom_geoid(GEOID)
+mt_county <- mt_county |> custom_geoid(GEOID)
 }
 \concept{geoid}

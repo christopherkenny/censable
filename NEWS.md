@@ -1,6 +1,7 @@
 # censable 0.0.8
 
 * Fixes issue where `build_dec()` would fail for blocks in 2010.
+* Cleans up old pipe re-exports in favor of new base R pipe system.
 
 # censable 0.0.7
 

@@ -19,6 +19,6 @@ Adds a column with state abbreviation joining by a column with state fips
 }
 \examples{
 data('stata')
-stata \%>\% join_abb_fips(fips)
+stata |> join_abb_fips(fips)
 }
 \concept{join}
