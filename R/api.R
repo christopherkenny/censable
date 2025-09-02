@@ -115,7 +115,6 @@ get_census_api <- function(geography, year, state, county = NULL,
     counties <- fips_2010 |>
       dplyr::filter(.data$state == fp) |>
       dplyr::pull(.data$county)
-    print(length(counties))
 
     out <- lapply(counties, function(ct) {
       rg <- format_regions(geography, state, ct, decade = year - (year %% 10))
