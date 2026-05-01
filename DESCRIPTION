@@ -1,40 +1,39 @@
-[34mPackage[39m: censable
-[34mTitle[39m: Making Census Data More Usable
-[34mVersion[39m: 0.0.8
-Authors@R:
-    person("Christopher T.", "Kenny", , "ctkenny@proton.me", role = c("aut", "cre"),
+Package: censable
+Title: Making Census Data More Usable
+Version: 0.0.8
+Authors@R: 
+    person(given = "Christopher T.",
+           family = "Kenny",
+           role = c("aut", "cre"),
+           email = "ctkenny@proton.me",
            comment = c(ORCID = "0000-0002-9386-6860"))
-[34mDescription[39m: Creates a common framework for organizing, naming,
-    and gathering population, age, race, and ethnicity data from the
-    Census Bureau. Accesses the API
-    <https://www.census.gov/data/developers/data-sets.html>. Provides
-    tools for adding information to existing data to line up with Census
-    data.
-[34mLicense[39m: MIT + file LICENSE
-[34mURL[39m: https://christophertkenny.com/censable/,
-    https://github.com/christopherkenny/censable
-[34mBugReports[39m: https://github.com/christopherkenny/censable/issues
-[34mDepends[39m:
-    R (>= 4.1.0)
-[34mImports[39m:
-    censusapi,
-    dplyr (>= 1.0.4),
-    memoise,
-    methods,
-    purrr,
-    rlang (>= 0.4.11),
-    sf (>= 1.0.0),
-    stringr,
-    tibble,
-    tinytiger
-[34mSuggests[39m:
+URL: https://christophertkenny.com/censable/, https://github.com/christopherkenny/censable
+BugReports: https://github.com/christopherkenny/censable/issues
+Description: Creates a common framework for organizing, naming, and gathering 
+    population, age, race, and ethnicity data from the Census Bureau. Accesses 
+    the API <https://www.census.gov/data/developers/data-sets.html>. Provides 
+    tools for adding information to existing data to line up with Census data.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Suggests: 
     roxygen2,
     spelling,
     testthat (>= 3.0.0)
-[34mConfig/Needs/website[39m: christopherkenny/ctktemplate
-[34mConfig/testthat/edition[39m: 3
-[34mEncoding[39m: UTF-8
-[34mLanguage[39m: en-US
-[34mLazyData[39m: true
-[34mRoxygen[39m: list(markdown = TRUE)
-[34mRoxygenNote[39m: 7.3.2
+Imports: 
+    dplyr (>= 1.0.4),
+    rlang (>= 0.4.11),
+    sf (>= 1.0.0),
+    tibble,
+    stringr,
+    memoise,
+    purrr,
+    censusapi,
+    methods,
+    tinytiger
+Depends: 
+    R (>= 4.1.0)
+Config/testthat/edition: 3
+Language: en-US

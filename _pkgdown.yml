@@ -2,31 +2,36 @@ url: https://christopherkenny.github.io/censable
 template:
   params:
     bootswatch: journal
-  bootstrap: 5
-  package: ctktemplate
 reference:
-  - title: Build Data
-    desc: Wrappers around censusapi to build redistricting data at various geographies
-  - contents: has_concept("build")
-  - title: Collapse
-    desc: Functions to collapse racial categories
-  - contents: has_concept("collapse")
-  - title: Recode
-    desc: Functions to recode common state variables as other identifiers
-  - contents: has_concept("recode")
-  - title: Join
-    desc: Functions to join common state variables to other identifiers
-  - contents: has_concept("join")
-  - title: GEOID Tools
-    desc: Mimic or work with Census GEOIDs
-  - contents: has_concept("geoid")
-  - title: Matching Functions
-    desc: Transform State Identifiers
-  - contents: has_concept("match")
-  - title: Example Data
-    desc: Data Included for Examples and Testing
-  - contents: has_concept("data")
-  - title: Other
-    desc: Other Functions
-  - contents: lacks_concepts(c("build", "collapse", "recode", "join", "geoid", "data",
-      "match"))
+- title: "Build Data"
+  desc: "Wrappers around censusapi to build redistricting data at various geographies"
+- contents:
+  - has_concept("build")
+- title: "Collapse"
+  desc: "Functions to collapse racial categories"
+- contents:
+  - has_concept("collapse")
+- title: "Recode"
+  desc: "Functions to recode common state variables as other identifiers"
+- contents:
+  - has_concept("recode")
+- title: "Join"
+  desc: "Functions to join common state variables to other identifiers"
+- contents:
+  - has_concept("join")
+- title: "GEOID Tools"
+  desc: "Mimic or work with Census GEOIDs"
+- contents:
+  - has_concept("geoid")
+- title: "Matching Functions"
+  desc: "Transform State Identifiers"
+- contents:
+  - has_concept("match")
+- title: "Example Data"
+  desc: "Data Included for Examples and Testing"
+- contents:
+  - has_concept("data")
+- title: "Other"
+  desc: "Other Functions"
+- contents:
+  - lacks_concepts(c("build", "collapse", "recode", "join", "geoid", "data", "match"))
