@@ -13,12 +13,11 @@
 #' data('stata')
 #' stata |> join_abb_name(name)
 join_abb_name <- function(.data, .name) {
-  stata <- get('stata')
-  stata <- stata |> dplyr::select(.data$name, .data$abb)
+  st <- censable::stata |> dplyr::select(.data$name, .data$abb)
   by_char <- 'name'
   names(by_char) <- rlang::as_name(rlang::enquo(.name))
 
-  .data |> dplyr::left_join(stata, by = by_char)
+  .data |> dplyr::left_join(st, by = by_char)
 }
 
 
@@ -37,12 +36,11 @@ join_abb_name <- function(.data, .name) {
 #' data('stata')
 #' stata |> join_fips_name(name)
 join_fips_name <- function(.data, .name) {
-  stata <- get('stata')
-  stata <- stata |> dplyr::select(.data$name, .data$fips)
+  st <- censable::stata |> dplyr::select(.data$name, .data$fips)
   by_char <- 'name'
   names(by_char) <- rlang::as_name(rlang::enquo(.name))
 
-  .data |> dplyr::left_join(stata, by = by_char)
+  .data |> dplyr::left_join(st, by = by_char)
 }
 
 #' Join ANSI by Name
@@ -60,12 +58,11 @@ join_fips_name <- function(.data, .name) {
 #' data('stata')
 #' stata |> join_ansi_name(name)
 join_ansi_name <- function(.data, .name) {
-  stata <- get('stata')
-  stata <- stata |> dplyr::select(.data$name, .data$ansi)
+  st <- censable::stata |> dplyr::select(.data$name, .data$ansi)
   by_char <- 'name'
   names(by_char) <- rlang::as_name(rlang::enquo(.name))
 
-  .data |> dplyr::left_join(stata, by = by_char)
+  .data |> dplyr::left_join(st, by = by_char)
 }
 
 #' Join Name by Abb
@@ -83,12 +80,11 @@ join_ansi_name <- function(.data, .name) {
 #' data('stata')
 #' stata |> join_name_abb(abb)
 join_name_abb <- function(.data, .abb) {
-  stata <- get('stata')
-  stata <- stata |> dplyr::select(.data$name, .data$abb)
+  st <- censable::stata |> dplyr::select(.data$name, .data$abb)
   by_char <- 'abb'
   names(by_char) <- rlang::as_name(rlang::enquo(.abb))
 
-  .data |> dplyr::left_join(stata, by = by_char)
+  .data |> dplyr::left_join(st, by = by_char)
 }
 
 
@@ -107,12 +103,11 @@ join_name_abb <- function(.data, .abb) {
 #' data('stata')
 #' stata |> join_fips_abb(abb)
 join_fips_abb <- function(.data, .abb) {
-  stata <- get('stata')
-  stata <- stata |> dplyr::select(.data$fips, .data$abb)
+  st <- censable::stata |> dplyr::select(.data$fips, .data$abb)
   by_char <- 'abb'
   names(by_char) <- rlang::as_name(rlang::enquo(.abb))
 
-  .data |> dplyr::left_join(stata, by = by_char)
+  .data |> dplyr::left_join(st, by = by_char)
 }
 
 #' Join ANSI by Abb
@@ -130,12 +125,11 @@ join_fips_abb <- function(.data, .abb) {
 #' data('stata')
 #' stata |> join_ansi_abb(abb)
 join_ansi_abb <- function(.data, .abb) {
-  stata <- get('stata')
-  stata <- stata |> dplyr::select(.data$ansi, .data$abb)
+  st <- censable::stata |> dplyr::select(.data$ansi, .data$abb)
   by_char <- 'abb'
   names(by_char) <- rlang::as_name(rlang::enquo(.abb))
 
-  .data |> dplyr::left_join(stata, by = by_char)
+  .data |> dplyr::left_join(st, by = by_char)
 }
 
 
@@ -154,12 +148,11 @@ join_ansi_abb <- function(.data, .abb) {
 #' data('stata')
 #' stata |> join_abb_ansi(ansi)
 join_abb_ansi <- function(.data, .ansi) {
-  stata <- get('stata')
-  stata <- stata |> dplyr::select(.data$ansi, .data$abb)
+  st <- censable::stata |> dplyr::select(.data$ansi, .data$abb)
   by_char <- 'ansi'
   names(by_char) <- rlang::as_name(rlang::enquo(.ansi))
 
-  .data |> dplyr::left_join(stata, by = by_char)
+  .data |> dplyr::left_join(st, by = by_char)
 }
 
 #' Join Name by ANSI
@@ -177,12 +170,11 @@ join_abb_ansi <- function(.data, .ansi) {
 #' data('stata')
 #' stata |> join_name_ansi(name)
 join_name_ansi <- function(.data, .ansi) {
-  stata <- get('stata')
-  stata <- stata |> dplyr::select(.data$name, .data$ansi)
+  st <- censable::stata |> dplyr::select(.data$name, .data$ansi)
   by_char <- 'ansi'
   names(by_char) <- rlang::as_name(rlang::enquo(.ansi))
 
-  .data |> dplyr::left_join(stata, by = by_char)
+  .data |> dplyr::left_join(st, by = by_char)
 }
 
 #' Join FIPS by ANSI
@@ -200,12 +192,11 @@ join_name_ansi <- function(.data, .ansi) {
 #' data('stata')
 #' stata |> join_fips_ansi(ansi)
 join_fips_ansi <- function(.data, .ansi) {
-  stata <- get('stata')
-  stata <- stata |> dplyr::select(.data$fips, .data$ansi)
+  st <- censable::stata |> dplyr::select(.data$fips, .data$ansi)
   by_char <- 'ansi'
   names(by_char) <- rlang::as_name(rlang::enquo(.ansi))
 
-  .data |> dplyr::left_join(stata, by = by_char)
+  .data |> dplyr::left_join(st, by = by_char)
 }
 
 
@@ -224,12 +215,11 @@ join_fips_ansi <- function(.data, .ansi) {
 #' data('stata')
 #' stata |> join_ansi_fips(fips)
 join_ansi_fips <- function(.data, .fips) {
-  stata <- get('stata')
-  stata <- stata |> dplyr::select(.data$fips, .data$ansi)
+  st <- censable::stata |> dplyr::select(.data$fips, .data$ansi)
   by_char <- 'fips'
   names(by_char) <- rlang::as_name(rlang::enquo(.fips))
 
-  .data |> dplyr::left_join(stata, by = by_char)
+  .data |> dplyr::left_join(st, by = by_char)
 }
 
 #' Join Abb by FIPS
@@ -247,12 +237,11 @@ join_ansi_fips <- function(.data, .fips) {
 #' data('stata')
 #' stata |> join_abb_fips(fips)
 join_abb_fips <- function(.data, .fips) {
-  stata <- get('stata')
-  stata <- stata |> dplyr::select(.data$fips, .data$abb)
+  st <- censable::stata |> dplyr::select(.data$fips, .data$abb)
   by_char <- 'fips'
   names(by_char) <- rlang::as_name(rlang::enquo(.fips))
 
-  .data |> dplyr::left_join(stata, by = by_char)
+  .data |> dplyr::left_join(st, by = by_char)
 }
 
 
@@ -271,12 +260,11 @@ join_abb_fips <- function(.data, .fips) {
 #' data('stata')
 #' stata |> join_name_fips(fips)
 join_name_fips <- function(.data, .fips) {
-  stata <- get('stata')
-  stata <- stata |> dplyr::select(.data$name, .data$fips)
+  st <- censable::stata |> dplyr::select(.data$name, .data$fips)
   by_char <- 'fips'
   names(by_char) <- rlang::as_name(rlang::enquo(.fips))
 
-  .data |> dplyr::left_join(stata, by = by_char)
+  .data |> dplyr::left_join(st, by = by_char)
 }
 
 
@@ -293,12 +281,11 @@ join_name_fips <- function(.data, .fips) {
 # #' @concept join
 # #' @examples
 # #' data('stata')
-# #' stata |> join_new_old(old)
+# #' censable::stata |> join_new_old(old)
 # join_new_old <- function(.data, .old) {
-#   stata <- get('stata')
-#   stata <- stata |> dplyr::select(.data$new, .data$old)
+#   st <- censable::stata |> dplyr::select(.data$new, .data$old)
 #   by_char <- 'old'
 #   names(by_char) <- rlang::as_name(rlang::enquo(.old))
 #
-#   .data |> dplyr::left_join(stata, by = by_char)
+#   .data |> dplyr::left_join(st, by = by_char)
 # }

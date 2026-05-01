@@ -111,8 +111,7 @@ get_census_api <- function(geography, year, state, county = NULL,
   if (year == 2010 && geography == 'block' && is.null(county)) {
     # then do all counties
     fp <- match_fips(state)
-    fips_2010 <- get('fips_2010')
-    counties <- fips_2010 |>
+    counties <- censable::fips_2010 |>
       dplyr::filter(.data$state == fp) |>
       dplyr::pull(.data$county)
 

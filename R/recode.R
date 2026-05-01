@@ -13,9 +13,8 @@
 #' data('stata')
 #' stata |> recode_abb_name(name)
 recode_abb_name <- function(.data, .name) {
-  stata <- get('stata')
-  rec <- stata$abb
-  names(rec) <- stata$name
+  rec <- censable::stata$abb
+  names(rec) <- censable::stata$name
 
   .data |> dplyr::mutate({{ .name }} := unname(!!rec))
 }
@@ -36,9 +35,8 @@ recode_abb_name <- function(.data, .name) {
 #' data('stata')
 #' stata |> recode_fips_name(name)
 recode_fips_name <- function(.data, .name) {
-  stata <- get('stata')
-  rec <- stata$fips
-  names(rec) <- stata$name
+  rec <- censable::stata$fips
+  names(rec) <- censable::stata$name
 
   .data |> dplyr::mutate({{ .name }} := unname(!!rec))
 }
@@ -58,9 +56,8 @@ recode_fips_name <- function(.data, .name) {
 #' data('stata')
 #' stata |> recode_ansi_name(name)
 recode_ansi_name <- function(.data, .name) {
-  stata <- get('stata')
-  rec <- stata$ansi
-  names(rec) <- stata$name
+  rec <- censable::stata$ansi
+  names(rec) <- censable::stata$name
 
   .data |> dplyr::mutate({{ .name }} := unname(!!rec))
 }
@@ -80,9 +77,8 @@ recode_ansi_name <- function(.data, .name) {
 #' data('stata')
 #' stata |> recode_name_abb(abb)
 recode_name_abb <- function(.data, .abb) {
-  stata <- get('stata')
-  rec <- stata$name
-  names(rec) <- stata$abb
+  rec <- censable::stata$name
+  names(rec) <- censable::stata$abb
 
   .data |> dplyr::mutate({{ .abb }} := unname(!!rec))
 }
@@ -103,9 +99,8 @@ recode_name_abb <- function(.data, .abb) {
 #' data('stata')
 #' stata |> recode_fips_abb(abb)
 recode_fips_abb <- function(.data, .abb) {
-  stata <- get('stata')
-  rec <- stata$fips
-  names(rec) <- stata$abb
+  rec <- censable::stata$fips
+  names(rec) <- censable::stata$abb
 
   .data |> dplyr::mutate({{ .abb }} := unname(!!rec))
 }
@@ -125,9 +120,8 @@ recode_fips_abb <- function(.data, .abb) {
 #' data('stata')
 #' stata |> recode_ansi_abb(abb)
 recode_ansi_abb <- function(.data, .abb) {
-  stata <- get('stata')
-  rec <- stata$ansi
-  names(rec) <- stata$abb
+  rec <- censable::stata$ansi
+  names(rec) <- censable::stata$abb
 
   .data |> dplyr::mutate({{ .abb }} := unname(!!rec))
 }
@@ -148,9 +142,8 @@ recode_ansi_abb <- function(.data, .abb) {
 #' data('stata')
 #' stata |> recode_abb_ansi(ansi)
 recode_abb_ansi <- function(.data, .ansi) {
-  stata <- get('stata')
-  rec <- stata$abb
-  names(rec) <- stata$ansi
+  rec <- censable::stata$abb
+  names(rec) <- censable::stata$ansi
 
   .data |> dplyr::mutate({{ .ansi }} := unname(!!rec))
 }
@@ -170,9 +163,8 @@ recode_abb_ansi <- function(.data, .ansi) {
 #' data('stata')
 #' stata |> recode_name_ansi(name)
 recode_name_ansi <- function(.data, .ansi) {
-  stata <- get('stata')
-  rec <- stata$name
-  names(rec) <- stata$ansi
+  rec <- censable::stata$name
+  names(rec) <- censable::stata$ansi
 
   .data |> dplyr::mutate({{ .ansi }} := unname(!!rec))
 }
@@ -192,9 +184,8 @@ recode_name_ansi <- function(.data, .ansi) {
 #' data('stata')
 #' stata |> recode_fips_ansi(ansi)
 recode_fips_ansi <- function(.data, .ansi) {
-  stata <- get('stata')
-  rec <- stata$fips
-  names(rec) <- stata$ansi
+  rec <- censable::stata$fips
+  names(rec) <- censable::stata$ansi
 
   .data |> dplyr::mutate({{ .ansi }} := unname(!!rec))
 }
@@ -215,9 +206,8 @@ recode_fips_ansi <- function(.data, .ansi) {
 #' data('stata')
 #' stata |> recode_ansi_fips(fips)
 recode_ansi_fips <- function(.data, .fips) {
-  stata <- get('stata')
-  rec <- stata$ansi
-  names(rec) <- stata$fips
+  rec <- censable::stata$ansi
+  names(rec) <- censable::stata$fips
 
   .data |> dplyr::mutate({{ .fips }} := unname(!!rec))
 }
@@ -237,9 +227,8 @@ recode_ansi_fips <- function(.data, .fips) {
 #' data('stata')
 #' stata |> recode_abb_fips(fips)
 recode_abb_fips <- function(.data, .fips) {
-  stata <- get('stata')
-  rec <- stata$abb
-  names(rec) <- stata$fips
+  rec <- censable::stata$abb
+  names(rec) <- censable::stata$fips
 
   .data |> dplyr::mutate({{ .fips }} := unname(!!rec))
 }
@@ -260,9 +249,8 @@ recode_abb_fips <- function(.data, .fips) {
 #' data('stata')
 #' stata |> recode_name_fips(fips)
 recode_name_fips <- function(.data, .fips) {
-  stata <- get('stata')
-  rec <- stata$name
-  names(rec) <- stata$fips
+  rec <- censable::stata$name
+  names(rec) <- censable::stata$fips
 
   .data |> dplyr::mutate({{ .fips }} := unname(!!rec))
 }
@@ -282,7 +270,6 @@ recode_name_fips <- function(.data, .fips) {
 # #' data('stata')
 # #' stata |> recode_new_old(old)
 # recode_new_old <- function(.data, .old) {
-#   stata <- get('stata')
 #   rec <- stata$new
 #   names(rec) <- stata$old
 #
