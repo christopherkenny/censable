@@ -1,5 +1,7 @@
 url: https://christopherkenny.github.io/censable
 template:
+  bootstrap: 5
+  package: ctktemplate
   params:
     bootswatch: journal
 reference:
